@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ASPNETCore_Final.Models.HangHoa>
+@{
+    ViewData["Title"] = "SanPham";
+}
+
+<div class="w3ls_w3l_banner_nav_right_grid w3ls_w3l_banner_nav_right_grid_sub">
+    <h3>@ViewBag.TenLoai</h3>
+    <div class="w3ls_w3l_banner_nav_right_grid1">
+        <h6>Sản phẩm</h6>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 w3ls_w3l_banner_left" style="width:20%;padding-bottom:15px;">
+                <div class="hover14 column">
+                    <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+                        <div class="agile_top_brand_left_grid_pos">
+                            <img src="~/images/offer.png" alt=" " class="img-responsive" />
+                        </div>
+                        <div class="agile_top_brand_left_grid1">
+                            <figure>
+                                <div class="snipcart-item block">
+                                    <div class="snipcart-thumb">
+                                        <a asp-action="ChiTiet" asp-route-id="@item.MaHh"><img src="~/HangHoa/@item.Hinh" alt="" class="img-responsive" /></a>
+                                        <p>@item.TenHh</p>
+                                        @{ 
+                                            double dongia = item.DonGia * (1 - item.GiamGia);
+                                            
+                                        }
+                                        <h4>@dongia.ToString("#,##0") đ <span >@item.DonGia.ToString("#,##0") đ</span></h4>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
