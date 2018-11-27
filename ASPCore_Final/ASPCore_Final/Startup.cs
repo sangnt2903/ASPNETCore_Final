@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ReflectionIT.Mvc.Paging;
 
 namespace ASPCore_Final
 {
@@ -36,7 +37,8 @@ namespace ASPCore_Final
             services.AddDbContext<ESHOPContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ESHOP")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSession();
-           
+            services.AddPaging();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

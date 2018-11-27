@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPCore_Final.Models;
+using ReflectionIT.Mvc.Paging;
+using Microsoft.AspNetCore.Routing;
 
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
@@ -21,10 +23,20 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/NhanViens
         [HttpGet("/admin/NhanViens")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int page = 1, string sortExpression = "Email")
         {
-            var eSHOPContext = _context.NhanVien.Include(n => n.MaPqNavigation);
-            return View(await eSHOPContext.ToListAsync());
+                    var eSHOPContext = _context.NhanVien.AsNoTracking().Include(n => n.MaPqNavigation).AsQueryable();
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.HoTen.Contains(searchString) || p.MaNv.Contains(searchString));
+                    }
+                    var model = await PagingList.CreateAsync(eSHOPContext, 1, page, sortExpression, "Email");
+                    model.RouteValue = new RouteValueDictionary {
+                { "searchString", searchString}
+            };
+           // var qry = _context.NhanVien.AsNoTracking().OrderBy(p => p.Email);
+           // var model = await PagingList.CreateAsync(qry, 1, page);
+            return View(model);
         }
 
         // GET: Admin/NhanViens/Details/5

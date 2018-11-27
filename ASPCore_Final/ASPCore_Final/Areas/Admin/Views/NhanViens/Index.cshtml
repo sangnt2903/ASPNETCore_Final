@@ -1,5 +1,6 @@
-﻿@model IEnumerable<ASPCore_Final.Models.NhanVien>
-
+﻿@model ReflectionIT.Mvc.Paging.PagingList<ASPCore_Final.Models.NhanVien>
+@using ReflectionIT.Mvc.Paging;
+@addTagHelper *, ReflectionIT.Mvc.Paging
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -10,14 +11,17 @@
 
 <div class="outer-w3-agile mt-3">
     <h4 class="tittle-w3-agileits mb-4">Danh sách nhân viên</h4>
-    <form action="#" method="post" class="form-inline mx-auto search-form">
-        <input class="form-control mr-sm-5" type="search" placeholder="Search" aria-label="Search" required="">
-        <button class="btn btn-style my-2 my-sm-0" type="submit">Search</button>
+    <form method="get" class="form-inline">
+        <input name="searchString" class="form-control" placeholder="Search..."
+               value="@Model.RouteValue["searchString"]" />
+        <button type="submit" class="btn btn-info">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+        </button>
     </form>
     <p>
         <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
     </p>
-   
+
 
 
     <table class="table table-striped">
@@ -76,7 +80,14 @@
         </tbody>
 
     </table>
+   
+    <nav class="navbar-default justify-content-center"  >
+   
 
+           @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model, @searchString = @ViewBag.SearchString, @class = "page-item" })
+                   
+      
+    </nav>
 
 </div>
 
