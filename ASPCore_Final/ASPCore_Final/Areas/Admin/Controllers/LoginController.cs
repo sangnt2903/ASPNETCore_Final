@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ASPCore_Final.Areas.Admin.Models;
 using ASPCore_Final.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASPCore_Final.Areas.Admin.Controllers
@@ -30,11 +31,11 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("loi", "Sai email hoặc password");
                 }
-                // HttpContext.Session.SetString("userName", us.UserName);
+               //  HttpContext.Session.SetString("email", nv.Email);
                 HttpContext.Session.Set("email", nv);
 
                 return LocalRedirect("/admin");
-              //  return RedirectToAction("Index", "Home", routeValues: new { areas = "Admin" });
+               //return RedirectToAction("Index", "Home", routeValues: new { areas = "Admin" });
             }
             return View("Index");
         }
@@ -42,7 +43,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         {
             //xóa session
             HttpContext.Session.Remove("email");
-            return RedirectToAction("Index", "Login","admin");
+            return LocalRedirect("/admin");
         }
     }
 }
