@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPCore_Final.Models;
+using ReflectionIT.Mvc.Paging;
+using Microsoft.AspNetCore.Routing;
 
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
@@ -21,9 +23,18 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/KhachHangs
         [HttpGet("/admin/KhachHangs")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int page = 1, string sortExpression = "Email")
         {
-            return View(await _context.KhachHang.ToListAsync());
+            var eSHOPContext = _context.KhachHang.AsNoTracking().AsQueryable();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.HoTen.Contains(searchString) || p.TaiKhoan.Contains(searchString));
+            }
+            var model = await PagingList.CreateAsync(eSHOPContext, 1, page, sortExpression, "Email");
+            model.RouteValue = new RouteValueDictionary {
+                { "searchString", searchString}
+            };
+            return View(model); //(await _context.KhachHang.ToListAsync());
         }
 
         // GET: Admin/KhachHangs/Details/5
