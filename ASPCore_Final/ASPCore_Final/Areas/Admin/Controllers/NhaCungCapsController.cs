@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASPCore_Final.Models;
+using Microsoft.AspNetCore.Routing;
+using ReflectionIT.Mvc.Paging;
 
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
@@ -22,9 +24,18 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/NhaCungCaps
         [HttpGet("/admin/NhaCungCaps")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int page = 1, string sortExpression = "Email")
         {
-            return View(await _context.NhaCungCap.ToListAsync());
+            var eSHOPContext = _context.NhaCungCap.AsNoTracking().AsQueryable();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.TenCongTy.Contains(searchString) || p.DienThoai.Contains(searchString));
+            }
+            var model = await PagingList.CreateAsync(eSHOPContext, 1, page, sortExpression, "Email");
+            model.RouteValue = new RouteValueDictionary {
+                { "searchString", searchString}
+            };
+            return View(model); //(await _context.NhaCungCap.ToListAsync());
         }
 
         // GET: Admin/NhaCungCaps/Details/5
@@ -77,7 +88,6 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             var nhaCungCap = await _context.NhaCungCap.FindAsync(id);
             if (nhaCungCap == null)
             {
@@ -93,10 +103,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("MaNcc,TenCongTy,Email,DienThoai,DiaChi,MoTa")] NhaCungCap nhaCungCap)
         {
-            if (id != nhaCungCap.MaNcc)
-            {
-                return NotFound();
-            }
+         
 
             if (ModelState.IsValid)
             {
