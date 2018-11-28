@@ -133,3 +133,8 @@ C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\A
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.dll
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.pdb
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.csproj.CopyComplete
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Create.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Delete.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Details.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Edit.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Index.g.cshtml.cs
