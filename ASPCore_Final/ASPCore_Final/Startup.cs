@@ -38,6 +38,7 @@ namespace ASPCore_Final
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSession();
             services.AddPaging();
+            services.AddRouting();
 
         }
 

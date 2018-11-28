@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Routing;
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    
     public class NhanViensController : Controller
     {
         private readonly ESHOPContext _context;
@@ -109,10 +110,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("MaNv,HoTen,Email,MatKhau,MaPq,TrangThaiHd")] NhanVien nhanVien)
         {
-            if (id != nhanVien.MaNv)
-            {
-                return NotFound();
-            }
+         
 
             if (ModelState.IsValid)
             {
@@ -139,7 +137,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         }
 
         // GET: Admin/NhanViens/Delete/5
-        [HttpGet("/admin/NhanViens/Delete")]
+        [HttpGet("/admin/Nhanviens/Delete")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
