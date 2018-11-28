@@ -17,6 +17,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         {
             db = context;
         }
+        [HttpGet("/admin/Login")]
         public IActionResult Index()
         {
             return View();
@@ -31,10 +32,15 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("loi", "Sai email hoặc password");
                 }
-               //  HttpContext.Session.SetString("email", nv.Email);
-                HttpContext.Session.Set("email", nv);
+                //  HttpContext.Session.SetString("email", nv.Email);
+                else
+                {
+                    HttpContext.Session.Set("email", nv);
+                    return LocalRedirect("/admin");
+                }
+           
 
-                return LocalRedirect("/admin");
+                
                //return RedirectToAction("Index", "Home", routeValues: new { areas = "Admin" });
             }
             return View("Index");
