@@ -19,5 +19,11 @@ namespace ASPCore_Final.Controllers
             List<HangHoa> hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).ToList();
             return View(hangHoas);
         }
+
+        public IActionResult ChiTiet(int mahh)
+        {
+            HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaHh == mahh);
+            return View(hh);
+        }
     }
 }
