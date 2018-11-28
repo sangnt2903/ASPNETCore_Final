@@ -19,39 +19,39 @@
         </button>
     </form>
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
     </p>
     <table class="table">
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.TaiKhoan)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.MatKhau)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.HoTen)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.GioiTinh)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.NgaySinh)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.DiaChi)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.DienThoai)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.Hinh)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.TrangThaiHd)
                 </th>
                 <th></th>
@@ -61,37 +61,37 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.TaiKhoan)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.MatKhau)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.HoTen)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.GioiTinh)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.NgaySinh)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.DiaChi)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.DienThoai)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.Hinh)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.TrangThaiHd)
                     </td>
-                    <td>
+                    <td scope="row">
                         <a asp-action="Edit" asp-route-id="@item.MaKh">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.MaKh">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.MaKh">Delete</a>
