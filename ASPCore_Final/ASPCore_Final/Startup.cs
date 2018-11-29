@@ -36,7 +36,9 @@ namespace ASPCore_Final
 
             services.AddDbContext<ESHOPContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ESHOP")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSession();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromHours(48);
+            });
             services.AddPaging();
             services.AddRouting();
 

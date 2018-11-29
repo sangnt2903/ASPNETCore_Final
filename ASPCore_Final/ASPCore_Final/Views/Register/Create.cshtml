@@ -1,0 +1,44 @@
+﻿@model ASPCore_Final.Models.KhachHang
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_frontEnd.cshtml";
+}
+@section breadcumb{
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+                <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+                <li class="active">Đăng kí</li>
+            </ol>
+        </div>
+    </div>
+}
+<div class="register">
+    <div class="container">
+        <h3 class="animated wow zoomIn" data-wow-delay=".5s">Đăng kí tại đây</h3>
+        <form asp-action="Create" class="animated wow slideInUp" data-wow-delay=".5s">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="login-form-grids">
+                <input asp-for="TaiKhoan" class="form-control" placeholder="Tên đăng nhập..." type="text" required />
+                <input asp-for="MatKhau" class="form-control" placeholder="Mật khẩu..." type="password" required />
+                <input asp-for="HoTen" class="form-control" placeholder="Họ tên..." type="text" required />
+                <select class="form-control selected" asp-for="GioiTinh" required>
+                    <option>Nam</option>
+                    <option>Nữ</option>
+                </select>
+                <input asp-for="NgaySinh" class="form-control" placeholder="Ngày sinh" required />
+                <input asp-for="DiaChi" class="form-control" placeholder="Địa chỉ..." type="text" required />
+                <input asp-for="DienThoai" class="form-control" placeholder="Số điện thoại..." type="tel" required />
+                <input asp-for="Email" class="form-control" placeholder="Địa chỉ email..." type="email" required />
+                <!--<input type="file" name="fHinh" asp-for="Hinh" class="form-control" />-->
+                <div class="register-check-box" required>
+                    <label>
+                        <input asp-for="TrangThaiHd" /> Trạng thái hoạt động
+                    </label>
+                </div>
+                <input type="submit" value="Hoàn tất" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
