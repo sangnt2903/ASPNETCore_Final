@@ -100,18 +100,40 @@
             
             <nav class="numbering animated wow slideInRight" data-wow-delay=".5s">
                 <ul class="pagination paging">
+                    @{
+                        string loai = "";
+                        if (Model.Count() > 0)
+                        {
+                            loai = Model.First().MaLoai;
+                        }
+                        int listCount = db.HangHoa.Where(p => p.MaLoai == loai).ToList().Count;
+                        int pageSize = 6;
+                        var totalPage = 0;
+                        if (listCount % pageSize == 0)
+                        {
+                            totalPage = listCount / pageSize;
+                        }
+                        else
+                        {
+                            totalPage = listCount / pageSize;
+                            totalPage += 1;
+                        }
+                    }
+                    @{
+                        int currentpage = 1;
+                    }
                     <li>
-                        <a href="#" aria-label="Previous">
+                        <a asp-action="Index" asp-controller="HangHoa" asp-route-page="1" asp-route-loai="@loai" aria-label="Begin">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
+                    @for (int i = 1; i <= totalPage; i++)
+                    {
+                        <li class="active"><a asp-action="Index" asp-controller="HangHoa" asp-route-page="@i" asp-route-loai="@loai">@i<span class="sr-only">(current)</span></a></li>
+
+                    }
                     <li>
-                        <a href="#" aria-label="Next">
+                        <a asp-action="Index" asp-controller="HangHoa" asp-route-page="@totalPage" asp-route-loai="@loai" aria-label="End">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
