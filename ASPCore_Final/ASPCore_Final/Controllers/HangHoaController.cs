@@ -25,5 +25,15 @@ namespace ASPCore_Final.Controllers
             HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaHh == mahh);
             return View(hh);
         }
+
+        public IActionResult TimKiem(string keyword)
+        {
+            List<HangHoa> hh = new List<HangHoa>();
+            if(keyword != null)
+            {
+                hh = db.HangHoa.Where(p => p.TenHh.ToLower().Contains(keyword.ToLower())).Take(6).ToList();
+            }
+            return View(hh);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace ASPCore_Final.Models
         public string CauHoi { get; set; }
         public string TraLoi { get; set; }
         public DateTime NgayDua { get; set; }
-        public string MaNv { get; set; }
+        public int? MaNv { get; set; }
 
         public NhanVien MaNvNavigation { get; set; }
     }

@@ -29,7 +29,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                     var eSHOPContext = _context.NhanVien.AsNoTracking().Include(n => n.MaPqNavigation).AsQueryable();
                     if (!string.IsNullOrEmpty(searchString))
                     {
-                        eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.HoTen.Contains(searchString) || p.MaNv.Contains(searchString));
+                        eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.HoTen.Contains(searchString));
                     }
                     var model = await PagingList.CreateAsync(eSHOPContext, 1, page, sortExpression, "Email");
                     model.RouteValue = new RouteValueDictionary {
@@ -42,7 +42,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/NhanViens/Details/5
         [HttpGet("/admin/NhanViens/Details")]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
@@ -108,7 +108,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaNv,HoTen,Email,MatKhau,MaPq,TrangThaiHd")] NhanVien nhanVien)
+        public async Task<IActionResult> Edit(int id, [Bind("MaNv,HoTen,Email,MatKhau,MaPq,TrangThaiHd")] NhanVien nhanVien)
         {
          
 
@@ -138,7 +138,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/NhanViens/Delete/5
         [HttpGet("/admin/Nhanviens/Delete")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
@@ -167,7 +167,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool NhanVienExists(string id)
+        private bool NhanVienExists(int id)
         {
             return _context.NhanVien.Any(e => e.MaNv == id);
         }

@@ -23,6 +23,7 @@ namespace ASPCore_Final.Models
         public virtual DbSet<NhaCungCap> NhaCungCap { get; set; }
         public virtual DbSet<NhanVien> NhanVien { get; set; }
         public virtual DbSet<PhanQuyen> PhanQuyen { get; set; }
+        public virtual DbSet<SanPhamKho> SanPhamKho { get; set; }
         public virtual DbSet<TrangThai> TrangThai { get; set; }
 
         // Unable to generate entity type for table 'dbo.YeuThich'. Please see the warning messages.
@@ -99,10 +100,7 @@ namespace ASPCore_Final.Models
 
                 entity.Property(e => e.HoTen).HasMaxLength(50);
 
-                entity.Property(e => e.MaKh)
-                    .IsRequired()
-                    .HasColumnName("MaKH")
-                    .HasMaxLength(20);
+                entity.Property(e => e.MaKh).HasColumnName("MaKH");
 
                 entity.Property(e => e.MaNv)
                     .HasColumnName("MaNV")
@@ -135,9 +133,7 @@ namespace ASPCore_Final.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.MaNv)
-                    .HasColumnName("MaNV")
-                    .HasMaxLength(50);
+                entity.Property(e => e.MaNv).HasColumnName("MaNV");
 
                 entity.Property(e => e.NgayDua).HasColumnType("date");
 
@@ -153,16 +149,17 @@ namespace ASPCore_Final.Models
             {
                 entity.HasKey(e => e.MaKh);
 
-                entity.Property(e => e.MaKh)
-                    .HasColumnName("MaKH")
-                    .HasMaxLength(20)
-                    .ValueGeneratedNever();
+                entity.Property(e => e.MaKh).HasColumnName("MaKH");
 
                 entity.Property(e => e.DiaChi).HasMaxLength(60);
 
                 entity.Property(e => e.DienThoai).HasMaxLength(24);
 
                 entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.GioiTinh)
                     .IsRequired()
                     .HasMaxLength(50);
 
@@ -224,10 +221,7 @@ namespace ASPCore_Final.Models
             {
                 entity.HasKey(e => e.MaNv);
 
-                entity.Property(e => e.MaNv)
-                    .HasColumnName("MaNV")
-                    .HasMaxLength(50)
-                    .ValueGeneratedNever();
+                entity.Property(e => e.MaNv).HasColumnName("MaNV");
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -255,6 +249,25 @@ namespace ASPCore_Final.Models
                 entity.HasKey(e => e.MaPq);
 
                 entity.Property(e => e.MaPq).HasColumnName("MaPQ");
+            });
+
+            modelBuilder.Entity<SanPhamKho>(entity =>
+            {
+                entity.HasKey(e => new { e.MaSpKho, e.MaHh });
+
+                entity.ToTable("SanPham_Kho");
+
+                entity.Property(e => e.MaSpKho).HasColumnName("MaSP_Kho");
+
+                entity.Property(e => e.KichCo)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.MaHhNavigation)
+                    .WithMany(p => p.SanPhamKhoNavigation)
+                    .HasForeignKey(d => d.MaHh)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SanPham_Kho_HangHoa");
             });
 
             modelBuilder.Entity<TrangThai>(entity =>

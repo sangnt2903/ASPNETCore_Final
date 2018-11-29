@@ -39,7 +39,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/KhachHangs/Details/5
         [HttpGet("/admin/KhachHangs/Details")]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
@@ -129,7 +129,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/KhachHangs/Delete/5
         [HttpGet("/admin/KhachHangs/Delete")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
@@ -157,7 +157,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool KhachHangExists(string id)
+        private bool KhachHangExists(int id)
         {
             return _context.KhachHang.Any(e => e.MaKh == id);
         }

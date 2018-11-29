@@ -6,7 +6,7 @@ namespace ASPCore_Final.Models
     public partial class HoaDon
     {
         public int MaHd { get; set; }
-        public string MaKh { get; set; }
+        public int MaKh { get; set; }
         public DateTime NgayDat { get; set; }
         public DateTime? NgayGiao { get; set; }
         public string HoTen { get; set; }

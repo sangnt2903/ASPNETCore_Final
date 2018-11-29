@@ -5,6 +5,11 @@ namespace ASPCore_Final.Models
 {
     public partial class HangHoa
     {
+        public HangHoa()
+        {
+            SanPhamKhoNavigation = new HashSet<SanPhamKho>();
+        }
+
         public int MaHh { get; set; }
         public string TenHh { get; set; }
         public string MaLoai { get; set; }
@@ -13,9 +18,10 @@ namespace ASPCore_Final.Models
         public double GiamGia { get; set; }
         public string MoTa { get; set; }
         public string MaNcc { get; set; }
-        public int SoLuongHang { get; set; }
+        public int? SanPhamKho { get; set; }
 
         public Loai MaLoaiNavigation { get; set; }
         public NhaCungCap MaNccNavigation { get; set; }
+        public ICollection<SanPhamKho> SanPhamKhoNavigation { get; set; }
     }
 }
