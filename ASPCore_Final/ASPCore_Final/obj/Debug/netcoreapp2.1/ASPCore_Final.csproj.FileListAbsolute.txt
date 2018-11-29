@@ -80,11 +80,6 @@ C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\NhaCungCaps\Details.g.cshtml.cs
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\NhaCungCaps\Edit.g.cshtml.cs
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\NhaCungCaps\Index.g.cshtml.cs
-C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\NhaCungCaps\Create.g.cshtml.cs
-C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\NhaCungCaps\Delete.g.cshtml.cs
-C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\NhaCungCaps\Details.g.cshtml.cs
-C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\NhaCungCaps\Edit.g.cshtml.cs
-C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\NhaCungCaps\Index.g.cshtml.cs
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\bin\Debug\netcoreapp2.1\ASPCore_Final.deps.json
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\bin\Debug\netcoreapp2.1\ASPCore_Final.runtimeconfig.json
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\bin\Debug\netcoreapp2.1\ASPCore_Final.runtimeconfig.dev.json
@@ -143,3 +138,15 @@ C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\A
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HangHoas\Details.g.cshtml.cs
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HangHoas\Edit.g.cshtml.cs
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HangHoas\Index.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HangHoas\Create.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HangHoas\Delete.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HangHoas\Details.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HangHoas\Edit.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HangHoas\Index.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Create.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Delete.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Details.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Edit.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\KhachHangs\Index.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\HangHoa\ChiTiet.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\HangHoa\TimKiem.g.cshtml.cs

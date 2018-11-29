@@ -39,7 +39,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/KhachHangs/Details/5
         [HttpGet("/admin/KhachHangs/Details")]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -81,7 +81,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/KhachHangs/Edit/5
         [HttpGet("/admin/KhachHangs/Edit")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -101,7 +101,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaKh,TaiKhoan,MatKhau,HoTen,GioiTinh,NgaySinh,DiaChi,DienThoai,Email,Hinh,TrangThaiHd")] KhachHang khachHang)
+        public async Task<IActionResult> Edit(int id, [Bind("MaKh,TaiKhoan,MatKhau,HoTen,GioiTinh,NgaySinh,DiaChi,DienThoai,Email,Hinh,TrangThaiHd")] KhachHang khachHang)
         {
            
             if (ModelState.IsValid)
@@ -128,8 +128,8 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         }
 
         // GET: Admin/KhachHangs/Delete/5
-        [HttpGet("/admin/KhachHangs/Delete")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpGet("/admin/KhachHangs/Delete/{id}")]
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -147,9 +147,9 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         }
 
         // POST: Admin/KhachHangs/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("/admin/KhachHangs/Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var khachHang = await _context.KhachHang.FindAsync(id);
             _context.KhachHang.Remove(khachHang);

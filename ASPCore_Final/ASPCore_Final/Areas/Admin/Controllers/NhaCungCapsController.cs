@@ -129,7 +129,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         }
 
         // GET: Admin/NhaCungCaps/Delete/5
-        [HttpGet("/admin/NhaCungCaps/Delete")]
+        [HttpGet("/admin/NhaCungCaps/Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -148,7 +148,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         }
 
         // POST: Admin/NhaCungCaps/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("/admin/NhaCungCaps/Delete/{id}"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
