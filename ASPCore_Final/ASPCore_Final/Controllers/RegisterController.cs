@@ -55,21 +55,22 @@ namespace ASPCore_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaKh,TaiKhoan,MatKhau,HoTen,GioiTinh,NgaySinh,DiaChi,DienThoai,Email,Hinh,TrangThaiHd")] KhachHang khachHang, IFormFile fHinh)
+        public IActionResult Create([Bind("MaKh,TaiKhoan,MatKhau,HoTen,GioiTinh,NgaySinh,DiaChi,DienThoai,Email,Hinh")] KhachHang khachHang, IFormFile fHinh)
         {
             if (ModelState.IsValid)
             {
-                /*if (fHinh != null) {
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\User_Avatar", fHinh.FileName);
+                if(fHinh != null) {
+                    var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","UserAvatar", fHinh.FileName);
                     using (var file = new FileStream(path, FileMode.Create))
                     {
-                        await fHinh.CopyToAsync(file);
+                        fHinh.CopyTo(file);
                     }
                     khachHang.Hinh = fHinh.FileName;
-                }*/
+                }
                 khachHang.MatKhau = Encryptor.MD5Hash(khachHang.MatKhau);
+                khachHang.TrangThaiHd = false;
                 _context.Add(khachHang);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction("Index", "Login");
             }
             return View(khachHang);

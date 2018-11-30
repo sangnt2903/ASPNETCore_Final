@@ -17,27 +17,32 @@
 <div class="register">
     <div class="container">
         <h3 class="animated wow zoomIn" data-wow-delay=".5s">Đăng kí tại đây</h3>
-        <form asp-action="Create" class="animated wow slideInUp" data-wow-delay=".5s">
+        <form asp-action="Create" class="animated wow slideInUp" data-wow-delay=".5s" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="login-form-grids">
                 <input asp-for="TaiKhoan" class="form-control" placeholder="Tên đăng nhập..." type="text" required />
+                <br />
                 <input asp-for="MatKhau" class="form-control" placeholder="Mật khẩu..." type="password" required />
+                <br />
                 <input asp-for="HoTen" class="form-control" placeholder="Họ tên..." type="text" required />
+                <br />
                 <select class="form-control selected" asp-for="GioiTinh" required>
                     <option>Nam</option>
                     <option>Nữ</option>
                 </select>
+                <br />
                 <input asp-for="NgaySinh" class="form-control" placeholder="Ngày sinh" required />
+                <br />
                 <input asp-for="DiaChi" class="form-control" placeholder="Địa chỉ..." type="text" required />
+                <br />
                 <input asp-for="DienThoai" class="form-control" placeholder="Số điện thoại..." type="tel" required />
+                <br />
                 <input asp-for="Email" class="form-control" placeholder="Địa chỉ email..." type="email" required />
+                <br />
                 <!--<input type="file" name="fHinh" asp-for="Hinh" class="form-control" />-->
-                <div class="register-check-box" required>
-                    <label>
-                        <input asp-for="TrangThaiHd" /> Trạng thái hoạt động
-                    </label>
-                </div>
-                <input type="submit" value="Hoàn tất" class="btn btn-default" />
+                <label>Chọn avatar</label>
+                <input type="file" name="fHinh" placeholder="Chọn avatar" required class="form-control" />
+                <input type="submit" value="Hoàn tất" class="btn btn-default" class="form-control" />
             </div>
         </form>
     </div>
