@@ -7,6 +7,8 @@ namespace ASPCore_Final.Models
     {
         public HangHoa()
         {
+            BinhLuanSp = new HashSet<BinhLuanSp>();
+            ChiTietHd = new HashSet<ChiTietHd>();
             SanPhamKhoNavigation = new HashSet<SanPhamKho>();
         }
 
@@ -22,6 +24,8 @@ namespace ASPCore_Final.Models
 
         public Loai MaLoaiNavigation { get; set; }
         public NhaCungCap MaNccNavigation { get; set; }
+        public ICollection<BinhLuanSp> BinhLuanSp { get; set; }
+        public ICollection<ChiTietHd> ChiTietHd { get; set; }
         public ICollection<SanPhamKho> SanPhamKhoNavigation { get; set; }
     }
 }

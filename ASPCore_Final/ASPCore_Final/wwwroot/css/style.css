@@ -281,8 +281,8 @@ ul.multi-column-dropdown h6 {
 /*-- search-ends --*/
 .header-right {
     float: right;
-    margin-top: 5px;
-	width: 14%;
+    margin-top: 20px;
+	width: 35%;
 }
 .box_1 {
   float: right;
@@ -2339,7 +2339,7 @@ td.invert-image a img {
 }
 .checkout-left-basket {
     float: left;
-    width: 25%;
+    width: 45%;
 }
 .checkout-right-basket{
 	float: right;
@@ -3836,4 +3836,48 @@ td.invert-image a img {
 		float: left;
 		text-align: left;
 	}
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .hieuung {
+        margin-top: 20px;
+    }
+
+    .motkhoi h3:hover {
+        background: url(images/arrdown.png);
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 30px;
+        padding-right: 20px;
+    }
+
+    .ndmotkhoi {
+        padding: 10px;
+        background: #F5F5F5;
+    }
+
+    .container {
+        text-align: center;
+        font-family: segoe ui light;
+    }
+
+    .motkhoi {
+        width: 30%;
+        margin: auto;
+    }
+
+        .motkhoi h3 {
+            background: yellowgreen;
+            padding: 10px;
+        }
+
+    .ndmotkhoi {
+        border: 1px solid gray;
+    }
+
+    .motkhoi .xanh {
+        background: lightblue;
+    }
 }

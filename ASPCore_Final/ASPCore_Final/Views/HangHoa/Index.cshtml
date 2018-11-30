@@ -39,7 +39,6 @@
                         int soluong = db.HangHoa.Where(p => p.MaLoai == item.MaLoai).ToList().Count();
                         <li><a asp-action="Index" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
                     }
-
                 </ul>
                 <li><a href="products.html">Thời trang nữ</a> <span>(@soluongSPNu)</span></li>
                 <ul>
@@ -91,7 +90,7 @@
                                 double dongiaban = item.DonGia * (1 - item.GiamGia);
                                 double giamgia = item.GiamGia * 100;
                             }
-                            <p><i>@item.DonGia.ToString("#,##0") đ</i> <span class="item_price">@dongiaban.ToString("#,##0") đ</span><a class="item_add" asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh">Thêm vào giỏ </a></p>
+                            <p><i>@item.DonGia.ToString("#,##0") đ</i> <span class="item_price">@dongiaban.ToString("#,##0") đ</span></p>
                         </div>
                     </div>
                 </div>
@@ -118,9 +117,6 @@
                             totalPage = listCount / pageSize;
                             totalPage += 1;
                         }
-                    }
-                    @{
-                        int currentpage = 1;
                     }
                     <li>
                         <a asp-action="Index" asp-controller="HangHoa" asp-route-page="1" asp-route-loai="@loai" aria-label="Begin">

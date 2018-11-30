@@ -223,7 +223,6 @@ C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\bin\Debug\netcoreapp2.1
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\bin\Debug\netcoreapp2.1\ASPCore_Final.pdb
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\bin\Debug\netcoreapp2.1\ASPCore_Final.Views.dll
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\bin\Debug\netcoreapp2.1\ASPCore_Final.Views.pdb
-C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.csprojAssemblyReference.cache
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.csproj.CoreCompileInputs.cache
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.RazorAssemblyInfo.cache
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.RazorAssemblyInfo.cs
@@ -282,3 +281,5 @@ C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.dll
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.pdb
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.csproj.CopyComplete
+C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\GioHang\Index.g.cshtml.cs
+C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\ASPCore_Final.csprojAssemblyReference.cache

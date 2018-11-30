@@ -75,29 +75,32 @@
                         @Model.MoTa
                     </p>
                 </div>
-                <div class="color-quality">
-                    <div class="color-quality-left">
-                        <h4>Kích cỡ : </h4>
+                <form asp-action="AddToCart" asp-controller="GioHang" method="post">
+                    <div class="color-quality">
+                        <div class="color-quality-left">
+                            <input type="hidden" name="mahh" value="@Model.MaHh" />
+                            <h4>Kích cỡ : </h4>
+                            <div>
+                                <ul>
+                                    <li><input class="radio custom-radio" type="radio" id="sizeS" name="size" value="S" checked />S</li>
+                                    <li><input class="radio custom-radio" type="radio" id="sizeM" name="size" value="M" />M</li>
+                                    <li><input class="radio custom-radio" type="radio" id="sizeL" name="size" value="L" />L</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="clearfix"></div>
                         <div>
-                            <ul>
-                                <li><input class="radio custom-radio" type="radio" id="sizeS" name="size" value="S" checked />S</li>
-                                <li><input class="radio custom-radio" type="radio" id="sizeM" name="size" value="M" />M</li>
-                                <li><input class="radio custom-radio" type="radio" id="sizeL" name="size" value="L" />L</li>
-                            </ul>
+                            <h4>Số lượng :</h4>
+                            <input style="width:60px;" class="input-group-text" type="number" name="soluongsp" value="1" min="1" />
                         </div>
                     </div>
+                    <div class="clearfix"> </div>
                     <br />
-                    <div class="clearfix"></div>
-                    <div>
-                        <h4>Số lượng :</h4>
-                        <input style="width:60px;" class="input-group-text" type="number" name="soluongsp" value="1" min="1" />
+                    <div class="occasion-cart">
+                        <button type="submit" name="btnAddtoCart" class="btn btn-success">Thêm vào giỏ</button>
                     </div>
-                </div>
-                <div class="clearfix"> </div>
-                <br />
-                <div class="occasion-cart">
-                    <a class="item_add" asp-action="ThemVaoGio" asp-controller="GioHang" asp-route-mahh="@Model.MaHh">Thêm vào giỏ </a>
-                </div>
+                </form>
                 <div class="social">
                     <div class="social-left">
                         <p>Chia sẻ :</p>

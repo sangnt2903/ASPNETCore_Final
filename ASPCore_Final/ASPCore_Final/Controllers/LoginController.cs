@@ -40,6 +40,8 @@ namespace ASPCore_Final.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("user");
+            if (HttpContext.Session.Get<string>("mess") != null)
+                HttpContext.Session.Remove("mess");
             return RedirectToAction("Index", "Login");
         }
     }

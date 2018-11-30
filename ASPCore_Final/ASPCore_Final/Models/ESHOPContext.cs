@@ -15,6 +15,8 @@ namespace ASPCore_Final.Models
         {
         }
 
+        public virtual DbSet<BinhLuanSp> BinhLuanSp { get; set; }
+        public virtual DbSet<ChiTietHd> ChiTietHd { get; set; }
         public virtual DbSet<HangHoa> HangHoa { get; set; }
         public virtual DbSet<HoaDon> HoaDon { get; set; }
         public virtual DbSet<HoiDap> HoiDap { get; set; }
@@ -27,19 +29,74 @@ namespace ASPCore_Final.Models
         public virtual DbSet<TrangThai> TrangThai { get; set; }
 
         // Unable to generate entity type for table 'dbo.YeuThich'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.ChiTietHD'. Please see the warning messages.
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=ESHOP;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Server=THANHSANG\\SQLEXPRESS;Database=ESHOP;Integrated Security=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BinhLuanSp>(entity =>
+            {
+                entity.HasKey(e => e.MaBl);
+
+                entity.ToTable("BinhLuanSP");
+
+                entity.Property(e => e.MaBl).HasColumnName("MaBL");
+
+                entity.Property(e => e.MaKh).HasColumnName("MaKH");
+
+                entity.Property(e => e.NgayBl)
+                    .HasColumnName("NgayBL")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.NoiDung).HasMaxLength(100);
+
+                entity.HasOne(d => d.MaHhNavigation)
+                    .WithMany(p => p.BinhLuanSp)
+                    .HasForeignKey(d => d.MaHh)
+                    .HasConstraintName("FK_BinhLuanSP_HangHoa");
+
+                entity.HasOne(d => d.MaKhNavigation)
+                    .WithMany(p => p.BinhLuanSp)
+                    .HasForeignKey(d => d.MaKh)
+                    .HasConstraintName("FK_BinhLuanSP_KhachHang");
+            });
+
+            modelBuilder.Entity<ChiTietHd>(entity =>
+            {
+                entity.HasKey(e => e.MaCt);
+
+                entity.ToTable("ChiTietHD");
+
+                entity.Property(e => e.MaCt).HasColumnName("MaCT");
+
+                entity.Property(e => e.KichCo)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MaHd).HasColumnName("MaHD");
+
+                entity.Property(e => e.MaHh).HasColumnName("MaHH");
+
+                entity.HasOne(d => d.MaHdNavigation)
+                    .WithMany(p => p.ChiTietHd)
+                    .HasForeignKey(d => d.MaHd)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ChiTietHD__MaHD__25869641");
+
+                entity.HasOne(d => d.MaHhNavigation)
+                    .WithMany(p => p.ChiTietHd)
+                    .HasForeignKey(d => d.MaHh)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ChiTietHD__MaHH__267ABA7A");
+            });
+
             modelBuilder.Entity<HangHoa>(entity =>
             {
                 entity.HasKey(e => e.MaHh);
@@ -84,14 +141,6 @@ namespace ASPCore_Final.Models
 
                 entity.Property(e => e.MaHd).HasColumnName("MaHD");
 
-                entity.Property(e => e.CachThanhToan)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.CachVanChuyen)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
                 entity.Property(e => e.DiaChi)
                     .IsRequired()
                     .HasMaxLength(60);
@@ -109,6 +158,11 @@ namespace ASPCore_Final.Models
                 entity.Property(e => e.NgayDat).HasColumnType("datetime");
 
                 entity.Property(e => e.NgayGiao).HasColumnType("datetime");
+
+                entity.Property(e => e.SdtNguoinhan)
+                    .HasColumnName("SDT_nguoinhan")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.MaKhNavigation)
                     .WithMany(p => p.HoaDon)
