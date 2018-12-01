@@ -47,7 +47,7 @@ namespace ASPCore_Final.Controllers
                     kh.MatKhau = Encryptor.MD5Hash(mk);
                     db.Update(kh);
                     db.SaveChangesAsync();
-                    MailMessage mm = new MailMessage("calmin21298@gmail.com", model.UserEmail);
+                    MailMessage mm = new MailMessage("eshoppingmanager@gmail.com", model.UserEmail);
                     mm.Subject = "Mật khẩu tài khoản Eshop";
                     mm.Body = string.Format("Xin chào: <h1>{0}</h1> <br/> Mật khẩu mới của bạn là <h1>{1}</h1>", kh.HoTen, mk);
                     mm.IsBodyHtml = true;
@@ -55,7 +55,7 @@ namespace ASPCore_Final.Controllers
                     smtp.Host = "smtp.gmail.com";
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
-                    smtp.Credentials = new System.Net.NetworkCredential("calmin21298@gmail.com", "01229537685");
+                    smtp.Credentials = new System.Net.NetworkCredential("eshoppingmanager@gmail.com", "eshop147258369");
                     smtp.Send(mm);
                     return RedirectToAction("Index", "Login");
                 }
