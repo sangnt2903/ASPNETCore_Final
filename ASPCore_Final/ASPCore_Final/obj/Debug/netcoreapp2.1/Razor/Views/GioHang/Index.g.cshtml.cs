@@ -76,7 +76,7 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n<!-- breadcrumbs -->\r\n<div class=\"breadcrumbs\">\r\n    <div class=\"container\">\r\n        <ol class=\"breadcrumb breadcrumb1 animated wow slideInLeft\" data-wow-delay=\".5s\">\r\n            <li>");
             EndContext();
             BeginContext(321, 123, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eacf4771ead146e5ab87b326fb182189", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b0c1d9b2c9eb4481a739857bef86984d", async() => {
                 BeginContext(365, 75, true);
                 WriteLiteral("<span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></span>Trang chủ");
                 EndContext();
@@ -162,9 +162,9 @@ using ASPCore_Final.Models;
             WriteLiteral("</td>\r\n                            <td class=\"invert-image\" width=\"150px;\">");
             EndContext();
             BeginContext(1749, 146, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fd0e23a752144c2f88960c4bc3f5fc51", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "be68545eab844101add0771f0271cd45", async() => {
                 BeginContext(1826, 65, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "1ba9651b2ece4d96886e28e5238a4e43", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c562d89484a7446eb89cee69d3fcd454", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -230,7 +230,7 @@ AddHtmlAttributeValue("", 1846, item.Hinh, 1846, 10, false);
             WriteLiteral("</td>\r\n                            ");
             EndContext();
             BeginContext(2010, 911, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6bfd542e482843e5bf75ac32813d49e8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ea6221b2f21745f598577137a5f50531", async() => {
                 BeginContext(2078, 66, true);
                 WriteLiteral("\r\n                                <input type=\"hidden\" name=\"mahh\"");
                 EndContext();
@@ -316,7 +316,7 @@ WriteAttributeValue("", 2485, item.SoLuong, 2485, 13, false);
             WriteLiteral(" đ</td>\r\n                            <td class=\"invert\">\r\n                                <div class=\"rem\">\r\n                                    <div>");
             EndContext();
             BeginContext(3215, 104, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6fda5c0808f3472aba9748572bf6e14e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b968feacf5a94e1c827a278b65af4e57", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
@@ -427,7 +427,7 @@ WriteAttributeValue("", 2485, item.SoLuong, 2485, 13, false);
             WriteLiteral(" đ</span></li>\r\n                    </ul>\r\n                </div>\r\n                <div class=\"checkout-right-basket animated wow slideInRight\" data-wow-delay=\".5s\">\r\n                    ");
             EndContext();
             BeginContext(4441, 141, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9bb3b43f9264a88978797d05323e1e9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2f0714742d54980934d260826787615", async() => {
                 BeginContext(4488, 90, true);
                 WriteLiteral("<span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>Tiếp tục mua hàng");
                 EndContext();
@@ -451,7 +451,7 @@ WriteAttributeValue("", 2485, item.SoLuong, 2485, 13, false);
             WriteLiteral("\r\n                </div>\r\n                <div class=\"clearfix\"> </div>\r\n                <br />\r\n                <!--  Hiệu ứng accordion -->\r\n                ");
             EndContext();
             BeginContext(4743, 39, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1a5fb380987044ae9d1467c3574bd982", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "93025e12e0a7490d881918fac56bb4dc", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -493,7 +493,7 @@ WriteAttributeValue("", 2485, item.SoLuong, 2485, 13, false);
             WriteLiteral("                                ");
             EndContext();
             BeginContext(5693, 2586, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "279941f499c04d55afca3ba036be8455", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7931e6df057745e9b20b737f023dbf6b", async() => {
                 BeginContext(5761, 70, true);
                 WriteLiteral("\r\n                                    <input type=\"hidden\" name=\"makh\"");
                 EndContext();
@@ -665,7 +665,7 @@ WriteAttributeValue("", 6484, kh.DiaChi, 6484, 10, false);
             WriteLiteral("           ");
             EndContext();
             BeginContext(10085, 141, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6e22b046635e4c6f9d32bbf980bb7da4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b19025ceecd41aa8044abd0059abd00", async() => {
                 BeginContext(10132, 90, true);
                 WriteLiteral("<span class=\"glyphicon glyphicon-menu-left\" aria-hidden=\"true\"></span>Tiếp tục mua hàng");
                 EndContext();

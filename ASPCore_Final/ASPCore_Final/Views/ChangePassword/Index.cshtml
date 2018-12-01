@@ -1,4 +1,4 @@
-﻿@model ASPCore_Final.Models.ForgetPassword
+﻿@model ASPCore_Final.Models.ChangePassword
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_frontEnd.cshtml";
@@ -8,7 +8,7 @@
         <div class="container">
             <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
                 <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
-                <li class="active">Quên mật khẩu</li>
+                <li class="active">Đổi mật khẩu</li>
             </ol>
         </div>
     </div>
@@ -16,18 +16,14 @@
 <div class="forgot">
     <div class="container">
         <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-            @if (TempData["Success"] != null)
-            {
-                <div class="text-success">
-                    <p><strong>Thành công:</strong> @TempData["Success"].ToString()</p>
-                </div>
-            }
-            <h3 class="animated wow zoomIn" style="text-align:center;">Nhập email tài khoản của bạn</h3>
-            <form method="post" asp-controller="ForgetPassword" asp-action="Forget">
+            <h3 class="animated wow zoomIn" style="text-align:center;">Đổi mật khẩu</h3>
+            <form method="post" asp-controller="ChangePassword" asp-action="Change">
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-                <input asp-for="UserEmail" type="email" placeholder="Địa chỉ email" required>
+                <input asp-for="MatKhauMoi" type="password" placeholder="Mật khẩu mới" required>
+                <input asp-for="XacNhanMatKhauMoi" type="password" placeholder="Xác nhận mật khẩu mới" required>
                 <input type="submit" value="Xác nhận">
             </form>
         </div>
     </div>
 </div>
+

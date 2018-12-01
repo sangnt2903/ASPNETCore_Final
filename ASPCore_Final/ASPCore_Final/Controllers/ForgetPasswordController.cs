@@ -57,7 +57,8 @@ namespace ASPCore_Final.Controllers
                     smtp.EnableSsl = true;
                     smtp.Credentials = new System.Net.NetworkCredential("eshoppingmanager@gmail.com", "eshop147258369");
                     smtp.Send(mm);
-                    return RedirectToAction("Index", "Login");
+                    TempData["Success"] = "Xin hãy kiểm tra Email của bạn!";
+                    return View("Index");
                 }
             }
             return View("Index");
