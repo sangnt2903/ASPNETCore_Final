@@ -23,7 +23,7 @@
                 <input asp-for="Username" type="text" placeholder="Tên đăng nhập" required>
                 <input asp-for="Password" type="password" placeholder="Mật khẩu" required>
                 <div class="forgot">
-                    <a href="#">Quên mật khẩu</a>
+                    <a asp-controller="ForgetPassword" asp-action="Index">Quên mật khẩu</a>
                 </div>
                 <input type="submit" value="Login">
             </form>
