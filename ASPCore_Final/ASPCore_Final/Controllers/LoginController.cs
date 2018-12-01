@@ -23,10 +23,10 @@ namespace ASPCore_Final.Controllers
         {
             if (ModelState.IsValid)
             {
-                KhachHang kh = db.KhachHang.SingleOrDefault(p => p.TaiKhoan == model.Username && p.MatKhau == Encryptor.MD5Hash(model.Password));
+                KhachHang kh = db.KhachHang.SingleOrDefault(p => p.TaiKhoan == model.Username && p.MatKhau == Encryptor.MD5Hash(model.Password) /*&& p.TrangThaiHd != false*/);
                 if (kh == null)
                 {
-                    ModelState.AddModelError("Lỗi", "Tên đăng nhập hoặc tài khoản không hợp lệ");
+                    ModelState.AddModelError("Lỗi", "Tên đăng nhập hoặc mật khẩu không hợp lệ. Hoặc tài khoản bạn chưa hoạt động vui lòng kiểm tra mail để kích hoạt tài khoản");
                     return View("Index");
                 }
                 else
