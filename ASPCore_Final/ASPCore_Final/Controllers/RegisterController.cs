@@ -59,6 +59,25 @@ namespace ASPCore_Final.Controllers
         {
             if (ModelState.IsValid)
             {
+                KhachHang kh = _context.KhachHang.SingleOrDefault(p => p.Email == khachHang.Email);
+                KhachHang khh = _context.KhachHang.SingleOrDefault(p => p.TaiKhoan == khachHang.TaiKhoan);
+                if (khh != null)
+                {
+                    TempData["FailUser"] = "Tên đăng nhập đã tồn tại!";
+                    if (kh != null)
+                    {
+                        TempData["FailEmail"] = "Email này đã được đăng kí!";
+                    }
+                    return View("Create");
+                }
+                else
+                {
+                    if (kh != null)
+                    {
+                        TempData["FailEmail"] = "Email này đã được đăng kí!";
+                        return View("Create");
+                    }
+                }
                 if(fHinh != null) {
                     var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","UserAvatar", fHinh.FileName);
                     using (var file = new FileStream(path, FileMode.Create))
