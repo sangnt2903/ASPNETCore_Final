@@ -75,7 +75,7 @@ using ASPCore_Final.Models;
                 WriteLiteral("\r\n    <div class=\"breadcrumbs\">\r\n        <div class=\"container\">\r\n            <ol class=\"breadcrumb breadcrumb1 animated wow slideInLeft\" data-wow-delay=\".5s\">\r\n                <li>");
                 EndContext();
                 BeginContext(295, 123, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a19daf33c79f445291ad2d301570ee5a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98eda6cc2bb74b85bd9f09fe279e672c", async() => {
                     BeginContext(339, 75, true);
                     WriteLiteral("<span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></span>Trang chủ");
                     EndContext();
@@ -149,7 +149,7 @@ using ASPCore_Final.Models;
             WriteLiteral("                        <li>");
             EndContext();
             BeginContext(1805, 94, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32862eed13e2468d8d169c9f1f992dd0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b52238ffed3746e29a647d3c398a2018", async() => {
                 BeginContext(1883, 12, false);
 #line 40 "C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\Views\HangHoa\Index.cshtml"
                                                                                                     Write(item.TenLoai);
@@ -228,7 +228,7 @@ using ASPCore_Final.Models;
             WriteLiteral("                        <li>");
             EndContext();
             BeginContext(2302, 94, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b20c9d0267414b854702b542b35da9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dbdd4ffa608f4145b0f4a261adef3de4", async() => {
                 BeginContext(2380, 12, false);
 #line 48 "C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\Views\HangHoa\Index.cshtml"
                                                                                                     Write(item.TenLoai);
@@ -299,9 +299,9 @@ using ASPCore_Final.Models;
                             ");
             EndContext();
             BeginContext(2983, 186, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71a2e7f654d9493a91da86cca147c848", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "602b6d911990482799b892cd1d609677", async() => {
                 BeginContext(3102, 63, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "9203f9fb0ed14a2d9d78657a79102dfb", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2979ad18783141b99e6e2d8fff10a5cd", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -359,7 +359,7 @@ AddHtmlAttributeValue("", 3122, item.Hinh, 3122, 10, false);
             WriteLiteral("\r\n                            <div class=\"new-collections-grid1-image-pos products-right-grids-pos\" style=\"text-align:center\">\r\n                                ");
             EndContext();
             BeginContext(3329, 94, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "30241b78385f42e096a03e8133c0199f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b5bec873326b4bf188c869c311869bf8", async() => {
                 BeginContext(3406, 13, true);
                 WriteLiteral("Xem chi tiết");
                 EndContext();
@@ -420,7 +420,7 @@ AddHtmlAttributeValue("", 3122, item.Hinh, 3122, 10, false);
                         <h4>");
             EndContext();
             BeginContext(4840, 92, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d3d6cea824d4608bd61fe68e62c22f4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c163951b4e614e7686e2b06018dbe985", async() => {
                 BeginContext(4918, 10, false);
 #line 86 "C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\Views\HangHoa\Index.cshtml"
                                                                                                     Write(item.TenHh);
@@ -536,7 +536,7 @@ AddHtmlAttributeValue("", 3122, item.Hinh, 3122, 10, false);
             WriteLiteral("                    <li>\r\n                        ");
             EndContext();
             BeginContext(6567, 207, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "15d60c1ecd9543daabf3efd1eabd3335", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3525711678745d4b39d9031093f9311", async() => {
                 BeginContext(6675, 95, true);
                 WriteLiteral("\r\n                            <span aria-hidden=\"true\">&laquo;</span>\r\n                        ");
                 EndContext();
@@ -589,7 +589,7 @@ AddHtmlAttributeValue("", 3122, item.Hinh, 3122, 10, false);
             WriteLiteral("                        <li class=\"active\">");
             EndContext();
             BeginContext(6928, 134, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "19d270d716094d738eb80c8c56d4b502", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3783ccb1272414eae8280b1298fec45", async() => {
                 BeginContext(7019, 1, false);
 #line 128 "C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\Views\HangHoa\Index.cshtml"
                                                                                                                                 Write(i);
@@ -651,7 +651,7 @@ AddHtmlAttributeValue("", 3122, item.Hinh, 3122, 10, false);
             WriteLiteral("                    <li>\r\n                        ");
             EndContext();
             BeginContext(7144, 214, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1c47786b8d94e28b4a26f2a460c4447", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b65e1dbbacfc4b6ca559694058a3eae4", async() => {
                 BeginContext(7259, 95, true);
                 WriteLiteral("\r\n                            <span aria-hidden=\"true\">&raquo;</span>\r\n                        ");
                 EndContext();

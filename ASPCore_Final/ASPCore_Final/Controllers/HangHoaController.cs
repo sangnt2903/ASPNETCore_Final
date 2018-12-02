@@ -38,5 +38,34 @@ namespace ASPCore_Final.Controllers
             }
             return View(hh);
         }
+
+        public IActionResult ThemDanhGia(int mahh,string noidung)
+        {
+            if(HttpContext.Session.Get<KhachHang>("user") != null)
+            {
+                if(ViewBag.ErrorCmt != null)
+                {
+                    ViewBag.ErrorCmt = null;
+                }
+                BinhLuanSp cmt = new BinhLuanSp
+                {
+                    NoiDung = noidung,
+                    NgayBl = DateTime.Now,
+                    MaKh = HttpContext.Session.Get<KhachHang>("user").MaKh,
+                    MaHh = mahh
+                };
+                HangHoa hh = db.HangHoa.SingleOrDefault(p=>p.MaHh == mahh);
+                KhachHang kh = HttpContext.Session.Get<KhachHang>("user");
+                db.BinhLuanSp.Add(cmt);
+                db.SaveChanges();
+                return View("ChiTiet", hh);
+            }
+            else
+            {
+                HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaHh == mahh);
+                ViewBag.ErrorCmt = "Vui lòng đăng nhập để bình luận";
+                return View("ChiTiet",hh);
+            }
+        }
     }
 }
