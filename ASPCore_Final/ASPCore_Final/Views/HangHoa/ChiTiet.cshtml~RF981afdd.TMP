@@ -133,11 +133,7 @@
                     </div>
                     <div class="social-right">
                         <ul class="social-icons">
-                            @{ 
-                                string link = "http://www.facebook.com/share.php?u=eshop.com/";
-                                link += "HangHoa/ChiTiet?mahh=7";
-                            }
-                            <li><a style='padding: 0 5px' target='_blank' href="@link" title='Chia sẽ lên Facebook' class="facebook"></a></li>
+                            <li><a href="#" class="facebook"></a></li>
                         </ul>
                     </div>
                     <div class="clearfix"> </div>
@@ -148,10 +144,10 @@
                 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs" role="tablist">
                         @{
-
+                            
                             List<BinhLuanSp> comments = db.BinhLuanSp.Where(p=>p.MaHh == masp).OrderByDescending(p=>p.NgayBl).ToList();
                             KhachHang kh = Context.Session.Get<KhachHang>("user");
-
+                            
                         }
                         <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="true">Đánh giá(@comments.Count())</a></li>
                     </ul>

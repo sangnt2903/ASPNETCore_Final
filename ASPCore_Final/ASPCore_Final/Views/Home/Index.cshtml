@@ -2,93 +2,93 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+    <div class="banner">
+        <div class="container">
+            <div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
+                <h3>ESHOP</h3>
+                <h4 style="margin:auto">Fashionista</h4>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
+    @{
+        ESHOPContext db = new ESHOPContext();
+        List<HangHoa> hhs = db.HangHoa.ToList();
+        List<HangHoa> hhnb = new List<HangHoa>();
+        int demhhnb = 0;
+        foreach (var item in hhs)
+        {
+            List<BinhLuanSp> bls = db.BinhLuanSp.Where(p => p.MaHh == item.MaHh).ToList();
+            if (bls.Count > 0 && demhhnb < 6)
+            {
+                ++demhhnb;
+                hhnb.Add(item);
+            }
+        }
+        if (demhhnb < 6)
+        {
+            Random rnd = new Random();
+            List<HangHoa> hhs_random = hhs.OrderBy(x => rnd.Next()).ToList();
+
+            foreach (var hh in hhs_random)
+            {
+                if(!hhnb.Contains(hh) && demhhnb < 6)
+                {
+                    ++demhhnb;
+                    hhnb.Add(hh);
+                }
+            }
+        }
+    }
+    <div class="new-collections">
+        <div class="container">
+            <h3 class="animated wow zoomIn" data-wow-delay=".5s">Sản phẩm nổi bật</h3>
+            <div class="new-collections-grids">
+
+                @foreach (var item in hhnb)
+                {
+                    <div class="col-md-4 new-collections-grid">
+                        <div class="new-collections-grid1 new-collections-grid1-image-width animated wow slideInUp" data-wow-delay=".5s">
+                            <div class="new-collections-grid1-image">
+                                <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh" class="product-image"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive" /></a>
+                                <div class="new-collections-grid1-image-pos new-collections-grid1-image-pos1">
+                                    <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh">Xem chi tiết</a>
+                                </div>
+                                <div class="new-collections-grid1-right new-collections-grid1-right-rate">
+                                    <div class="rating">
+                                        <div class="rating-left">
+                                            <img src="images/2.png" alt=" " class="img-responsive" />
+                                        </div>
+                                        <div class="rating-left">
+                                            <img src="images/2.png" alt=" " class="img-responsive" />
+                                        </div>
+                                        <div class="rating-left">
+                                            <img src="images/2.png" alt=" " class="img-responsive" />
+                                        </div>
+                                        <div class="rating-left">
+                                            <img src="images/2.png" alt=" " class="img-responsive" />
+                                        </div>
+                                        <div class="rating-left">
+                                            <img src="images/1.png" alt=" " class="img-responsive" />
+                                        </div>
+                                        <div class="clearfix"> </div>
+                                    </div>
+                                </div>
+                                <div class="new-one">
+                                    <p>New</p>
+                                </div>
+                            </div>
+                            <h4><a href="single.html">@item.TenHh</a></h4>
+                            @{ 
+                                double giaban = item.DonGia * (1 - item.GiamGia);
+                            }
+                            <div class="new-collections-grid1-left simpleCart_shelfItem">
+                                <p><i>@item.DonGia.ToString("#,##0") đ</i> <span class="item_price">@giaban.ToString("#,##0") đ</span></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
+

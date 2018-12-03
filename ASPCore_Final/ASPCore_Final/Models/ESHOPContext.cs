@@ -27,15 +27,14 @@ namespace ASPCore_Final.Models
         public virtual DbSet<PhanQuyen> PhanQuyen { get; set; }
         public virtual DbSet<SanPhamKho> SanPhamKho { get; set; }
         public virtual DbSet<TrangThai> TrangThai { get; set; }
-
-        // Unable to generate entity type for table 'dbo.YeuThich'. Please see the warning messages.
+        public virtual DbSet<YeuThich> YeuThich { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=ESHOP;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Server=THANHSANG\\SQLEXPRESS;Database=ESHOP;Integrated Security=True;");
             }
         }
 
@@ -333,6 +332,33 @@ namespace ASPCore_Final.Models
                 entity.Property(e => e.TenTrangThai)
                     .IsRequired()
                     .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<YeuThich>(entity =>
+            {
+                entity.HasKey(e => e.MaYt);
+
+                entity.Property(e => e.MaYt).HasColumnName("MaYT");
+
+                entity.Property(e => e.DiemDanhGia).HasDefaultValueSql("((5))");
+
+                entity.Property(e => e.MaBl).HasColumnName("MaBL");
+
+                entity.Property(e => e.MaHh).HasColumnName("MaHH");
+
+                entity.Property(e => e.MaKh).HasColumnName("MaKH");
+
+                entity.Property(e => e.NgayChon).HasColumnType("datetime");
+
+                entity.HasOne(d => d.MaHhNavigation)
+                    .WithMany(p => p.YeuThich)
+                    .HasForeignKey(d => d.MaHh)
+                    .HasConstraintName("FK_YeuThich_HangHoa");
+
+                entity.HasOne(d => d.MaKhNavigation)
+                    .WithMany(p => p.YeuThich)
+                    .HasForeignKey(d => d.MaKh)
+                    .HasConstraintName("FK_YeuThich_KhachHang");
             });
         }
     }

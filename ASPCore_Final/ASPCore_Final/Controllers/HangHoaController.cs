@@ -39,7 +39,7 @@ namespace ASPCore_Final.Controllers
             return View(hh);
         }
 
-        public IActionResult ThemDanhGia(int mahh,string noidung)
+        public IActionResult ThemDanhGia(int mahh,string noidung,double rating)
         {
             if(HttpContext.Session.Get<KhachHang>("user") != null)
             {
@@ -56,7 +56,19 @@ namespace ASPCore_Final.Controllers
                 };
                 HangHoa hh = db.HangHoa.SingleOrDefault(p=>p.MaHh == mahh);
                 KhachHang kh = HttpContext.Session.Get<KhachHang>("user");
+                
                 db.BinhLuanSp.Add(cmt);
+               
+                db.SaveChanges();
+                YeuThich yt = new YeuThich
+                {
+                    MaHh = hh.MaHh,
+                    MaKh = kh.MaKh,
+                    NgayChon = DateTime.Now,
+                    DiemDanhGia = rating,
+                    MaBl = cmt.MaBl
+                };
+                db.YeuThich.Add(yt);
                 db.SaveChanges();
                 return View("ChiTiet", hh);
             }

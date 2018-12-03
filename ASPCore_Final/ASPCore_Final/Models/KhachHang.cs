@@ -9,6 +9,7 @@ namespace ASPCore_Final.Models
         {
             BinhLuanSp = new HashSet<BinhLuanSp>();
             HoaDon = new HashSet<HoaDon>();
+            YeuThich = new HashSet<YeuThich>();
         }
 
         public int MaKh { get; set; }
@@ -25,5 +26,6 @@ namespace ASPCore_Final.Models
 
         public ICollection<BinhLuanSp> BinhLuanSp { get; set; }
         public ICollection<HoaDon> HoaDon { get; set; }
+        public ICollection<YeuThich> YeuThich { get; set; }
     }
 }

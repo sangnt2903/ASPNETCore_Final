@@ -64,22 +64,42 @@
                             </div>
                             <div class="new-collections-grid1-right products-right-grids-pos-right">
                                 <div class="rating">
-                                    <div class="rating-left">
-                                        <img src="images/2.png" alt=" " class="img-responsive">
-                                    </div>
-                                    <div class="rating-left">
-                                        <img src="images/2.png" alt=" " class="img-responsive">
-                                    </div>
-                                    <div class="rating-left">
-                                        <img src="images/2.png" alt=" " class="img-responsive">
-                                    </div>
-                                    <div class="rating-left">
-                                        <img src="images/1.png" alt=" " class="img-responsive">
-                                    </div>
-                                    <div class="rating-left">
-                                        <img src="images/1.png" alt=" " class="img-responsive">
-                                    </div>
-                                    <div class="clearfix"> </div>
+                                    @{
+                                        List<YeuThich> yts = db.YeuThich.Where(p => p.MaHh == item.MaHh).ToList();
+                                        double diemyt = 0;
+                                        if (yts.Count > 0)
+                                        {
+                                            double tongdiem = 0;
+                                            foreach (var y in yts)
+                                            {
+                                                tongdiem = tongdiem + y.DiemDanhGia;
+                                            }
+                                            diemyt = tongdiem / yts.Count();
+                                            int diem = int.Parse(diemyt.ToString().Split(".")[0]);
+                                            if (diem < 3)
+                                            {
+                                                diem = 3;
+                                            }
+                                            for (int i = 1; i <= 5; i++)
+                                            {
+                                                if (i <= diem)
+                                                {
+                                                    <img src="~/images/2.png" style="opacity:1">
+                                                }
+                                                else if (i > diem)
+                                                {
+                                                    <img src="~/images/1.png" style="opacity:1">
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                <img src="~/images/2.png" style="opacity:1">
+                                            }
+                                        }
+                                    }
                                 </div>
                             </div>
                         </div>
