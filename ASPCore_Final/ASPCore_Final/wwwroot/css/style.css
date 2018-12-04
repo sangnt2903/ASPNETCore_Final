@@ -314,14 +314,14 @@ a.simpleCart_empty {
 }
 /*-- //header --*/
 /*-- banner --*/
-.banner{
-	background:url(~/images/banner.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
-	min-height:700px;
+.banner {
+    
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height: 700px;
 }
 .banner-info h3{
 	font-size:5em;
@@ -1224,6 +1224,7 @@ select#country,select#country1 {
 }
 .products-right-grids-bottom-grid {
     padding-left: 0;
+    margin-bottom:15px;
 }
 .products-right-grid1:nth-child(2) {
     margin: 1em 0 !important;

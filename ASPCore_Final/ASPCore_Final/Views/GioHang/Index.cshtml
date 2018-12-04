@@ -17,6 +17,12 @@
 <!-- checkout -->
 <div class="checkout">
     <div class="container">
+        @if (Context.Session.Get<string>("ErrorGH") != null)
+        {
+            string loi = Context.Session.Get<string>("ErrorGH");
+        <div class="alert alert-danger">@loi</div>
+        }
+            <br />
         @if (Model != null)
         {
             <h3 class="animated wow slideInLeft" data-wow-delay=".5s">Giỏ hàng chứa : <span>@Model.Count()</span> mặt hàng</h3>
@@ -47,7 +53,7 @@
                                 <input type="hidden" name="kichco" value="@item.KichCo" />
                                 <td class="invert">
                                     <div class="quantity-select">
-                                         <input class="entry value" type="text" name="soluongmoi" value="@item.SoLuong" min="1" />
+                                        <input class="entry value" type="text" name="soluongmoi" value="@item.SoLuong" min="1" />
                                     </div>
                                 </td>
                                 <td>
@@ -155,8 +161,8 @@
                 </div>
                 <br />
                 @if (Context.Session.Get<string>("mess") != null)
-                    {
-                        var mess = Context.Session.Get<string>("mess");
+                {
+                    var mess = Context.Session.Get<string>("mess");
                     <div style="text-align:center"><label class="alert alert-info">@mess</label></div>
                 }
             </div>

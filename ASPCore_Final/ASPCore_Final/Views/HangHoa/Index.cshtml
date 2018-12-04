@@ -55,13 +55,37 @@
         <div class="products-right-grids-bottom">
             @foreach (var item in Model)
             {
-                <div class="col-md-4 products-right-grids-bottom-grid">
+                <div class="col-md-4 products-right-grids-bottom-grid" style="margin-bottom:15px;">
                     <div class="new-collections-grid1 products-right-grid1 animated wow slideInUp" data-wow-delay=".5s" style="padding:10px;">
                         <div class="new-collections-grid1-image">
                             <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-id="@item.MaHh" class="product-image" style="padding:10px;"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive"></a>
                             <div class="new-collections-grid1-image-pos products-right-grids-pos" style="text-align:center">
                                 <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh">Xem chi tiết</a>
                             </div>
+                            @{
+                                List<SanPhamKho> sanPhamKhos = db.SanPhamKho.Where(p => p.MaHh == item.MaHh).ToList();
+                                var soluong = sanPhamKhos.Sum(x => x.SoLuong);
+                                if (soluong > 10)
+                                {
+                                    double gg = item.GiamGia * 100;
+                                    <div class="new-one">
+                                        <p>-@gg%</p>
+                                    </div>
+                                }
+                                else if (soluong > 0)
+                                {
+                                    <div class="new-one">
+                                        <p>Sắp hết hàng</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="new-one">
+                                        <p>Tạm hết hàng</p>
+                                    </div>
+                                }
+                            }
+
                             <div class="new-collections-grid1-right products-right-grids-pos-right">
                                 <div class="rating">
                                     @{

@@ -3,7 +3,7 @@
 }
 
 
-    <div class="banner">
+    <div class="banner" style="background: url(/images/banner.jpg) no-repeat 0px 0px;">
         <div class="container">
             <div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
                 <h3>ESHOP</h3>
@@ -54,28 +54,70 @@
                                 <div class="new-collections-grid1-image-pos new-collections-grid1-image-pos1">
                                     <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh">Xem chi tiết</a>
                                 </div>
+                                @{
+                                    List<SanPhamKho> sanPhamKhos = db.SanPhamKho.Where(p => p.MaHh == item.MaHh).ToList();
+                                    var soluong = sanPhamKhos.Sum(x => x.SoLuong);
+                                    if (soluong > 10)
+                                    {
+                                        double gg = item.GiamGia * 100;
+                                        <div class="new-one">
+                                            <p>-@gg%</p>
+                                        </div>
+                                    }
+                                    else if (soluong > 0)
+                                    {
+                                        <div class="new-one">
+                                            <p>Sắp hết hàng</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="new-one">
+                                            <p>Tạm hết hàng</p>
+                                        </div>
+                                    }
+                                }
                                 <div class="new-collections-grid1-right new-collections-grid1-right-rate">
                                     <div class="rating">
-                                        <div class="rating-left">
-                                            <img src="images/2.png" alt=" " class="img-responsive" />
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="images/2.png" alt=" " class="img-responsive" />
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="images/2.png" alt=" " class="img-responsive" />
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="images/2.png" alt=" " class="img-responsive" />
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="images/1.png" alt=" " class="img-responsive" />
-                                        </div>
-                                        <div class="clearfix"> </div>
+                                        @{
+                                            List<YeuThich> yts = db.YeuThich.Where(p => p.MaHh == item.MaHh).ToList();
+                                            double diemyt = 0;
+                                            if (yts.Count > 0)
+                                            {
+                                                double tongdiem = 0;
+                                                foreach (var y in yts)
+                                                {
+                                                    tongdiem = tongdiem + y.DiemDanhGia;
+                                                }
+                                                diemyt = tongdiem / yts.Count();
+                                                int diem = int.Parse(diemyt.ToString().Split(".")[0]);
+                                                if (diem < 3)
+                                                {
+                                                    diem = 3;
+                                                }
+                                                for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= diem)
+                                                    {
+                                                        <img src="~/images/2.png" style="opacity:1">
+                                                    }
+                                                    else if (i > diem)
+                                                    {
+                                                        <img src="~/images/1.png" style="opacity:1">
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    <img src="~/images/2.png" style="opacity:1">
+                                                }
+                                            }
+                                        }
                                     </div>
-                                </div>
-                                <div class="new-one">
-                                    <p>New</p>
+
+
                                 </div>
                             </div>
                             <h4><a href="single.html">@item.TenHh</a></h4>

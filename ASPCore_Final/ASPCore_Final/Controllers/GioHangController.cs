@@ -113,9 +113,31 @@ namespace ASPCore_Final.Controllers
                     KichCo = item.KichCo
                 };
                 db.ChiTietHd.Add(cthd);
+                db.SaveChanges();
+                // trừ sản phẩm từ kho
+                SanPhamKho spk = db.SanPhamKho.SingleOrDefault(p => p.MaHh == cthd.MaHh && p.KichCo == cthd.KichCo);
+                if(spk.SoLuong >= cthd.SoLuong)
+                {
+                    if (HttpContext.Session.Get<string>("ErrorGH") != null)
+                    {
+                        HttpContext.Session.Remove("ErrorGH");
+                    }
+                    spk.SoLuong = spk.SoLuong - cthd.SoLuong;
+                }
+                else
+                {
+                    HangHoa hangHoa = db.HangHoa.SingleOrDefault(p => p.MaHh == cthd.MaHh);
+                    string loi = "Hàng hóa có mã " + hangHoa.TenHh + " chỉ còn : " + spk.SoLuong + " sản phẩm";
+                    HttpContext.Session.Set("ErrorGH",loi);
+                    db.ChiTietHd.Remove(cthd);
+                    db.HoaDon.Remove(hd);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            db.SaveChanges();
             HttpContext.Session.Set<string>("mess", "Hóa đơn của bạn đã được gửi tới cửa hàng vui lòng kiểm tra mail để biết trạng thái đơn hàng của bạn . ESHOP");
+           
+
             // lấy email khách 
             KhachHang kh = HttpContext.Session.Get<KhachHang>("user");
             MailMessage mm = new MailMessage("eshoppingmanager@gmail.com",kh.Email);
@@ -138,7 +160,6 @@ namespace ASPCore_Final.Controllers
             smtp.EnableSsl = true;
             smtp.Credentials = new System.Net.NetworkCredential("eshoppingmanager@gmail.com", "eshop147258369");
             smtp.Send(mm);
-            TempData["Success"] = "Xin hãy kiểm tra Email của bạn!";
             HttpContext.Session.Remove("GioHang");
             return RedirectToAction("Index");
         }

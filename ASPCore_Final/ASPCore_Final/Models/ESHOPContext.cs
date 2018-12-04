@@ -310,7 +310,9 @@ namespace ASPCore_Final.Models
 
                 entity.ToTable("SanPham_Kho");
 
-                entity.Property(e => e.MaSpKho).HasColumnName("MaSP_Kho");
+                entity.Property(e => e.MaSpKho)
+                    .HasColumnName("MaSP_Kho")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.KichCo)
                     .HasMaxLength(5)
