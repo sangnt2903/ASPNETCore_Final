@@ -19,20 +19,20 @@
         foreach (var item in hhs)
         {
             List<BinhLuanSp> bls = db.BinhLuanSp.Where(p => p.MaHh == item.MaHh).ToList();
-            if (bls.Count > 0 && demhhnb < 6)
+            if (bls.Count > 0 && demhhnb < 8)
             {
                 ++demhhnb;
                 hhnb.Add(item);
             }
         }
-        if (demhhnb < 6)
+        if (demhhnb < 8)
         {
             Random rnd = new Random();
             List<HangHoa> hhs_random = hhs.OrderBy(x => rnd.Next()).ToList();
 
             foreach (var hh in hhs_random)
             {
-                if(!hhnb.Contains(hh) && demhhnb < 6)
+                if(!hhnb.Contains(hh) && demhhnb < 8)
                 {
                     ++demhhnb;
                     hhnb.Add(hh);
@@ -47,7 +47,7 @@
 
                 @foreach (var item in hhnb)
                 {
-                    <div class="col-md-4 new-collections-grid">
+                    <div class="col-md-3 new-collections-grid">
                         <div class="new-collections-grid1 new-collections-grid1-image-width animated wow slideInUp" data-wow-delay=".5s">
                             <div class="new-collections-grid1-image">
                                 <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh" class="product-image"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive" /></a>

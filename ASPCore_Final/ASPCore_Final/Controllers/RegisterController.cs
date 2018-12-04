@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ASPCore_Final.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using System.Net.Mail;
 
 namespace ASPCore_Final.Controllers
 {
@@ -90,6 +91,17 @@ namespace ASPCore_Final.Controllers
                 khachHang.TrangThaiHd = false;
                 _context.Add(khachHang);
                 _context.SaveChanges();
+                MailMessage mm = new MailMessage("eshoppingmanager@gmail.com", khachHang.Email);
+                mm.Subject = "Kích hoạt tài khoản Eshop";
+                mm.Body = string.Format("Xin chào: <h1>{0}</h1> <br/> <h3>Click vào <a href='https://localhost:5001/Activate/Index'>link</a> này để kích hoạt tài khoản.</h3>", khachHang.HoTen);
+                mm.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.Credentials = new System.Net.NetworkCredential("eshoppingmanager@gmail.com", "eshop147258369");
+                smtp.Send(mm);
+                HttpContext.Session.Set("kh", khachHang);
                 return RedirectToAction("Index", "Login");
             }
             return View(khachHang);
