@@ -126,7 +126,26 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             }
             return View(khachHang);
         }
+        // DELETE: api/KhachHangs/5
+        [HttpDelete("/api/KhachHangs/{id}")]
+        public async Task<IActionResult> DeleteKhachHang(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            var kh = await _context.KhachHang.FindAsync(id);
+            if (kh == null)
+            {
+                return NotFound();
+            }
+
+            _context.KhachHang.Remove(kh);
+            await _context.SaveChangesAsync();
+
+            return Ok(kh);
+        }
         // GET: Admin/KhachHangs/Delete/5
         [HttpGet("/admin/KhachHangs/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
