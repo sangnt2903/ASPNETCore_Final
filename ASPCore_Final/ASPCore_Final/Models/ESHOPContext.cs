@@ -34,7 +34,7 @@ namespace ASPCore_Final.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=ESHOP;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Server=THANHSANG\\SQLEXPRESS;Database=ESHOP;Integrated Security=True;");
             }
         }
 
@@ -186,11 +186,21 @@ namespace ASPCore_Final.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
+                entity.Property(e => e.MaKh).HasColumnName("MaKH");
+
                 entity.Property(e => e.MaNv).HasColumnName("MaNV");
 
                 entity.Property(e => e.NgayDua).HasColumnType("date");
 
                 entity.Property(e => e.TraLoi).HasMaxLength(50);
+
+                entity.Property(e => e.TrangThaiTl).HasColumnName("TrangThaiTL");
+
+                entity.HasOne(d => d.MaKhNavigation)
+                    .WithMany(p => p.HoiDap)
+                    .HasForeignKey(d => d.MaKh)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_HoiDap_KhachHang");
 
                 entity.HasOne(d => d.MaNvNavigation)
                     .WithMany(p => p.HoiDap)
