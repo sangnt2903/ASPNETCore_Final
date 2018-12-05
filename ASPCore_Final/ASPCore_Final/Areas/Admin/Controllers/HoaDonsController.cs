@@ -197,10 +197,17 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [HttpGet("/admin/HoaDons/ChangeStatus")]
         public IActionResult ChangeStatus(int id)
         {
+<<<<<<< HEAD
             var hd = _context.HoaDon.Find(id);
             if (hd != null)
             {
                 hd.MaTrangThai = 1;
+=======
+            var kh = _context.HoaDon.Find(id);
+            if (kh != null)
+            {
+                kh.MaTrangThai = 1;
+>>>>>>> 95bb54792319dbc7a6edd1739a33fe7ab80e9377
                 _context.SaveChanges();
                 KhachHang kh = _context.KhachHang.SingleOrDefault(p=>p.MaKh==hd.MaKh);
                 MailMessage mm = new MailMessage("eshoppingmanager@gmail.com", kh.Email);

@@ -318,6 +318,7 @@ D:\CongNgheWeb\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp
 D:\CongNgheWeb\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Details.g.cshtml.cs
 D:\CongNgheWeb\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Edit.g.cshtml.cs
 D:\CongNgheWeb\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Index.g.cshtml.cs
+<<<<<<< HEAD
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HoaDons\Create.g.cshtml.cs
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HoaDons\Delete.g.cshtml.cs
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HoaDons\Details.g.cshtml.cs
@@ -328,3 +329,10 @@ C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Details.g.cshtml.cs
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Edit.g.cshtml.cs
 C:\Users\home\Desktop\ASPNET\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Index.g.cshtml.cs
+=======
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Create.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Delete.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Details.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Edit.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\EditProfile\Index.g.cshtml.cs
+>>>>>>> 95bb54792319dbc7a6edd1739a33fe7ab80e9377
