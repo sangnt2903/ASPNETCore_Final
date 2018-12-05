@@ -61,7 +61,7 @@
                     </td>
                    
                     <td scope="row">
-                        @Html.DisplayFor(modelItem => item.TrangThaiHd)
+                        <a asp-action="ChangeStatus" asp-route-id="@item.MaNv" class="btn-active"> @Html.Raw(item.TrangThaiHd == true ? "<strong>True</strong>" : "False")</a> 
                     </td>
                     <td scope="row">
                         @Html.DisplayFor(modelItem => item.MaPqNavigation.MaPq)

@@ -23,18 +23,26 @@ namespace ASPCore_Final.Controllers
         {
             if (ModelState.IsValid)
             {
-                KhachHang kh = db.KhachHang.SingleOrDefault(p => p.TaiKhoan == model.Username && p.MatKhau == Encryptor.MD5Hash(model.Password) && p.TrangThaiHd != false);
-                if (kh == null)
+                KhachHang kh = db.KhachHang.SingleOrDefault(p => p.TaiKhoan == model.Username && p.MatKhau == Encryptor.MD5Hash(model.Password) );
+                if(kh.TrangThaiHd == true)
                 {
-                    ModelState.AddModelError("Lỗi", "Tên đăng nhập hoặc mật khẩu không hợp lệ. Hoặc tài khoản bạn chưa hoạt động vui lòng kiểm tra mail để kích hoạt tài khoản");
-                    return View("Index");
+                    if (kh == null)
+                    {
+                        ModelState.AddModelError("Lỗi", "Tên đăng nhập hoặc mật khẩu không hợp lệ.");
+                        return View("Index");
+                    }
+                    else
+                    {
+                        HttpContext.Session.Set("user", kh);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {
-                    HttpContext.Session.Set("user", kh);
-                    return RedirectToAction("Index", "Home");
+                    ModelState.AddModelError("Lỗi", " Tài khoản bạn chưa được kích hoạt, vui lòng kiểm tra mail để kích hoạt tài khoản");
                 }
             }
+               
             return View("Index");
         }
         public IActionResult Logout()

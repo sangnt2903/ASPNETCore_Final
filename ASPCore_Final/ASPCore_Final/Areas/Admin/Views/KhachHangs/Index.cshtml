@@ -71,7 +71,7 @@
                     </td>
                    
                     <td scope="row">
-                        @Html.DisplayFor(modelItem => item.TrangThaiHd)
+                        <a asp-action="ChangeStatus" asp-route-id="@item.MaKh" class="btn-active"> @Html.Raw(item.TrangThaiHd == true ? "<strong>True</strong>" : "False")</a>
                     </td>
                     <td scope="row">
                         <a asp-action="Edit" asp-route-id="@item.MaKh" class="btn btn-primary">Sửa</a> |

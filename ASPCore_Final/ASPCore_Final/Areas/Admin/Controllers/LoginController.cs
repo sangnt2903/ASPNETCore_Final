@@ -28,17 +28,24 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 NhanVien nv = db.NhanVien.SingleOrDefault(p => p.Email == loginModel.Email && p.MatKhau == Encryptor.MD5Hash(loginModel.matKhau));
-                if (nv == null)
+                if(nv.TrangThaiHd == true)
                 {
-                    ModelState.AddModelError("loi", "Sai email hoặc password");
+                    if (nv == null)
+                    {
+                        ModelState.AddModelError("loi", "Sai email hoặc password");
+                    }
+                    //  HttpContext.Session.SetString("email", nv.Email);
+                    else
+                    {
+                        HttpContext.Session.Set("email", nv);
+                        return LocalRedirect("/admin");
+                    }
                 }
-                //  HttpContext.Session.SetString("email", nv.Email);
+
                 else
                 {
-                    HttpContext.Session.Set("email", nv);
-                    return LocalRedirect("/admin");
+                    ModelState.AddModelError("loi", "Tài khoản của bạn đã bị khóa");
                 }
-           
 
                 
                //return RedirectToAction("Index", "Home", routeValues: new { areas = "Admin" });

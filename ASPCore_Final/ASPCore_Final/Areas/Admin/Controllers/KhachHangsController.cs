@@ -177,6 +177,17 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet("/admin/KhachHangs/ChangeStatus")]
+        public IActionResult ChangeStatus(int id)
+        {
+            var kh = _context.KhachHang.Find(id);
+            if (kh != null)
+            {
+                kh.TrangThaiHd = !kh.TrangThaiHd;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
 
         private bool KhachHangExists(int id)
         {

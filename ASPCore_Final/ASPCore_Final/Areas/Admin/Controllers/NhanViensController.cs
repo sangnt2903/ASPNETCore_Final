@@ -188,7 +188,17 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+       [HttpGet("/admin/NhanViens/ChangeStatus")]
+        public IActionResult ChangeStatus(int id)
+        {
+            var nhanvien = _context.NhanVien.Find(id);
+            if(nhanvien != null)
+            {
+                nhanvien.TrangThaiHd = !nhanvien.TrangThaiHd;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
         private bool NhanVienExists(int id)
         {
             return _context.NhanVien.Any(e => e.MaNv == id);
