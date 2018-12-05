@@ -137,7 +137,26 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             ViewData["MaNcc"] = new SelectList(_context.NhaCungCap, "MaNcc", "MaNcc", hangHoa.MaNcc);
             return View(hangHoa);
         }
+        // DELETE: api/HangHoas/5
+        [HttpDelete("/api/HangHoas/{id}")]
+        public async Task<IActionResult> DeleteHangHoa(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            var hh = await _context.HangHoa.FindAsync(id);
+            if (hh == null)
+            {
+                return NotFound();
+            }
+
+            _context.HangHoa.Remove(hh);
+            await _context.SaveChangesAsync();
+
+            return Ok(hh);
+        }
         // GET: Admin/HangHoas/Delete/5
         [HttpGet("/admin/HangHoas/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)

@@ -92,9 +92,30 @@
                         @Html.DisplayFor(modelItem => item.TrangThaiHd)
                     </td>
                     <td scope="row">
-                        <a asp-action="Edit" asp-route-id="@item.MaKh">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.MaKh">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.MaKh">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.MaKh" class="btn btn-primary">Sửa</a> |
+                        <a asp-action="Details" asp-route-id="@item.MaKh" class="btn btn-primary">Xem chi tiết</a> |
+
+                        <button type="button" class="btn btn-primary" onclick="return _delete()" id="btnDelete">Xóa</button>
+                        <script>
+                            function _delete() {
+                                var cf = confirm('Bạn có muốn xoá khách hàng này?');
+                                if (cf) {
+                                    $.ajax({
+                                        url: '/api/KhachHangs/' + @item.MaKh,
+                                        type: "Delete",
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        async: true,
+                                        success: function (result) {
+                                            alert("Xoá khách hàng thành công");
+                                        },
+                                        error: function (errormessage) {
+                                            alert(errormessage.responseText);
+                                        }
+                                    });
+                                }
+                            }
+                        </script>
                     </td>
                 </tr>
             }

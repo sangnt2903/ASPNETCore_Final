@@ -127,7 +127,26 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             }
             return View(nhaCungCap);
         }
+        // DELETE: api/NhaCungCaps/5
+        [HttpDelete("/api/NhaCungCaps/{id}")]
+        public async Task<IActionResult> DeleteNhaCungCap(string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            var ncc = await _context.NhaCungCap.FindAsync(id);
+            if (ncc == null)
+            {
+                return NotFound();
+            }
+
+            _context.NhaCungCap.Remove(ncc);
+            await _context.SaveChangesAsync();
+
+            return Ok(ncc);
+        }
         // GET: Admin/NhaCungCaps/Delete/5
         [HttpGet("/admin/NhaCungCaps/Delete/{id}")]
         public async Task<IActionResult> Delete(string id)

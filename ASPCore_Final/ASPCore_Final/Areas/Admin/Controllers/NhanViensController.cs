@@ -42,7 +42,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 
         // GET: Admin/NhanViens/Details/5
         [HttpGet("/admin/NhanViens/Details")]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -136,6 +136,26 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             return View(nhanVien);
         }
 
+        // DELETE: api/NhanViens/5
+        [HttpDelete("/api/NhanViens/{id}")]
+        public async Task<IActionResult> DeleteNhanVien( int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var nhanVien = await _context.NhanVien.FindAsync(id);
+            if (nhanVien == null)
+            {
+                return NotFound();
+            }
+
+            _context.NhanVien.Remove(nhanVien);
+            await _context.SaveChangesAsync();
+
+            return Ok(nhanVien);
+        }
         // GET: Admin/NhanViens/Delete/5
         [HttpGet("/admin/Nhanviens/Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
