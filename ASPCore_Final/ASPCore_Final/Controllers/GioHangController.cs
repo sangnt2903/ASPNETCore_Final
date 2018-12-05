@@ -163,5 +163,10 @@ namespace ASPCore_Final.Controllers
             HttpContext.Session.Remove("GioHang");
             return RedirectToAction("Index");
         }
+
+        public IActionResult HoaDon()
+        {
+            return View();
+        }
     }
 }

@@ -10,6 +10,11 @@ namespace ASPCore_Final.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ESHOPContext db;
+        public HomeController(ESHOPContext ctx)
+        {
+            db = ctx;
+        }
         public IActionResult Index()
         {
             return View();
@@ -24,8 +29,27 @@ namespace ASPCore_Final.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Contact(string cauhoi)
+        {
+            if (HttpContext.Session.Get<KhachHang>("user") != null)
+            {
+                HoiDap hd = new HoiDap
+                {
+                    CauHoi = cauhoi,
+                    NgayDua = DateTime.Now,
+                    MaKh = HttpContext.Session.Get<KhachHang>("user").MaKh
+                };
+                db.HoiDap.Add(hd);
+                db.SaveChanges();
+                ViewData["MessContact"] = "Thông tin phản hồi của bạn đã gửi đi thành công.";
+            }
+            else {
+                ViewData["MessContact"] = "Vui lòng đăng nhập để gửi phản hồi";
+            }
             return View();
         }
 
