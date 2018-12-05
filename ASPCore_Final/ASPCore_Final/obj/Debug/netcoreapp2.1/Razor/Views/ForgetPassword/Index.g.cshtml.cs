@@ -71,7 +71,7 @@ using ASPCore_Final.Models;
                 WriteLiteral("\r\n    <div class=\"breadcrumbs\">\r\n        <div class=\"container\">\r\n            <ol class=\"breadcrumb breadcrumb1 animated wow slideInLeft\" data-wow-delay=\".5s\">\r\n                <li>");
                 EndContext();
                 BeginContext(334, 122, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4430e9b54ac4fba9c3481e70337b2d9", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e254c91494e348a08026558dbfc86a6c", async() => {
                     BeginContext(378, 74, true);
                     WriteLiteral("<span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></span>Trang chủ");
                     EndContext();
@@ -127,7 +127,7 @@ using ASPCore_Final.Models;
             WriteLiteral("            <h3 class=\"animated wow zoomIn\" style=\"text-align:center;\">Nhập email tài khoản của bạn</h3>\r\n            ");
             EndContext();
             BeginContext(1055, 328, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "117f272357674f58a21eb6637f92e843", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c171a15e19aa47e58cce38a441e1102d", async() => {
                 BeginContext(1127, 18, true);
                 WriteLiteral("\r\n                ");
                 EndContext();
@@ -142,7 +142,7 @@ using ASPCore_Final.Models;
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(1229, 77, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "6c389e6ac6424c908198fdbf4ddbb3c5", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "a6e1724d03204f2eb71804ad3a085bde", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

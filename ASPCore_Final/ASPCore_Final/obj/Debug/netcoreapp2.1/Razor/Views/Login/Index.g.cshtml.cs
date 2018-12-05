@@ -76,7 +76,7 @@ using ASPCore_Final.Models;
                 WriteLiteral("\r\n    <div class=\"breadcrumbs\">\r\n        <div class=\"container\">\r\n            <ol class=\"breadcrumb breadcrumb1 animated wow slideInLeft\" data-wow-delay=\".5s\">\r\n                <li>");
                 EndContext();
                 BeginContext(327, 122, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "84675861f9ae401b89b59fd380e8a7e0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "01fa3df6cbe547e8b471055a72129fb4", async() => {
                     BeginContext(371, 74, true);
                     WriteLiteral("<span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></span>Trang chủ");
                     EndContext();
@@ -105,7 +105,7 @@ using ASPCore_Final.Models;
             WriteLiteral("<!-- login -->\r\n<div class=\"login\">\r\n    <div class=\"container\">\r\n        <h3 class=\"animated wow zoomIn\" data-wow-delay=\".5s\">Đăng nhập</h3>\r\n        <div class=\"login-form-grids animated wow slideInUp\" data-wow-delay=\".5s\">\r\n            ");
             EndContext();
             BeginContext(796, 560, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "40ff7bf1bfe346ae9fc500eaccea2db8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6927736d90ba41d8a9eb45f77af7a04a", async() => {
                 BeginContext(858, 18, true);
                 WriteLiteral("\r\n                ");
                 EndContext();
@@ -120,7 +120,7 @@ using ASPCore_Final.Models;
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(960, 75, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "48c4e89eb9dc41af918adad89214998c", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "68f15af3ebc447269fa0b12a4a8469b2", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -149,7 +149,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(1053, 74, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "131a1813140543259fe48c844bae7aa7", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d89dbd0f06964111919e0c7cc84172f8", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -178,7 +178,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                <div class=\"forgot\">\r\n                    ");
                 EndContext();
                 BeginContext(1187, 71, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1d405a37745246a09c5a86657a45f65b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dfe6f20df0274e8dabefd004c773a3ac", async() => {
                     BeginContext(1241, 13, true);
                     WriteLiteral("Quên mật khẩu");
                     EndContext();
@@ -225,7 +225,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
             WriteLiteral("\r\n        </div>\r\n        <h4 class=\"animated wow slideInUp\" data-wow-delay=\".5s\">Dành cho người mới</h4>\r\n        <p class=\"animated wow slideInUp\" data-wow-delay=\".5s\">");
             EndContext();
             BeginContext(1526, 68, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c023a05f859e44189d051af9ecfbb5ba", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "083afde2abeb432586830b468488cca5", async() => {
                 BeginContext(1575, 15, true);
                 WriteLiteral("Đăng kí tại đây");
                 EndContext();
@@ -249,7 +249,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
             WriteLiteral(" (Hoặc) trở về ");
             EndContext();
             BeginContext(1609, 128, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4c67911dd8174239942dfbb5345ef0c8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "15b41d2dd3fa45c2a26ace7f526f3a87", async() => {
                 BeginContext(1653, 80, true);
                 WriteLiteral("Trang chủ<span class=\"glyphicon glyphicon-menu-right\" aria-hidden=\"true\"></span>");
                 EndContext();
