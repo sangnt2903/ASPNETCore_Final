@@ -18,9 +18,9 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             db = context;
         }
         [HttpGet("/admin/Login")]
-        public IActionResult Index()
+        public IActionResult Login()
         {
-            return View();
+            return View("Index");
         }
         [HttpPost]
         public IActionResult Login(LoginModel loginModel)
@@ -28,27 +28,24 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 NhanVien nv = db.NhanVien.SingleOrDefault(p => p.Email == loginModel.Email && p.MatKhau == Encryptor.MD5Hash(loginModel.matKhau));
-                if(nv.TrangThaiHd == true)
+                if (nv == null)
                 {
-                    if (nv == null)
-                    {
-                        ModelState.AddModelError("loi", "Sai email hoặc password");
-                    }
-                    //  HttpContext.Session.SetString("email", nv.Email);
-                    else
-                    {
-                        HttpContext.Session.Set("email", nv);
-                        return LocalRedirect("/admin");
-                    }
+                    ModelState.AddModelError("loi", "Sai email hoặc password");
                 }
-
-                else
+                else if (nv.TrangThaiHd == false)
                 {
                     ModelState.AddModelError("loi", "Tài khoản của bạn đã bị khóa");
                 }
+                else
+                {
+                    HttpContext.Session.Set("email", nv);
+                    return LocalRedirect("/admin");
+                }
 
-                
-               //return RedirectToAction("Index", "Home", routeValues: new { areas = "Admin" });
+
+
+
+                //return RedirectToAction("Index", "Home", routeValues: new { areas = "Admin" });
             }
             return View("Index");
         }

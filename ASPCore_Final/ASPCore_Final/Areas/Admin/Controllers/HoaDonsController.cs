@@ -196,10 +196,10 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [HttpGet("/admin/HoaDons/ChangeStatus")]
         public IActionResult ChangeStatus(int id)
         {
-            var kh = _context.KhachHang.Find(id);
+            var kh = _context.HoaDon.Find(id);
             if (kh != null)
             {
-                kh.TrangThaiHd = !kh.TrangThaiHd;
+                kh.MaTrangThai = 1;
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
