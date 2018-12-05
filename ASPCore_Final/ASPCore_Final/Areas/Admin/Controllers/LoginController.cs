@@ -30,7 +30,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                 NhanVien nv = db.NhanVien.SingleOrDefault(p => p.Email == loginModel.Email && p.MatKhau == Encryptor.MD5Hash(loginModel.matKhau));
                 if (nv == null)
                 {
-<<<<<<< HEAD
+
                     if (nv == null)
                     {
                         ModelState.AddModelError("loi", "Sai email hoặc password");
@@ -41,9 +41,9 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                         HttpContext.Session.Set("email", nv);
                         return LocalRedirect("/admin/");
                     }
-=======
+
                     ModelState.AddModelError("loi", "Sai email hoặc password");
->>>>>>> 95bb54792319dbc7a6edd1739a33fe7ab80e9377
+
                 }
                 else if (nv.TrangThaiHd == false)
                 {

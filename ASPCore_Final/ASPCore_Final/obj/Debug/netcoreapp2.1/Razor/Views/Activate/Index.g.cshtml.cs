@@ -67,11 +67,7 @@ using ASPCore_Final.Models;
                 WriteLiteral("\r\n    <div class=\"breadcrumbs\">\r\n        <div class=\"container\">\r\n            <ol class=\"breadcrumb breadcrumb1 animated wow slideInLeft\" data-wow-delay=\".5s\">\r\n                <li>");
                 EndContext();
                 BeginContext(290, 122, false);
-<<<<<<< HEAD
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4c06bd0c63548048e03e3f42a899e4e", async() => {
-=======
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a2589ad8c9f341169a081292b3a643c6", async() => {
->>>>>>> 95bb54792319dbc7a6edd1739a33fe7ab80e9377
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3c85d5361d942e39525d5c55494a633", async() => {
                     BeginContext(334, 74, true);
                     WriteLiteral("<span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></span>Trang chủ");
                     EndContext();
@@ -106,11 +102,7 @@ using ASPCore_Final.Models;
     ");
             EndContext();
             BeginContext(817, 213, false);
-<<<<<<< HEAD
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0b833eda5daa4d8eb071c43e6d6c4e71", async() => {
-=======
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f3d6c4eb93b148afbc91bc43015c0a0e", async() => {
->>>>>>> 95bb54792319dbc7a6edd1739a33fe7ab80e9377
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6ef3dcb6d8a643c89322e05a426c2dc4", async() => {
                 BeginContext(871, 10, true);
                 WriteLiteral("\r\n        ");
                 EndContext();
