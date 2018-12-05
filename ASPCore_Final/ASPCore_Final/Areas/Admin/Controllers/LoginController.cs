@@ -38,7 +38,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                     else
                     {
                         HttpContext.Session.Set("email", nv);
-                        return LocalRedirect("/admin");
+                        return LocalRedirect("/admin/");
                     }
                 }
 
