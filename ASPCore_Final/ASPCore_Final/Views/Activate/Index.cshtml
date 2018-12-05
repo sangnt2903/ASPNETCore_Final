@@ -12,7 +12,12 @@
         </div>
     </div>
 }
-    <h3>Sau khi kích hoạt thành công bạn sẽ được chuyển đến trang đăng nhập</h3>
+    <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a>
+        <i class="fa fa-coffee"></i>
+        Sau khi kích hoạt <strong>thành công</strong> bạn sẽ được chuyển đến trang đăng nhập.
+    </div>    
+    <h3></h3>
     <form asp-controller="Activate" asp-action="Activate">
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         <button type="submit" class="btn-warning">Kích hoạt</button>

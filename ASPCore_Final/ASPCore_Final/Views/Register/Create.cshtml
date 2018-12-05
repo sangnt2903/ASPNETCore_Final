@@ -20,6 +20,11 @@
         <form asp-action="Create" class="animated wow slideInUp" data-wow-delay=".5s" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="login-form-grids">
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    <strong>Tên đăng nhập</strong> và <strong>Email</strong> không thể đổi sau khi đăng kí.
+                </div>
                 @if (TempData["FailUser"] != null)
                 {
                     <div class="text-danger">
@@ -54,6 +59,11 @@
                 <!--<input type="file" name="fHinh" asp-for="Hinh" class="form-control" />-->
                 <label>Chọn avatar</label>
                 <input type="file" name="fHinh" placeholder="Chọn avatar" required class="form-control" />
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    Nhớ kiểm tra <strong>Email</strong> của bạn để kích hoạt tài khoản
+                </div>
                 <input type="submit" value="Hoàn tất" class="btn btn-default" />
             </div>
         </form>
