@@ -13,7 +13,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
 {
     [Area("Admin")]
     
-    public class NhanViensController : Controller
+    public class NhanViensController : CheckLoginController
     {
         private readonly ESHOPContext _context;
 
@@ -31,7 +31,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                     {
                         eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.HoTen.Contains(searchString));
                     }
-                    var model = await PagingList.CreateAsync(eSHOPContext, 1, page, sortExpression, "Email");
+                    var model = await PagingList.CreateAsync(eSHOPContext, 5, page, sortExpression, "Email");
                     model.RouteValue = new RouteValueDictionary {
                 { "searchString", searchString}
             };

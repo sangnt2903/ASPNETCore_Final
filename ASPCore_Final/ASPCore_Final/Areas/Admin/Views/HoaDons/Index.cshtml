@@ -1,12 +1,11 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<ASPCore_Final.Models.NhanVien>
+﻿
+@model ReflectionIT.Mvc.Paging.PagingList<ASPCore_Final.Models.HoaDon>
 @using ReflectionIT.Mvc.Paging;
 @addTagHelper *, ReflectionIT.Mvc.Paging
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_frontEnd.cshtml";
 }
-
-
 
 
 <div class="outer-w3-agile mt-3">
@@ -22,26 +21,38 @@
         <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
     </p>
 
-
-
-    <table class="table table-striped">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.MaNv)
+                    @Html.DisplayNameFor(model => model.MaHd)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.NgayDat)
                 </th>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.HoTen)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-               
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.TrangThaiHd)
+                    @Html.DisplayNameFor(model => model.DiaChi)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.MaPqNavigation)
+                    @Html.DisplayNameFor(model => model.SdtNguoinhan)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.GhiChu)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.PhiVanChuyen)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.MaNv)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.MaKhNavigation)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.MaTrangThaiNavigation)
                 </th>
                 <th></th>
             </tr>
@@ -51,38 +62,52 @@
             {
                 <tr>
                     <td scope="row">
-                        @Html.DisplayFor(modelItem => item.MaNv)
+                        @Html.DisplayFor(modelItem => item.MaHd)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.NgayDat)
                     </td>
                     <td scope="row">
                         @Html.DisplayFor(modelItem => item.HoTen)
                     </td>
                     <td scope="row">
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                   
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.TrangThaiHd)
+                        @Html.DisplayFor(modelItem => item.DiaChi)
                     </td>
                     <td scope="row">
-                        @Html.DisplayFor(modelItem => item.MaPqNavigation.MaPq)
+                        @Html.DisplayFor(modelItem => item.SdtNguoinhan)
                     </td>
                     <td scope="row">
-                        <a asp-action="Edit" asp-route-id="@item.MaNv" class="btn btn-primary">Sửa</a> |
-                        <a asp-action="Details" asp-route-id="@item.MaNv" class="btn btn-primary">Xem chi tiết</a> |
+                        @Html.DisplayFor(modelItem => item.GhiChu)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.PhiVanChuyen)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.MaNv)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.MaKhNavigation.Email)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.MaTrangThaiNavigation.TenTrangThai)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MaHd" class="btn btn-primary">Sửa</a> |
+                        <a asp-action="Details" asp-route-id="@item.MaHd" class="btn btn-primary">Xem chi tiết</a> |
 
                         <button type="button" class="btn btn-primary" onclick="return _delete()" id="btnDelete">Xóa</button>
                         <script>
                             function _delete() {
-                                var cf = confirm('Bạn có muốn xoá nhân viên này?');
+                                var cf = confirm('Bạn có muốn xoá hóa đơn này?');
                                 if (cf) {
                                     $.ajax({
-                                        url: '/api/NhanViens/' + @item.MaNv,
+                                        url: '/api/HoaDons/' + @item.MaHd,
                                         type: "Delete",
                                         contentType: "application/json; charset=utf-8",
                                         dataType: "json",
                                         async: true,
                                         success: function (result) {
-                                            alert("Xoá nhân viên thành công");
+                                            alert("Xoá hóa đơn thành công");
                                         },
                                         error: function (errormessage) {
                                             alert(errormessage.responseText);
@@ -95,16 +120,13 @@
                 </tr>
             }
         </tbody>
-
     </table>
-   
-    <nav class="navbar-default justify-content-center"  >
-   
+    <nav class="navbar-default justify-content-center">
 
-           @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model, @searchString = @ViewBag.SearchString, @class = "page-item" })
-                   
-      
+
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model, @searchString = @ViewBag.SearchString, @class = "page-item" })
+
+
     </nav>
 
 </div>
-

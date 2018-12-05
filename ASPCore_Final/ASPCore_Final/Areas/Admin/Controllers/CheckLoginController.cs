@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
-    public class BaseController : Controller
+    public class CheckLoginController : Controller
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Routing;
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class KhachHangsController : Controller
+    public class KhachHangsController : CheckLoginController
     {
         private readonly ESHOPContext _context;
 
@@ -30,7 +30,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             {
                 eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.HoTen.Contains(searchString) || p.TaiKhoan.Contains(searchString));
             }
-            var model = await PagingList.CreateAsync(eSHOPContext, 1, page, sortExpression, "Email");
+            var model = await PagingList.CreateAsync(eSHOPContext, 5, page, sortExpression, "Email");
             model.RouteValue = new RouteValueDictionary {
                 { "searchString", searchString}
             };
