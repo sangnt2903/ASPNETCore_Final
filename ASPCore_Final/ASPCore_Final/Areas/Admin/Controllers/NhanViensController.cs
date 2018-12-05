@@ -77,6 +77,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                nhanVien.MatKhau = Encryptor.MD5Hash(nhanVien.MatKhau);
                 _context.Add(nhanVien);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -110,12 +111,13 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MaNv,HoTen,Email,MatKhau,MaPq,TrangThaiHd")] NhanVien nhanVien)
         {
-         
 
+            
             if (ModelState.IsValid)
             {
                 try
                 {
+                    nhanVien.MatKhau = Encryptor.MD5Hash(nhanVien.MatKhau);
                     _context.Update(nhanVien);
                     await _context.SaveChangesAsync();
                 }

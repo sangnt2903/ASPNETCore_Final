@@ -72,6 +72,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                khachHang.MatKhau = Encryptor.MD5Hash(khachHang.MatKhau);
                 _context.Add(khachHang);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -108,6 +109,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             {
                 try
                 {
+                    khachHang.MatKhau = Encryptor.MD5Hash(khachHang.MatKhau);
                     _context.Update(khachHang);
                     await _context.SaveChangesAsync();
                 }
