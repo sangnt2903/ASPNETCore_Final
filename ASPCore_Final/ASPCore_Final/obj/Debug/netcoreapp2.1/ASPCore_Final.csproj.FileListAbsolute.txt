@@ -302,3 +302,8 @@ C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\Register\Details.g.cshtml.cs
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\Register\Edit.g.cshtml.cs
 C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Views\Register\Index.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HoaDons\Create.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HoaDons\Delete.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HoaDons\Details.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HoaDons\Edit.g.cshtml.cs
+C:\Users\Dell\Downloads\Github\ASPNETCore_Final\ASPCore_Final\ASPCore_Final\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\HoaDons\Index.g.cshtml.cs

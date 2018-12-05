@@ -76,7 +76,7 @@ using ReflectionIT.Mvc.Paging;
             WriteLiteral("\r\n\r\n\r\n\r\n\r\n<div class=\"outer-w3-agile mt-3\">\r\n    <h4 class=\"tittle-w3-agileits mb-4\">Danh sách hàng hoá</h4>\r\n    ");
             EndContext();
             BeginContext(364, 354, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b34bfbd5b5ba4a4ba3bdc3352d09a0e4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2f25e16858d3458bb6497994d980b15e", async() => {
                 BeginContext(403, 81, true);
                 WriteLiteral("\r\n        <input name=\"searchString\" class=\"form-control\" placeholder=\"Search...\"");
                 EndContext();
@@ -111,7 +111,7 @@ WriteAttributeValue("", 508, Model.RouteValue["searchString"], 508, 33, false);
             WriteLiteral("\r\n    <p>\r\n        ");
             EndContext();
             BeginContext(737, 58, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "58ebddae04a645fc83e981d6c3eaca21", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "762e60eec4e14ad9af4dba9cd6d0e2d6", async() => {
                 BeginContext(784, 7, true);
                 WriteLiteral("Tạo mới");
                 EndContext();
@@ -283,7 +283,7 @@ WriteAttributeValue("", 508, Model.RouteValue["searchString"], 508, 33, false);
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
             EndContext();
             BeginContext(2739, 78, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff0ed7099eb64d8e945edcf4c6644002", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6707acb2064d4a37a1b650cb830f0bfa", async() => {
                 BeginContext(2810, 3, true);
                 WriteLiteral("Sửa");
                 EndContext();
@@ -319,7 +319,7 @@ WriteAttributeValue("", 508, Model.RouteValue["searchString"], 508, 33, false);
             WriteLiteral(" |\r\n                        ");
             EndContext();
             BeginContext(2845, 90, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "56b90ab876bb47a3aa2146a518a770fb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fdc2da6ae9194c62ad6cff361aeaf13e", async() => {
                 BeginContext(2919, 12, true);
                 WriteLiteral("Xem chi tiết");
                 EndContext();

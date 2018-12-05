@@ -67,7 +67,7 @@ using ASPCore_Final.Models;
                 WriteLiteral("\r\n    <div class=\"breadcrumbs\">\r\n        <div class=\"container\">\r\n            <ol class=\"breadcrumb breadcrumb1 animated wow slideInLeft\" data-wow-delay=\".5s\">\r\n                <li>");
                 EndContext();
                 BeginContext(290, 122, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1ef56460bec943d2a29a64cb254524f0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7f6488d98acb4b9bbd4547b0bdfb7c89", async() => {
                     BeginContext(334, 74, true);
                     WriteLiteral("<span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></span>Trang chủ");
                     EndContext();
@@ -96,7 +96,7 @@ using ASPCore_Final.Models;
             WriteLiteral("    <h3>Sau khi kích hoạt thành công bạn sẽ được chuyển đến trang đăng nhập</h3>\r\n    ");
             EndContext();
             BeginContext(616, 213, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f8654befcf0147e4904de35389421400", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d12c726a54c457888e8c8c24079abdc", async() => {
                 BeginContext(670, 10, true);
                 WriteLiteral("\r\n        ");
                 EndContext();
