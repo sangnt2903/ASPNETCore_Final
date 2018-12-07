@@ -116,7 +116,7 @@
                                             tongtien += Convert.ToDouble(ct.SoLuong * ct.DonGia * (1 - ct.GiamGia));
                                         }
                                     }
-                                    <div class="col-md-" style="text-align:right;padding:10px;">
+                                    <div class="col-md-4" style="text-align:right;padding:10px;">
                                         <span>Tổng tiền :</span><br />
                                         <span class="text text-danger">@tongtien.ToString("#,##0") đ</span>
                                     </div>
@@ -131,11 +131,8 @@
                                         <div class="col-md-4 text text-info" style="padding-top:40px;">@hh.TenHh</div>
                                         <div class="col-md-1 text text-info" style="padding-top:40px;">@item.KichCo</div>
                                         <div class="col-md-1 text text-info" style="padding-top:40px;">@item.SoLuong</div>
-                                        <div class="col-md-1 text text-info" style="padding-top:40px;text-align:right">@giaban.ToString("#,##0")</div>
-                                        <div class="col-md-1 text text-info" style="padding-top:40px;text-align:right">@thanhtien.ToString("#,##0")</div>
-                                        <div class="col-md-2 text-danger" style="padding-top:40px;text-align:right">
-                                            <a asp-action="XoaCTHD" asp-controller="MyHoaDons" class=" glyphicon glyphicon-trash"></a>
-                                        </div>
+                                        <div class="col-md-2 text text-info" style="padding-top:40px;text-align:right">@giaban.ToString("#,##0")</div>
+                                        <div class="col-md-2 text text-info" style="padding-top:40px;text-align:right">@thanhtien.ToString("#,##0")</div>
                                     </div>
                                 }
                                 <div class="row table-bordered" style="text-align:center">
