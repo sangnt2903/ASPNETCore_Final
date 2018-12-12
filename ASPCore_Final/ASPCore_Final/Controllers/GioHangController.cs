@@ -99,10 +99,12 @@ namespace ASPCore_Final.Controllers
             };
             db.HoaDon.Add(hd);
             // tạo chi tiết hóa đơn
-
+          //  double tt = 0;
+            KhachHang kh = db.KhachHang.SingleOrDefault(p => p.MaKh == makh);
             foreach (var item in Carts)
             {
                 HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaHh == item.MaHh);
+             //   tt = item.SoLuong * hh.DonGia * (1 - hh.GiamGia);
                 ChiTietHd cthd = new ChiTietHd
                 {
                     MaHd = hd.MaHd,
@@ -112,6 +114,7 @@ namespace ASPCore_Final.Controllers
                     SoLuong = item.SoLuong,
                     KichCo = item.KichCo
                 };
+              
                 db.ChiTietHd.Add(cthd);
                 db.SaveChanges();
                 // trừ sản phẩm từ kho
