@@ -29,8 +29,8 @@ namespace ASPCore_Final.Controllers
                 hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).Skip(starIndex).ToList();
             }
             int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
-            List<HangHoa> res = hangHoas.Take(itemsize).ToList();   
-            
+            List<HangHoa> res = hangHoas.Take(itemsize).ToList();
+            ViewData["TongSoLuong"] = hangHoas.Count;
             return View("Index",res);
         }
 
