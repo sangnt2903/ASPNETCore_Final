@@ -3,7 +3,34 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    a:hover {
+        cursor:pointer;
+    }
+    div.sec-load-more {
+        padding: 30px 0px;
+        text-align: center;
+    }
 
+        div.sec-load-more a.load-more {
+            padding: 10px 20px;
+            color: #fff;
+            background: #d8703f;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+            div.sec-load-more a.load-more:hover {
+                background: #ffc229;
+                text-decoration: none;
+            }
+        div.sec-load-more p {
+            color: #d8703f;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+        }
+</style>
 @section breadcumb{
     <div class="breadcrumbs">
         <div class="container">
@@ -27,25 +54,28 @@
             <ul class="cate">
                 @{
                     ESHOPContext db = new ESHOPContext();
+                    var listTatCa = db.HangHoa.ToList();
+                    int soLuongSP = listTatCa.Count();
                     var listNam = db.Loai.Where(p => p.GioiTinh == false).ToList();
                     int soluongSPNam = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == false).ToList().Count();
                     var listNu = db.Loai.Where(p => p.GioiTinh == true).ToList();
                     int soluongSPNu = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == true).ToList().Count();
                 }
-                <li>Thời trang nam<span>(@soluongSPNam)</span></li>
+                <li><a asp-controller="HangHoa" asp-action="Index">Tất cả sản phẩm<span>(@soLuongSP)</span></a></li>
+                <li><a asp-controller="HangHoa" asp-action="Index" asp-route-gioitinh="false">Thời trang nam<span>(@soluongSPNam)</span></a></li>
                 <ul>
                     @foreach (var item in listNam)
                     {
                         int soluong = db.HangHoa.Where(p => p.MaLoai == item.MaLoai).ToList().Count();
-                        <li><a asp-action="Index1" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
+                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
                     }
                 </ul>
-                <li><a href="products.html">Thời trang nữ</a> <span>(@soluongSPNu)</span></li>
+                <li><a asp-controller="HangHoa" asp-action="Index" asp-route-gioitinh="true">Thời trang nữ<span>(@soluongSPNu)</span></a></li>
                 <ul>
                     @foreach (var item in listNu)
                     {
                         int soluong = db.HangHoa.Where(p => p.MaLoai == item.MaLoai).ToList().Count();
-                        <li><a asp-action="Index1" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
+                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
                     }
                 </ul>
             </ul>
@@ -56,7 +86,7 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-4 products-right-grids-bottom-grid" style="margin-bottom:15px;">
-                    <div class="new-collections-grid1 products-right-grid1 animated wow slideInUp" data-wow-delay=".5s" style="padding:10px;">
+                    <div class="new-collections-grid1 products-right-grid1 animated wow" data-wow-delay=".5s" style="padding:10px;">
                         <div class="new-collections-grid1-image">
                             <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-id="@item.MaHh" class="product-image" style="padding:10px;"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive"></a>
                             <div class="new-collections-grid1-image-pos products-right-grids-pos" style="text-align:center">
@@ -140,50 +170,16 @@
                 </div>
             }
             <div class="clearfix"> </div>
-            
-            <nav class="numbering animated wow slideInRight" data-wow-delay=".5s">
-                <ul class="pagination paging">
-                    @{
-                        string loai = "";
-                        if (Model.Count() > 0)
-                        {
-                            loai = Model.First().MaLoai;
-                        }
-                        int listCount = db.HangHoa.Where(p => p.MaLoai == loai).ToList().Count;
-                        int pageSize = 6;
-                        var totalPage = 0;
-                        if (listCount % pageSize == 0)
-                        {
-                            totalPage = listCount / pageSize;
-                        }
-                        else
-                        {
-                            totalPage = listCount / pageSize;
-                            totalPage += 1;
-                        }
-                    }
-                    <li>
-                        <a asp-action="Index" asp-controller="HangHoa" asp-route-page="1" asp-route-loai="@loai" aria-label="Begin">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    @for (int i = 1; i <= totalPage; i++)
-                    {
-                        <li class="active"><a asp-action="Index" asp-controller="HangHoa" asp-route-page="@i" asp-route-loai="@loai">@i<span class="sr-only">(current)</span></a></li>
-
-                    }
-                    <li>
-                        <a asp-action="Index" asp-controller="HangHoa" asp-route-page="@totalPage" asp-route-loai="@loai" aria-label="End">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
-
+        <div class="sec-load-more">
+            <a class="load-more" id="load-more">Tải thêm sản phẩm</a>
+        </div>
+        <input type="hidden" name="loai" value="@Context.Request.Query["loai"]" />
+        <input type="hidden" name="gioitinh" value="@Context.Request.Query["gioitinh"]" />
     </div>
         <script language="javascript">
             $(function () {
+                var ajaxTT = ajaxTaiThem();
                 $("#searchsp").keyup(function () {
                     $.ajax({
                         url: "/HangHoa/TimKiem",
@@ -195,5 +191,92 @@
                         }
                     });
                 });
+                $("#load-more").click(function () {
+                    var loai = $("input[name='loai']").val();
+                    var gioitinh = $("input[name='gioitinh']").val();
+                    if (gioitinh == "") {
+                        gioitinh = null;
+                    }
+                    ajaxTT.taiThem(loai, gioitinh);
+                    ajaxTT.tangPage();
+                });
             });
+            function ajaxTaiThem(){
+                var page = 2;
+                var tangPage = function () {
+                    page += 1;
+                };
+                var resetPage = function () {
+                    page = 2;
+                };
+                var getPage = function () {
+                    return page;
+                }
+                var taiThem = function (loai, gioitinh) {
+                    console.log(page);
+                    console.log(loai);
+                    console.log(gioitinh);
+                    $.ajax({
+                        url: "/HangHoa/TaiThem",
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        data: { "loai": loai, "gioitinh": gioitinh, "page": page},
+                        async: true,
+                        success: function (response) {
+                            console.log('success');
+                            console.log(response);
+                            if (response.length == 0) {
+                                $(".sec-load-more").html('<p>Đã hết sản phẩm</p >');
+                            } else {
+                                var itemsDOM = '';
+                                for (var i = 0; i < response.length; i++) {
+                                    var item = response[i];
+                                    var itemDOM = '';
+                                    itemDOM += '<div class="col-md-4 products-right-grids-bottom-grid" style="margin-bottom:15px;">';
+                                    itemDOM += '<div class="new-collections-grid1 products-right-grid1 animated wow" data-wow-delay=".5s" style="padding:10px;">';
+                                    itemDOM += '<div class="new-collections-grid1-image">';
+                                    itemDOM += '<a href="/HangHoa/ChiTiet/' + item.maHh + '" class="product-image" style="padding:10px;"><img src="/HangHoa/' + item.hinh + '" alt=" " class="img-responsive"></a>';
+                                    itemDOM += '<div class="new-collections-grid1-image-pos products-right-grids-pos" style="text-align:center">';
+                                    itemDOM += '<a href="/HangHoa/ChiTiet/' + item.maHh + '">Xem chi tiết</a>';
+                                    itemDOM += '</div>';
+                                    itemDOM += '<div class="new-one">';
+                                    itemDOM += '<p>' + item.ghiChu +'</p >';
+                                    itemDOM += '</div >';
+                                    itemDOM += '<div class="new-collections-grid1-right products-right-grids-pos-right">';
+                                    itemDOM += '<div class="rating">';
+                                    for (var j = 0; j < item.diem; j++) {
+                                        if (i <= item.diem) {
+                                            itemDOM += '<img src="/images/2.png" style="opacity:1">';
+                                            
+                                        }
+                                        else if (i > item.diem)
+                                        {
+                                            itemDOM += '<img src="/images/1.png" style="opacity:1">';
+                                        }
+                                    }
+                                    itemDOM += '</div>';
+                                    itemDOM += '</div>';
+                                    itemDOM += '</div>';
+                                    itemDOM += '<h4><a href="/HangHoa/ChiTiet/' + item.maHh + '">' + item.tenHh +'</a></h4>';
+                                    itemDOM += '<p>' + item.moTa + '</p>';
+                                    itemDOM += '<div class="simpleCart_shelfItem products-right-grid1-add-cart">';
+                                    itemDOM += '<p><i>' + item.donGia.toLocaleString() + ' đ</i> <span class="item_price">' + item.giaBan.toLocaleString() + ' đ</span></p>';
+                                    itemDOM += '</div>';
+                                    itemDOM += '</div>';
+                                    itemDOM += '</div>';
+                                    itemsDOM += itemDOM;
+                                }
+                                itemsDOM += '<div class="clearfix"></div>';
+                                $('div.products-right-grids-bottom').append(itemsDOM);
+                            }
+                        }
+                    });
+                };
+                return {
+                    tangPage: tangPage,
+                    resetPage: resetPage,
+                    getPage: getPage,
+                    taiThem: taiThem
+                };
+            }
         </script>
