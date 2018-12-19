@@ -3,18 +3,39 @@
 }
     
     <style>
-        div.new-collections div.all-item {
-            margin-top: 30px;
+
+        .san-pham-noi-bat {
+            padding: 0 30px;
+            padding-top: 30px;
+        }
+        .san-pham-noi-bat h3 {
+            padding-top: 30px;
+        }
+        .new-collections-grid1-left p {
             text-align: center;
         }
-        div.new-collections div.all-item a {
+        .new-collections-grid1-left p span {
+            margin: 0 0 0 20px;
+        }
+        .new-collections-grid .new-collections-grid1 h4{
+            text-align: center;
+        }
+        .sec-tat-ca {
+            background: #F7F7F9;
+            padding: 50px 0;
+        }
+        .sec-tat-ca div.all-item {
+            text-align: center;
+        }
+        .sec-tat-ca div.all-item a {
             padding: 10px 20px;
             color: #fff;
             background: #d8703f;
             text-decoration: none;
             font-size: 14px;
+            display: inline-block;
         }
-        div.new-collections div.all-item a:hover {
+        .sec-tat-ca div.all-item a:hover {
             background: #ffc229;
             text-decoration: none;
         }
@@ -57,18 +78,17 @@
         }
     }
 }
-<div class="new-collections">
-    <div class="container">
-        <h3 class="animated wow zoomIn" data-wow-delay=".5s">Sản phẩm nổi bật</h3>
-        <div class="new-collections-grids">
-
+<div class="new-collections san-pham-noi-bat">
+    <h3 class="animated wow zoomIn" data-wow-delay=".5s">Sản phẩm nổi bật</h3>
+    <div class="new-collections-grids">
+        <div class="row">
             @foreach (var item in hhnb)
             {
                 <div class="col-md-3 new-collections-grid">
                     <div class="new-collections-grid1 new-collections-grid1-image-width animated wow slideInUp" data-wow-delay=".5s">
                         <div class="new-collections-grid1-image">
                             <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh" class="product-image"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive" /></a>
-                            <div class="new-collections-grid1-image-pos new-collections-grid1-image-pos1">
+                            <div class="new-collections-grid1-image-pos products-right-grids-pos">
                                 <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh">Xem chi tiết</a>
                             </div>
                             @{
@@ -94,7 +114,7 @@
                                     </div>
                                 }
                             }
-                            <div class="new-collections-grid1-right new-collections-grid1-right-rate">
+                            <div class="new-collections-grid1-right products-right-grids-pos-right">
                                 <div class="rating">
                                     @{
                                         List<YeuThich> yts = db.YeuThich.Where(p => p.MaHh == item.MaHh).ToList();
@@ -133,8 +153,6 @@
                                         }
                                     }
                                 </div>
-
-
                             </div>
                         </div>
                         <h4><a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh">@item.TenHh</a></h4>
@@ -147,11 +165,16 @@
                     </div>
                 </div>
             }
-        </div>
-    </div>
-    <div class="container">
-        <div class="all-item animated wow slideInUp" data-wow-delay=".5s">
-            <a asp-controller="HangHoa" asp-action="Index">Xem tất cả hàng hóa</a>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
+<section class="sec-tat-ca">
+    <div class="all-item animated wow slideInUp" data-wow-delay=".5s">
+        <div class="row">
+            <div class="col-md-12">
+                <a asp-controller="HangHoa" asp-action="Index">Xem tất cả hàng hóa</a>
+            </div>
+        </div>
+    </div>
+</section>
