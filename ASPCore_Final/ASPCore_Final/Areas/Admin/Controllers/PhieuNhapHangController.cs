@@ -96,7 +96,7 @@ namespace ASPCore_Final.Areas
             }
             //lưu session
             HttpContext.Session.Set("ListNhap", listnhap);
-            return RedirectToAction("Index");
+            return RedirectToAction("ThemMoi");
 
         }
         [HttpPost]
@@ -168,7 +168,7 @@ namespace ASPCore_Final.Areas
             HangHoaNhap hhn = res.SingleOrDefault(p => p.MaHh == mahh && p.KichCo == size);
             res.Remove(hhn);
             HttpContext.Session.Set("ListNhap", res);
-            return RedirectToAction("Index");
+            return RedirectToAction("ThemMoi");
         }
         [HttpGet("/admin/PhieuNhapHang/ChitietPhieuHang")]
         public IActionResult ChitietPhieuHang(int mapn)
