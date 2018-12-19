@@ -94,3 +94,5 @@ ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/Loai
 ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/Loais/Edit.g.cshtml.cs
 ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/Loais/Details.g.cshtml.cs
 ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/Loais/Create.g.cshtml.cs
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Views/HangHoa/TaiThem.g.cshtml.cs
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Views/HangHoa/Filter.g.cshtml.cs
