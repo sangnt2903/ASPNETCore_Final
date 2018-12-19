@@ -8,6 +8,7 @@ namespace ASPCore_Final.Models
         public NhanVien()
         {
             HoiDap = new HashSet<HoiDap>();
+            TinTuc = new HashSet<TinTuc>();
         }
 
         public int MaNv { get; set; }
@@ -19,5 +20,6 @@ namespace ASPCore_Final.Models
 
         public PhanQuyen MaPqNavigation { get; set; }
         public ICollection<HoiDap> HoiDap { get; set; }
+        public ICollection<TinTuc> TinTuc { get; set; }
     }
 }

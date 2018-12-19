@@ -15,6 +15,7 @@ namespace ASPCore_Final.Models
         {
         }
 
+        public virtual DbSet<BannerQc> BannerQc { get; set; }
         public virtual DbSet<BinhLuanSp> BinhLuanSp { get; set; }
         public virtual DbSet<ChiTietHd> ChiTietHd { get; set; }
         public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhap { get; set; }
@@ -23,12 +24,14 @@ namespace ASPCore_Final.Models
         public virtual DbSet<HoiDap> HoiDap { get; set; }
         public virtual DbSet<KhachHang> KhachHang { get; set; }
         public virtual DbSet<Loai> Loai { get; set; }
+        public virtual DbSet<LoaiTinTuc> LoaiTinTuc { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCap { get; set; }
         public virtual DbSet<NhanVien> NhanVien { get; set; }
         public virtual DbSet<PhanQuyen> PhanQuyen { get; set; }
         public virtual DbSet<PhieuNhapHang> PhieuNhapHang { get; set; }
         public virtual DbSet<SanPhamKho> SanPhamKho { get; set; }
         public virtual DbSet<TbThongKe> TbThongKe { get; set; }
+        public virtual DbSet<TinTuc> TinTuc { get; set; }
         public virtual DbSet<TrangThai> TrangThai { get; set; }
         public virtual DbSet<YeuThich> YeuThich { get; set; }
 
@@ -43,6 +46,31 @@ namespace ASPCore_Final.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BannerQc>(entity =>
+            {
+                entity.HasKey(e => e.MaQc);
+
+                entity.ToTable("BannerQC");
+
+                entity.Property(e => e.MaQc).HasColumnName("MaQC");
+
+                entity.Property(e => e.Hinh)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NgayBatDau).HasColumnType("datetime");
+
+                entity.Property(e => e.NgayKetThucQc)
+                    .HasColumnName("NgayKetThucQC")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.NgayTao).HasColumnType("datetime");
+
+                entity.Property(e => e.NoiDungQc)
+                    .HasColumnName("NoiDungQC")
+                    .HasMaxLength(200);
+            });
+
             modelBuilder.Entity<BinhLuanSp>(entity =>
             {
                 entity.HasKey(e => e.MaBl);
@@ -290,6 +318,21 @@ namespace ASPCore_Final.Models
                     .HasMaxLength(30);
             });
 
+            modelBuilder.Entity<LoaiTinTuc>(entity =>
+            {
+                entity.HasKey(e => e.LoaiTt);
+
+                entity.Property(e => e.LoaiTt)
+                    .HasColumnName("LoaiTT")
+                    .HasMaxLength(6)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.TenTt)
+                    .HasColumnName("TenTT")
+                    .HasMaxLength(30);
+            });
+
             modelBuilder.Entity<NhaCungCap>(entity =>
             {
                 entity.HasKey(e => e.MaNcc);
@@ -385,6 +428,34 @@ namespace ASPCore_Final.Models
                 entity.Property(e => e.MaTb).HasColumnName("MaTB");
 
                 entity.Property(e => e.ThoiGian).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<TinTuc>(entity =>
+            {
+                entity.HasKey(e => e.MaTt);
+
+                entity.Property(e => e.MaTt).HasColumnName("MaTT");
+
+                entity.Property(e => e.LoaiTt)
+                    .HasColumnName("LoaiTT")
+                    .HasMaxLength(6)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MaNv).HasColumnName("MaNV");
+
+                entity.Property(e => e.NgayTao).HasColumnType("datetime");
+
+                entity.Property(e => e.NoiDung).HasColumnType("text");
+
+                entity.HasOne(d => d.LoaiTtNavigation)
+                    .WithMany(p => p.TinTuc)
+                    .HasForeignKey(d => d.LoaiTt)
+                    .HasConstraintName("FK_TinTuc_LoaiTinTuc");
+
+                entity.HasOne(d => d.MaNvNavigation)
+                    .WithMany(p => p.TinTuc)
+                    .HasForeignKey(d => d.MaNv)
+                    .HasConstraintName("FK_TinTuc_NhanVien");
             });
 
             modelBuilder.Entity<TrangThai>(entity =>

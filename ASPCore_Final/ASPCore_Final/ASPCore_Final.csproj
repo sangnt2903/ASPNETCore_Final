@@ -265,9 +265,6 @@
     <None Include="wwwroot\Admin\js\plugins\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <None Include="wwwroot\Admin\js\plugins\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
     <None Include="wwwroot\Admin\js\plugins\skins\moono-lisa\readme.md" />
-    <None Include="wwwroot\images\banner1.svg" />
-    <None Include="wwwroot\images\banner2.svg" />
-    <None Include="wwwroot\images\banner3.svg" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\site.min.js" />
   </ItemGroup>
