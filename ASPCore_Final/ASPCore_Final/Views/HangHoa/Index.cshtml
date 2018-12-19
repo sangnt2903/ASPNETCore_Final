@@ -60,6 +60,7 @@
                     int soluongSPNam = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == false).ToList().Count();
                     var listNu = db.Loai.Where(p => p.GioiTinh == true).ToList();
                     int soluongSPNu = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == true).ToList().Count();
+                    int tongSoLuong = (int)ViewData["TongSoLuong"];
                 }
                 <li><a asp-controller="HangHoa" asp-action="Index">Tất cả sản phẩm<span>(@soLuongSP)</span></a></li>
                 <li><a asp-controller="HangHoa" asp-action="Index" asp-route-gioitinh="false">Thời trang nam<span>(@soluongSPNam)</span></a></li>
@@ -169,7 +170,20 @@
                     </div>
                 </div>
             }
-            <div class="clearfix"> </div>
+            <div class="clearfix"></div>
+            @{ 
+                int pageSize = 6;
+                var totalPage = 0;
+                if (tongSoLuong % pageSize == 0)
+                {
+                    totalPage = tongSoLuong / pageSize;
+                }
+                else
+                {
+                    totalPage = tongSoLuong / pageSize;
+                    totalPage += 1;
+                }
+            }
         </div>
         <div class="sec-load-more">
             <a class="load-more" id="load-more">Tải thêm sản phẩm</a>
@@ -179,7 +193,11 @@
     </div>
         <script language="javascript">
             $(function () {
+                var tongSoTrang = @totalPage;
                 var ajaxTT = ajaxTaiThem();
+                if (parseInt(ajaxTT.getPage()) > parseInt(tongSoTrang)) {
+                    $('.sec-load-more').html('<p>Đã hiển thị tất cả sản phẩm</p>')
+                }
                 $("#searchsp").keyup(function () {
                     $.ajax({
                         url: "/HangHoa/TimKiem",
@@ -194,10 +212,11 @@
                 $("#load-more").click(function () {
                     var loai = $("input[name='loai']").val();
                     var gioitinh = $("input[name='gioitinh']").val();
+                    
                     if (gioitinh == "") {
                         gioitinh = null;
                     }
-                    ajaxTT.taiThem(loai, gioitinh);
+                    ajaxTT.taiThem(loai, gioitinh, tongSoTrang);
                     ajaxTT.tangPage();
                 });
             });
@@ -212,62 +231,61 @@
                 var getPage = function () {
                     return page;
                 }
-                var taiThem = function (loai, gioitinh) {
+                var taiThem = function (loai, gioitinh, tongSoTrang) {
                     console.log(page);
+                    console.log(tongSoTrang);
                     console.log(loai);
                     console.log(gioitinh);
                     $.ajax({
                         url: "/HangHoa/TaiThem",
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        data: { "loai": loai, "gioitinh": gioitinh, "page": page},
+                        data: {"loai": loai, "gioitinh": gioitinh, "page": page},
                         async: true,
                         success: function (response) {
                             console.log('success');
                             console.log(response);
-                            if (response.length == 0) {
-                                $(".sec-load-more").html('<p>Đã hết sản phẩm</p >');
-                            } else {
-                                var itemsDOM = '';
-                                for (var i = 0; i < response.length; i++) {
-                                    var item = response[i];
-                                    var itemDOM = '';
-                                    itemDOM += '<div class="col-md-4 products-right-grids-bottom-grid" style="margin-bottom:15px;">';
-                                    itemDOM += '<div class="new-collections-grid1 products-right-grid1 animated wow" data-wow-delay=".5s" style="padding:10px;">';
-                                    itemDOM += '<div class="new-collections-grid1-image">';
-                                    itemDOM += '<a href="/HangHoa/ChiTiet/' + item.maHh + '" class="product-image" style="padding:10px;"><img src="/HangHoa/' + item.hinh + '" alt=" " class="img-responsive"></a>';
-                                    itemDOM += '<div class="new-collections-grid1-image-pos products-right-grids-pos" style="text-align:center">';
-                                    itemDOM += '<a href="/HangHoa/ChiTiet/' + item.maHh + '">Xem chi tiết</a>';
-                                    itemDOM += '</div>';
-                                    itemDOM += '<div class="new-one">';
-                                    itemDOM += '<p>' + item.ghiChu +'</p >';
-                                    itemDOM += '</div >';
-                                    itemDOM += '<div class="new-collections-grid1-right products-right-grids-pos-right">';
-                                    itemDOM += '<div class="rating">';
-                                    for (var j = 0; j < item.diem; j++) {
-                                        if (i <= item.diem) {
-                                            itemDOM += '<img src="/images/2.png" style="opacity:1">';
-                                            
-                                        }
-                                        else if (i > item.diem)
-                                        {
-                                            itemDOM += '<img src="/images/1.png" style="opacity:1">';
-                                        }
+                            var itemsDOM = '';
+                            for (var i = 0; i < response.length; i++) {
+                                var item = response[i];
+                                var itemDOM = '';
+                                itemDOM += '<div class="col-md-4 products-right-grids-bottom-grid" style="margin-bottom:15px;">';
+                                itemDOM += '<div class="new-collections-grid1 products-right-grid1 animated wow" data-wow-delay=".5s" style="padding:10px;">';
+                                itemDOM += '<div class="new-collections-grid1-image">';
+                                itemDOM += '<a href="/HangHoa/ChiTiet?mahh=' + item.maHh + '" class="product-image" style="padding:10px;"><img src="/HangHoa/' + item.hinh + '" alt=" " class="img-responsive"></a>';
+                                itemDOM += '<div class="new-collections-grid1-image-pos products-right-grids-pos" style="text-align:center">';
+                                itemDOM += '<a href="/HangHoa/ChiTiet?mahh=' + item.maHh + '">Xem chi tiết</a>';
+                                itemDOM += '</div>';
+                                itemDOM += '<div class="new-one">';
+                                itemDOM += '<p>' + item.ghiChu + '</p >';
+                                itemDOM += '</div >';
+                                itemDOM += '<div class="new-collections-grid1-right products-right-grids-pos-right">';
+                                itemDOM += '<div class="rating">';
+                                for (var j = 0; j < item.diem; j++) {
+                                    if (i <= item.diem) {
+                                        itemDOM += '<img src="/images/2.png" style="opacity:1">';
+
                                     }
-                                    itemDOM += '</div>';
-                                    itemDOM += '</div>';
-                                    itemDOM += '</div>';
-                                    itemDOM += '<h4><a href="/HangHoa/ChiTiet/' + item.maHh + '">' + item.tenHh +'</a></h4>';
-                                    itemDOM += '<p>' + item.moTa + '</p>';
-                                    itemDOM += '<div class="simpleCart_shelfItem products-right-grid1-add-cart">';
-                                    itemDOM += '<p><i>' + item.donGia.toLocaleString() + ' đ</i> <span class="item_price">' + item.giaBan.toLocaleString() + ' đ</span></p>';
-                                    itemDOM += '</div>';
-                                    itemDOM += '</div>';
-                                    itemDOM += '</div>';
-                                    itemsDOM += itemDOM;
+                                    else if (i > item.diem) {
+                                        itemDOM += '<img src="/images/1.png" style="opacity:1">';
+                                    }
                                 }
-                                itemsDOM += '<div class="clearfix"></div>';
-                                $('div.products-right-grids-bottom').append(itemsDOM);
+                                itemDOM += '</div>';
+                                itemDOM += '</div>';
+                                itemDOM += '</div>';
+                                itemDOM += '<h4><a href="/HangHoa/ChiTiet/' + item.maHh + '">' + item.tenHh + '</a></h4>';
+                                itemDOM += '<p>' + item.moTa + '</p>';
+                                itemDOM += '<div class="simpleCart_shelfItem products-right-grid1-add-cart">';
+                                itemDOM += '<p><i>' + item.donGia.toLocaleString() + ' đ</i> <span class="item_price">' + item.giaBan.toLocaleString() + ' đ</span></p>';
+                                itemDOM += '</div>';
+                                itemDOM += '</div>';
+                                itemDOM += '</div>';
+                                itemsDOM += itemDOM;
+                            }
+                            itemsDOM += '<div class="clearfix"></div>';
+                            $('div.products-right-grids-bottom').append(itemsDOM);
+                            if (parseInt(page) > parseInt(tongSoTrang)) {
+                                $('.sec-load-more').html('<p>Đã hiển thị tất cả sản phẩm</p>')
                             }
                         }
                     });
