@@ -316,7 +316,7 @@ a.simpleCart_empty {
 /*-- banner --*/
 .banner{
 	background:url(../images/banner.jpg) no-repeat 0px 0px;
-	background-size:cover;
+	background-size:unset;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	-o-background-size:cover;

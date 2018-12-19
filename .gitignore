@@ -86,3 +86,8 @@ ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/ASPCore_Final.RazorCoreGener
 ASPCore_Final/ASPCore_Final/ASPCore_Final.csproj.user
 ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Views/MyHoaDons/Index.g.cshtml.cs
 ASPCore_Final/.vs/ASPCore_Final/v15/Server/sqlite3/storage.ide
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/PhieuNhapHang/ChitietPhieuHang.g.cshtml.cs
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/Loais/Index.g.cshtml.cs
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/Loais/Edit.g.cshtml.cs
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/Loais/Details.g.cshtml.cs
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Areas/Admin/Views/Loais/Create.g.cshtml.cs

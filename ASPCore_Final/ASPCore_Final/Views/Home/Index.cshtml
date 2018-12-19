@@ -1,12 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-    
-    <style>
-        div.new-collections div.all-item {
-            margin-top: 30px;
-            text-align: center;
-        }
+
+<style>
+    div.new-collections div.all-item {
+        margin-top: 30px;
+        text-align: center;
+    }
+
         div.new-collections div.all-item a {
             padding: 10px 20px;
             color: #fff;
@@ -14,22 +15,42 @@
             text-decoration: none;
             font-size: 14px;
         }
-        div.new-collections div.all-item a:hover {
-            background: #ffc229;
-            text-decoration: none;
-        }
-    </style>
 
-<div class="banner" style="background: url(/images/banner.jpg) no-repeat 0px 0px;">
-    <div class="container">
-        <div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
-            <h3>ESHOP</h3>
-            <h4 style="margin:auto">Fashionista</h4>
-        </div>
-    </div>
-</div>
+            div.new-collections div.all-item a:hover {
+                background: #ffc229;
+                text-decoration: none;
+            }
+</style>
+<!-- banner -->
 @{
     ESHOPContext db = new ESHOPContext();
+    // lấy banner trong thời gian hoạt động
+    BannerQc bannerQc = db.BannerQc.SingleOrDefault(p => p.NgayBatDau <= DateTime.Now && DateTime.Now <= p.NgayKetThucQc);
+    if (bannerQc == null)
+    {
+        <a href="#">
+            <div class="banner" style="background: url(/Banner/banner2.jpg) no-repeat 0px 0px;">
+                <div class="container">
+                    <div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
+                        <h3>ESHOP</h3>
+                        <h4 style="margin:auto">Fashionista</h4>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+    else
+    {
+        <a href="#">
+            <div class="banner" style="background: url(/Banner/@bannerQc.Hinh) no-repeat 0px 0px;">
+            </div>
+        </a>
+    }
+}
+
+<!-- //banner -->
+@{
+
     List<HangHoa> hhs = db.HangHoa.ToList();
     List<HangHoa> hhnb = new List<HangHoa>();
     int demhhnb = 0;
