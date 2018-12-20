@@ -20,31 +20,32 @@
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
         </button>
     </form>
+    <hr />
     <p>
         <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
     </p>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.TenHh)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.Hinh)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.DonGia)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.GiamGia)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.MoTa)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.MaLoaiNavigation)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.MaNccNavigation)
                 </th>
                 <th></th>
@@ -54,28 +55,28 @@
             @foreach (var item in Model)
             {
                 <tr onclick="_delete(@item.MaHh, event)">
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.TenHh)
                     </td>
-                    <td>
+                    <td scope="row">
                         <img src="~/HangHoa/@item.Hinh" style="width:80px;height:80px;" alt="Alternate Text" />
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.DonGia)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.GiamGia)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.MoTa)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.MaLoaiNavigation.MaLoai)
                     </td>
-                    <td>
+                    <td scope="row">
                         @Html.DisplayFor(modelItem => item.MaNccNavigation.MaNcc)
                     </td>
-                    <td>
+                    <td scope="row">
                         <a asp-action="Edit" asp-route-id="@item.MaHh" class="btn btn-primary">Sửa</a> |
                         <a asp-action="Details" asp-route-id="@item.MaHh" class="btn btn-primary">Xem chi tiết</a>
                         <button type="button" class="btn btn-primary btn-delete">Xóa</button>

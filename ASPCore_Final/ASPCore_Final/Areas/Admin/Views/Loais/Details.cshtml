@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết loại HH</h2>
 
 <div>
     <h4>Loai</h4>
@@ -26,6 +26,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.MaLoai">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.MaLoai" class="btn btn-primary">Sửa</a> |
+    <a asp-action="Index" class="btn btn-primary">Trở lại</a>
 </div>
