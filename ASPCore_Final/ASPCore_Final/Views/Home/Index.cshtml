@@ -2,17 +2,120 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    div.new-collections div.all-item {
+        margin-top: 30px;
+        text-align: center;
+    }
 
-<div class="banner" style="background: url(/images/banner.jpg) no-repeat 0px 0px;">
-    <div class="container">
-        <div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
-            <h3>ESHOP</h3>
-            <h4 style="margin:auto">Fashionista</h4>
-        </div>
-    </div>
+    div.new-collections div.all-item a {
+            padding: 10px 20px;
+            color: #fff;
+            background: #d8703f;
+            text-decoration: none;
+            font-size: 14px;
+    }
+
+    div.new-collections div.all-item a:hover {
+                background: #ffc229;
+                text-decoration: none;
+    }
+
+    .mySlides {
+        display: none;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    .dot {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+    }
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Verdana, sans-serif;
+    }
+    .dot .active {
+        background-color: orangered;
+    }
+</style>
+<div class="banner">
+    @{
+        ESHOPContext db = new ESHOPContext();
+        // lấy banner trong thời gian hoạt động
+        List<BannerQc> bannerQcs = db.BannerQc.Where(p => p.NgayBatDau <= DateTime.Now && DateTime.Now <= p.NgayKetThucQc).ToList();
+        foreach (var item in bannerQcs)
+        {
+            if (item.Hinh == "banner2.jpg")
+            {
+                <div class="banner mySlides dot banner-info banner-info1" data-wow-delay=".5s">
+                    <img src="~/Banner/@item.Hinh" style="width:1140px;height:500px;">
+                </div>
+            }
+            else
+            {
+                <a href="#">
+                    <div class="mySlides dot banner">
+                        <img src="~/Banner/@item.Hinh" style="width:1140px;height:500px;">
+                    </div>
+                </a>
+            }
+            <br>
+        }
+        <script>
+            var slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                setTimeout(showSlides, 3000); // Change image every 2 seconds
+            }
+        </script>
+    }
 </div>
+<!-- banner -->
+    
+
+<div class="clearfix"></div>
+
+<!-- //banner -->
 @{
-    ESHOPContext db = new ESHOPContext();
+
     List<HangHoa> hhs = db.HangHoa.ToList();
     List<HangHoa> hhnb = new List<HangHoa>();
     int demhhnb = 0;
@@ -40,6 +143,7 @@
         }
     }
 }
+<br />
 <div class="new-collections">
     <div class="container">
         <h3 class="animated wow zoomIn" data-wow-delay=".5s">Sản phẩm nổi bật</h3>
@@ -130,6 +234,51 @@
                     </div>
                 </div>
             }
+        </div>
+        <div class="container">
+            <div class="all-item animated wow slideInUp" data-wow-delay=".5s">
+                <a asp-controller="HangHoa" asp-action="Index">Xem tất cả hàng hóa</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="new-collections">
+    <div class="container">
+        <h3 class="animated wow zoomIn" data-wow-delay=".5s">Thương hiệu</h3>
+        <div class="new-collections-grids">
+                @{
+                    List<NhaCungCap> nccs = db.NhaCungCap.OrderBy(p => p.MaNcc).ToList();
+                    foreach (var item in nccs)
+                    {
+                        <div class="col-md-3">
+                            <img src="~/Banner/@item.Hinh" alt="Alternate Text" style="width:250px;height:250px;border-radius:inherit" />
+                        </div>
+                    }
+                }
+         </div>
+    </div>
+</div>
+
+<br />
+
+<div class="collections-bottom">
+    <div class="container">
+        <div class="newsletter animated wow slideInUp" data-wow-delay=".5s">
+            <h3>Đăng kí</h3>
+            <p>Đăng kí email để nhận các quà tặng đặc biệt từ ESHOP</p>
+            <form asp-action="DangkiVoucher" asp-controller="Home" method="post">
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                <input type="email" name="email" value="Nhập vào email của bạn" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập vào Email của bạn...';}" required="">
+                <input type="submit" value="Đăng kí">
+            </form>
+            <br />
+            @if (Context.Session.Get<string>("voucherInfo") != null)
+            {
+                    var voucherInfo = Context.Session.Get<string>("voucherInfo");
+                    <div class="alert alert-warning">@voucherInfo</div>
+            }
+
         </div>
     </div>
 </div>

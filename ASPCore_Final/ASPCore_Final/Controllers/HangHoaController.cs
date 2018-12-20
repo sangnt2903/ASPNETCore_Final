@@ -15,22 +15,122 @@ namespace ASPCore_Final.Controllers
             db = ctx;
         }
 
-        public IActionResult Index(int page = 1, int pageSize = 6)
+        
+        public IActionResult Index(string loai="", bool? gioitinh = null, int page = 1, int pageSize = 6)
         {
             int starIndex = (page - 1) * pageSize;
-            List<HangHoa> hangHoas = db.HangHoa.Skip(starIndex).ToList();
+            List<HangHoa> hangHoas =  db.HangHoa.Skip(starIndex).ToList();
+            if (gioitinh != null)
+            {
+                hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).Skip(starIndex).ToList();
+            }
+            else if(loai != null && loai != "")
+            {
+                hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).Skip(starIndex).ToList();
+            }
             int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
             List<HangHoa> res = hangHoas.Take(itemsize).ToList();
+            ViewData["TongSoLuong"] = hangHoas.Count;
             return View("Index",res);
         }
 
-        public IActionResult Index1(string loai="", int page = 1, int pageSize = 6)
+        public IActionResult TaiThem(string loai = "", bool? gioitinh = null, string mucgia = "", string sapxep = "", int page = 2, int pageSize = 6)
         {
             int starIndex = (page - 1) * pageSize;
-            List<HangHoa> hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).Skip(starIndex).ToList();
+
+            List<HangHoa> hangHoas = db.HangHoa.ToList();
+            if (gioitinh != null)
+            {
+                hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).ToList();
+            }
+            else if (loai != null && loai != "")
+            {
+                hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).ToList();
+            }
+            switch (mucgia)
+            {
+                case "100000":
+                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) < 100000).ToList();
+                    break;
+                case "200000":
+                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) >= 100000 && p.DonGia * (1 - p.GiamGia) < 200000).ToList();
+                    break;
+                case "300000":
+                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) >= 200000 && p.DonGia * (1 - p.GiamGia) < 300000).ToList();
+                    break;
+                default:
+                    break;
+            }
+            switch (sapxep)
+            {
+                case "tang":
+                    hangHoas = hangHoas.OrderBy(p => p.DonGia * (1 - p.GiamGia)).ToList();
+                    break;
+                case "giam":
+                    hangHoas = hangHoas.OrderByDescending(p => p.DonGia * (1 - p.GiamGia)).ToList();
+                    break;
+                case "moinhat":
+                    hangHoas = hangHoas.OrderByDescending(p => p.MaHh).ToList();
+                    break;
+                case "banchay":
+
+                    break;
+                default:
+                    break;
+            }
+            hangHoas = hangHoas.Skip(starIndex).ToList();
             int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
             List<HangHoa> res = hangHoas.Take(itemsize).ToList();
-            return View("Index",res);
+            ViewData["TongSoLuong"] = hangHoas.Count;
+            return PartialView(res);
+        }
+
+        public IActionResult Filter(string loai = "", bool? gioitinh = null, string mucgia = "", string sapxep = "", int page = 1, int pageSize = 6)
+        {
+            int starIndex = (page - 1) * pageSize;
+
+            List<HangHoa> hangHoas = db.HangHoa.ToList();
+            if (gioitinh != null)
+            {
+                hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).ToList();
+            }
+            else if (loai != null && loai != "")
+            {   
+                hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).ToList();
+            }
+            switch (mucgia)
+            {
+                case "100000":
+                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) < 100000).ToList();
+                    break;
+                case "200000":
+                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) >= 100000 && p.DonGia * (1 - p.GiamGia) < 200000).ToList();
+                    break;
+                case "300000":
+                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) >= 200000 && p.DonGia * (1 - p.GiamGia) < 300000).ToList();
+                    break;
+                default:
+                    break;
+            }
+            switch (sapxep)
+            {
+                case "tang":
+                    hangHoas = hangHoas.OrderBy(p => p.DonGia * (1 - p.GiamGia)).ToList();
+                    break;
+                case "giam":
+                    hangHoas = hangHoas.OrderByDescending(p => p.DonGia * (1 - p.GiamGia)).ToList();
+                    break;
+                case "moinhat":
+                    hangHoas = hangHoas.OrderByDescending(p => p.MaHh).ToList();
+                    break;
+                default:
+                    break;
+            }
+            hangHoas = hangHoas.Skip(starIndex).ToList();
+            int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
+            List<HangHoa> res = hangHoas.Take(itemsize).ToList();
+            ViewData["TongSoLuong"] = hangHoas.Count;
+            return PartialView(res);
         }
 
         public IActionResult ChiTiet(int mahh)

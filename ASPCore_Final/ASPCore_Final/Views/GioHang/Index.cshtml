@@ -75,8 +75,17 @@
                     </tr>
                     }
                 </table>
-                <script>
-                   
+                
+            </div>
+            <div class="checkout-left">
+                <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
+                    <h4>THÔNG TIN GIỎ HÀNG</h4>
+                    @{
+                        double tongtien = 0;
+                        double phivanchuyen = 35000;
+                    }
+                    <script>
+
                     $(function () {
                         $("input[type='number']").change(function () {
                             var currentSoLuongMoi = $(this);
@@ -112,6 +121,9 @@
                                     soluong += currentItem['soLuong'];
                                     $("ul.dschitiet").append("<li>" + currentItem['tenHh'] + "<i>-</i><span>" + currentItem['soLuong'] + "<i>x</i>" + currentItem['giaBan'].toLocaleString() + " đ</span></li>");
                                 }
+                                $("ul.dschitiet").append('<li style="color:seagreen;border-top:groove;font-size:15px;"> <form asp-action="CheckVoucher" asp-controller="GioHang" method="post"><input type="submit" name="check" value="Nhập lại" class="btn btn-primary" /><br /><span id="voucherif"></span><br/><input type="hidden" name="tongtien" value="@tongtien"/></form></li>');
+                                $("ul.dschitiet").append('<li style="color:seagreen;border-top:groove;font-size:15px;">TỔNG ĐƠN HÀNG<i></i><span>' + tongtien.toLocaleString() + ' đ</span><br/><br/>GIẢM GIÁ<i></i><span></span><br /><br />PHÍ VẬN CHUYỂN : <i></i><span>@phivanchuyen.ToString("#,##0") đ</span></li>');
+                                tongtien += 35000;
                                 $("ul.dschitiet").append('<li style="color:seagreen;border-top:groove;font-size:20px;">TỔNG THANH TOÁN <i>-</i><span>' + tongtien.toLocaleString() + ' đ</span></li>');
                                 $("div.total span.tong").html(tongtien.toLocaleString() + ' đ');
                                 $("div.total span.soluong").html(soluong.toLocaleString());
@@ -119,24 +131,63 @@
 
                         });
                     }
-            
 
-                </script>
-            </div>
-            <div class="checkout-left">
-                <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
-                    <h4>THÔNG TIN GIỎ HÀNG</h4>
-                    @{
-                        double tongtien = 0;
-                    }
+
+                    </script>
                     <ul class="dschitiet">
                         @foreach (var item in Model)
                         {
-                           
+
                             <li>@item.TenHh<i>-</i><span>@item.SoLuong<i>x</i>@item.GiaBan.ToString("#,##0") đ</span></li>
                             tongtien = tongtien + item.ThanhTien;
+                            <br />
                         }
-                        <li style="color:seagreen;border-top:groove;font-size:20px;">TỔNG THANH TOÁN <i>-</i><span>@tongtien.ToString("#,##0") đ</span></li>
+                         <li style="color:seagreen;border-top:groove;font-size:15px;">
+                            <form asp-action="CheckVoucher" asp-controller="GioHang" method="post">
+                                <input type="text" id="magiamgia" name="magiamgia" value="" style="padding:5px;" placeholder="Mã giảm giá..." />
+                                @{
+                                    if (Context.Session.Get<string>("voucherIf") != null)
+                                    {
+                                        string voucherIf = Context.Session.Get<string>("voucherIf");
+                                        <input type="submit" name="check" value="Kiểm tra" class="btn btn-primary" /><br /><span id="voucherif">@voucherIf</span><br /><br/>
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" name="check" value="Kiểm tra" class="btn btn-primary" /><br /><span id="voucherif"></span><br />
+                                    }
+                                }
+                                <input type="hidden" name="tongtien" value="@tongtien" />
+                            </form>
+                        </li>
+                        @if (Context.Session.Get<string>("SoTienGiam") != null)
+                        {
+                            double tiengiam = Context.Session.Get<double>("SoTienGiam");
+                            double phantramgiam = Context.Session.Get<double>("PhanTramGiam");
+                            if (tongtien == tiengiam / phantramgiam)
+                            {
+                                double tongthanhtoan = tongtien - tiengiam;
+                                Context.Session.Remove("SoTienGiam");
+                                Context.Session.Remove("PhanTramGiam");
+                                Context.Session.Remove("voucherIf");
+                                <li style="color:seagreen;border-top:groove;font-size:15px;">TỔNG ĐƠN HÀNG <i></i><span>@tongtien.ToString("#,##0") đ</span><br /><br />GIẢM GIÁ : <i></i><span>@tiengiam.ToString("#,##0") đ</span><br /><br />PHÍ VẬN CHUYỂN : <i></i><span>@phivanchuyen.ToString("#,##0") đ</span></li>
+                                tongthanhtoan += phivanchuyen;
+                                <li style="color:seagreen;border-top:groove;font-size:15px;">TỔNG THANH TOÁN : <i></i><span>@tongthanhtoan.ToString("#,##0") đ</span></li>
+                            }
+                            else
+                            {
+                                <li style="color:seagreen;border-top:groove;font-size:15px;">TỔNG ĐƠN HÀNG <i></i><span>@tongtien.ToString("#,##0") đ</span><br /><br />GIẢM GIÁ : <i></i><span id="giamgia"></span><br /><br />PHÍ VẬN CHUYỂN : <i></i><span>@phivanchuyen.ToString("#,##0") đ</span></li>
+                                tongtien += phivanchuyen;
+                                <li style="color:seagreen;border-top:groove;font-size:15px;">TỔNG THANH TOÁN : <i></i><span>@tongtien.ToString("#,##0") đ</span></li>
+                            }
+                        }
+                        else
+                        {
+                            
+                             <li style="color:seagreen;border-top:groove;font-size:15px;">TỔNG ĐƠN HÀNG <i></i><span>@tongtien.ToString("#,##0") đ</span><br /><br />GIẢM GIÁ : <i></i><span id="giamgia"></span><br /><br />PHÍ VẬN CHUYỂN : <i></i><span>@phivanchuyen.ToString("#,##0") đ</span></li>
+                            tongtien += phivanchuyen;
+                             <li style="color:seagreen;border-top:groove;font-size:15px;">TỔNG THANH TOÁN : <i></i><span>@tongtien.ToString("#,##0") đ</span></li>
+                        }
+
                     </ul>
                 </div>
                 <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
@@ -152,8 +203,8 @@
                         $('.motkhoi h3').click(function (event) {
                             $(this).next('.ndmotkhoi').slideToggle();
                             $(this).toggleClass("xanh");
-                        });
-                    });
+                         });
+                         });
                 </script>
                 <div class="hieuung" style="font-weight:300px">
                     <div class="motkhoi">
@@ -162,44 +213,53 @@
                             @if (Context.Session.Get<KhachHang>("user") != null)
                             {
                                 KhachHang kh = Context.Session.Get<KhachHang>("user");
-                                <form asp-action="TaoHoaDon" asp-controller="GioHang" method="post">
-                                    <input type="hidden" name="makh" value="@kh.MaKh" class="form-control" />
-                                    <br />
+                            <form asp-action="TaoHoaDon" asp-controller="GioHang" method="post">
+                                @if (Context.Session.Get<string>("mavc") != null)
+                                {
+                                    string mavc = Context.Session.Get<string>("mavc");
+                                    <input type="hidden" name="magiamgia" value="@mavc" class="form-control" />
+                                }
+                                else
+                                {
+                                    <input type="hidden" name="magiamgia" value="" class="form-control" />
+                                }
+                                <input type="hidden" name="makh" value="@kh.MaKh" class="form-control" />
+                                <br />
 
-                                    <div style="display:inline">
-                                        <label>Họ và tên khách hàng</label>
-                                        <input type="text" name="hotenkh" value="@kh.HoTen" class="form-control" />
-                                    </div>
-                                    <br />
-                                    <div style="display:inline">
-                                        <label>Địa chỉ</label>
-                                        <input type="text" name="diachi" value="@kh.DiaChi" class="form-control" />
-                                    </div>
-                                    <br />
-                                    <div style="display:inline">
-                                        <label>Họ và tên người nhận</label>
-                                        <input type="text" name="hoten_ngnhan" value="" class="form-control" required />
-                                    </div>
-                                    <br />
-                                    <div style="display:inline">
-                                        <label>Địa chỉ người nhận</label>
-                                        <input type="text" name="dc_nguoinhan" value="" class="form-control" required />
-                                    </div>
-                                    <br />
-                                    <div style="display:inline">
-                                        <label>Số điện thoại người nhận</label>
-                                        <input type="text" name="sdt" value="" class="form-control" required />
-                                    </div>
-                                    <br />
-                                    <div style="display:inline">
-                                        <label>Ghi chú</label>
-                                        <input type="text" name="ghichu" value="" class="form-control" />
-                                    </div>
-                                    <br />
-                                    <div style="text-align:center">
-                                        <button class="btn btn-success" type="submit">Xác nhận và kiểm tra email</button>
-                                    </div>
-                                </form>
+                                <div style="display:inline">
+                                    <label>Họ và tên khách hàng</label>
+                                    <input type="text" name="hotenkh" value="@kh.HoTen" class="form-control" />
+                                </div>
+                                <br />
+                                <div style="display:inline">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" name="diachi" value="@kh.DiaChi" class="form-control" />
+                                </div>
+                                <br />
+                                <div style="display:inline">
+                                    <label>Họ và tên người nhận</label>
+                                    <input type="text" name="hoten_ngnhan" value="" class="form-control" required />
+                                </div>
+                                <br />
+                                <div style="display:inline">
+                                    <label>Địa chỉ người nhận</label>
+                                    <input type="text" name="dc_nguoinhan" value="" class="form-control" required />
+                                </div>
+                                <br />
+                                <div style="display:inline">
+                                    <label>Số điện thoại người nhận</label>
+                                    <input type="text" name="sdt" value="" class="form-control" required />
+                                </div>
+                                <br />
+                                <div style="display:inline">
+                                    <label>Ghi chú</label>
+                                    <input type="text" name="ghichu" value="" class="form-control" />
+                                </div>
+                                <br />
+                                <div style="text-align:center">
+                                    <button class="btn btn-success" type="submit">Xác nhận và kiểm tra email</button>
+                                </div>
+                            </form>
                                 <br />
                             }
                             else

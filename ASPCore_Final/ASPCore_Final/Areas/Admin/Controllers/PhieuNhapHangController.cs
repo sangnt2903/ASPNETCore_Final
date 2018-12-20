@@ -96,7 +96,7 @@ namespace ASPCore_Final.Areas
             }
             //lưu session
             HttpContext.Session.Set("ListNhap", listnhap);
-            return RedirectToAction("Index");
+            return RedirectToAction("ThemMoi");
 
         }
         [HttpPost]
@@ -126,7 +126,7 @@ namespace ASPCore_Final.Areas
             }
             ListNhap.Add(hh);
             HttpContext.Session.Set("ListNhap", ListNhap);
-            return RedirectToAction("Index");
+            return RedirectToAction("ThemMoi");
         }
         [HttpGet("/admin/PhieuNhapHang/LuuPhieuNhapKho")]
         public IActionResult LuuPhieuNhapKho()
@@ -159,7 +159,7 @@ namespace ASPCore_Final.Areas
             pnh.TongTien = TongTien;
             db.SaveChanges();
             HttpContext.Session.Remove("ListNhap");
-            return View("Index");
+            return RedirectToAction("Index");
         }
         [HttpGet("/admin/PhieuNhapHang/XoaChiTiet")]
         public IActionResult XoaChiTiet(int mahh,string size) 
@@ -168,7 +168,7 @@ namespace ASPCore_Final.Areas
             HangHoaNhap hhn = res.SingleOrDefault(p => p.MaHh == mahh && p.KichCo == size);
             res.Remove(hhn);
             HttpContext.Session.Set("ListNhap", res);
-            return RedirectToAction("Index");
+            return RedirectToAction("ThemMoi");
         }
         [HttpGet("/admin/PhieuNhapHang/ChitietPhieuHang")]
         public IActionResult ChitietPhieuHang(int mapn)
