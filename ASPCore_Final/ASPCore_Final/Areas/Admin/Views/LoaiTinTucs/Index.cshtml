@@ -1,5 +1,5 @@
 ﻿
-@model ReflectionIT.Mvc.Paging.PagingList<ASPCore_Final.Models.Loai>
+@model ReflectionIT.Mvc.Paging.PagingList<ASPCore_Final.Models.LoaiTinTuc>
 @using ReflectionIT.Mvc.Paging;
 @addTagHelper *, ReflectionIT.Mvc.Paging
 @{
@@ -7,8 +7,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <div class="outer-w3-agile mt-3">
-    <h4 class="tittle-w3-agileits mb-4">Danh sách Loại HH</h4>
+    <h4 class="tittle-w3-agileits mb-4">Danh sách Loại Tin Tức</h4>
     <form method="get" class="form-inline">
         <input name="searchString" class="form-control" placeholder="Search..."
                value="@Model.RouteValue["searchString"]" />
@@ -24,10 +26,7 @@
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.GioiTinh)
-                </th>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.TenLoai)
+                    @Html.DisplayNameFor(model => model.TenTt)
                 </th>
                 <th></th>
             </tr>
@@ -35,18 +34,14 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr onclick="_delete('@item.MaLoai', event)">
+                <tr onclick="_delete('@item.LoaiTt', event)">
                     <td scope="row">
+                        @Html.DisplayFor(modelItem => item.TenTt)
+                    </td>
+                    <td scope="row">
+                        <a asp-action="Edit" asp-route-id="@item.LoaiTt" class="btn btn-primary">Sửa</a> |
+                        <a asp-action="Details" asp-route-id="@item.LoaiTt" class="btn btn-primary">Xem chi tiết</a> |
 
-                        <a> @Html.Raw(item.GioiTinh == true ? "Nam" : "Nữ")</a>
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.TenLoai)
-                    </td>
-                    <td scope="row">
-                        <a asp-action="Edit" asp-route-id="@item.MaLoai">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.MaLoai">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.MaLoai">Delete</a> |
                         <button type="button" class="btn btn-primary btn-delete">Xóa</button>
                     </td>
                 </tr>
@@ -58,17 +53,17 @@
             if (ev.target.className == 'btn btn-primary btn-delete') {
                 console.log(ev.target);
                 console.log(ev.currentTarget);
-                var cf = confirm('Bạn có muốn xoá loại HH ID: ' + id + '?');
+                var cf = confirm('Bạn có muốn xoá loại tt: ' + id + '?');
                 if (cf) {
                     $(ev.currentTarget).fadeOut();
                     $.ajax({
-                        url: '/api/Loais/' + id,
+                        url: '/api/LoaiTinTucs/' + id,
                         type: "Delete",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         async: true,
                         success: function (result) {
-                            alert("Xoá loại HH thành công");
+                            alert("Xoá thành công");
                         },
                         error: function (errormessage) {
                             alert(errormessage.responseText);

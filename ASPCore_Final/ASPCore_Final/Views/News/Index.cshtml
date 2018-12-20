@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ASPCore_Final.Models.TinTuc>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_frontEnd.cshtml";
+}
+
+
+<div class="content">
+    <div class="content_top">
+        <div class="heading">
+            <h3>Tin tức</h3>
+        </div>
+        <div class="see">
+
+        </div>
+        <div class="clear"></div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="container-fluid">
+            <div class="row align-content-center">
+            <div class="col-sm-3">
+                <img src="~/HangHoa/@item.Hinh" style="width:230px;height:230px;" alt="Alternate Text"  />
+            </div>
+            <div class="col-sm-8 align-content-between">
+                <h3><a href="/News/Details/@item.MaTt">@item.TieuDe </a></h3>
+                <h4>Posted on @item.NgayTao </h4>
+                @item.LoaiTt
+            </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,5 +1,5 @@
 ﻿
-@model ReflectionIT.Mvc.Paging.PagingList<ASPCore_Final.Models.NhaCungCap>
+@model ReflectionIT.Mvc.Paging.PagingList<ASPCore_Final.Models.TinTuc>
 @using ReflectionIT.Mvc.Paging;
 @addTagHelper *, ReflectionIT.Mvc.Paging
 @{
@@ -8,7 +8,7 @@
 }
 
 <div class="outer-w3-agile mt-3">
-    <h2>Danh sách nhà cung cấp</h2>
+    <h4 class="tittle-w3-agileits mb-4">Danh sách nhân viên</h4>
     <form method="get" class="form-inline">
         <input name="searchString" class="form-control" placeholder="Search..."
                value="@Model.RouteValue["searchString"]" />
@@ -20,23 +20,29 @@
     <p>
         <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
     </p>
+
+
+
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.TenCongTy)
+                    @Html.DisplayNameFor(model => model.NoiDung)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.Email)
+                    @Html.DisplayNameFor(model => model.NgayTao)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.DienThoai)
+                    @Html.DisplayNameFor(model => model.TrangThai)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.DiaChi)
+                    @Html.DisplayNameFor(model => model.LoaiTtNavigation)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.MoTa)
+                    @Html.DisplayNameFor(model => model.TieuDe)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.MaNvNavigation)
                 </th>
                 <th></th>
             </tr>
@@ -44,30 +50,32 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr onclick="_delete('@item.MaNcc', event)">
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.TenCongTy)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.DienThoai)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.DiaChi)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.MoTa)
-                    </td>
-                    <td scope="row">
-                        <a asp-action="Edit" asp-route-id="@item.MaNcc" class="btn btn-primary">Sửa</a> |
-                        <a asp-action="Details" asp-route-id="@item.MaNcc" class="btn btn-primary">Xem chi tiết</a>
+            <tr onclick="_delete(@item.MaTt, event)">
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.NoiDung)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.NgayTao)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.TrangThai)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.LoaiTtNavigation.LoaiTt)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.TieuDe)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.MaNvNavigation.Email)
+                </td>
+                <td scope="row">
+                    <a asp-action="Edit" asp-route-id="@item.MaTt" class="btn btn-primary">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.MaTt" class="btn btn-primary">Xem chi tiết</a> |
 
-                        <button type="button" class="btn btn-primary btn-delete">Xóa</button>
-
-                    </td>
-                </tr>
+                    <button type="button" class="btn btn-primary btn-delete">Xóa</button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
@@ -76,17 +84,17 @@
             if (ev.target.className == 'btn btn-primary btn-delete') {
                 console.log(ev.target);
                 console.log(ev.currentTarget);
-                var cf = confirm('Bạn có muốn xoá nhà cung cấp ID: ' + id + '?');
+                var cf = confirm('Bạn có muốn xoá tin tức ID: ' + id + '?');
                 if (cf) {
                     $(ev.currentTarget).fadeOut();
                     $.ajax({
-                        url: '/api/NhaCungCaps/' + id,
+                        url: '/api/TinTucs/' + id,
                         type: "Delete",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         async: true,
                         success: function (result) {
-                            alert("Xoá nhân NCC công");
+                            alert("Xoá thành công");
                         },
                         error: function (errormessage) {
                             alert(errormessage.responseText);
@@ -103,4 +111,5 @@
 
 
     </nav>
+
 </div>
