@@ -146,8 +146,15 @@
                         <p>Chia sẻ :</p>
                     </div>
                     <div class="social-right">
+                        <ul class="social-icons">
+                            @{
+                                string link = "http://www.facebook.com/share.php?u=eshop.com/";
+                                link += "HangHoa/ChiTiet?mahh=" + Model.MaHh;
+                            }
+                            <li><a style='padding: 0 5px' target='_blank' href="@link" title='Chia sẽ lên Facebook' class="facebook"></a></li>
 
-                        <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=112&layout=button&action=like&size=small&show_faces=true&share=true&height=65&appId" width="112" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                        </ul>
+                        <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=58&layout=button&action=like&size=small&show_faces=true&share=false&height=65&appId" width="58" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                     </div>
                     <div class="clearfix"> </div>
                 </div>

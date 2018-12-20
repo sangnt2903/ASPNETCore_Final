@@ -71,7 +71,7 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n<h3 class=\"alert alert-info\" style=\"font-size:25px;\">Thông tin voucher</h3>\r\n");
             EndContext();
             BeginContext(181, 73, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5d8a8e88f3134eecb4f96aed06566494", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "93df52f789c2455d92add696e6aed21a", async() => {
                 BeginContext(241, 9, true);
                 WriteLiteral("Thêm mới");
                 EndContext();
@@ -298,7 +298,7 @@ using ASPCore_Final.Models;
             WriteLiteral("                                    <td>");
             EndContext();
             BeginContext(3667, 98, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e559ff98b28d42b0b24e93b9dd4f8b6c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2b1d07e83b084ea8ba4f928a71850f66", async() => {
                 BeginContext(3742, 19, true);
                 WriteLiteral("Kích hoạt voucher");
                 EndContext();
@@ -343,7 +343,7 @@ using ASPCore_Final.Models;
             WriteLiteral("                            <td>");
             EndContext();
             BeginContext(3870, 84, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0c752c8b86f24a30836825aaff5f8372", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38a91d24be60402982f6f8301061ad49", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
@@ -376,7 +376,7 @@ using ASPCore_Final.Models;
             WriteLiteral(" | ");
             EndContext();
             BeginContext(3957, 83, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "99c3d65d0cc548d5ba5d9cdcd3023067", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "53e26f3f9b324e7bba300ebbba06d30e", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
@@ -541,7 +541,7 @@ using ASPCore_Final.Models;
             WriteLiteral("                                <td>");
             EndContext();
             BeginContext(6094, 84, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "958915e656564181af2a9bfebf3e5f04", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c9dc307f6f8d4926a654dfd183d2d01d", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();

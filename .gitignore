@@ -109,3 +109,5 @@ ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/ASPCore_Final.AssemblyInfoIn
 ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/ASPCore_Final.AssemblyInfo.cs
 ASPCore_Final/ASPCore_Final/obj/ASPCore_Final.csproj.nuget.g.targets
 ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Views/HangHoa/TaiThemBanChay.g.cshtml.cs
+ASPCore_Final/ASPCore_Final/obj/Debug/netcoreapp2.1/Razor/Views/HangHoa/FilterBanChay.g.cshtml.cs

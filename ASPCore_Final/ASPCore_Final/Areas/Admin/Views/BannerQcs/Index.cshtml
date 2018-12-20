@@ -43,27 +43,27 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr onclick="_delete(@item.MaQc, event)">
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.NoiDungQc)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.NgayTao)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.Hinh)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.NgayKetThucQc)
-                    </td>
-               
-                    <td scope="row">
-                        <a asp-action="Edit" asp-route-id="@item.MaQc" class="btn btn-primary">Sửa</a> |
-                        <a asp-action="Details" asp-route-id="@item.MaQc" class="btn btn-primary">Xem chi tiết</a> |
+            <tr onclick="_delete(@item.MaQc, event)">
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.NoiDungQc)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.NgayTao)
+                </td>
+                <td scope="row">
+                    <img src="~/HangHoa/@item.Hinh" style="width:80px;height:80px;" alt="Alternate Text" />
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.NgayKetThucQc)
+                </td>
 
-                        <button type="button" class="btn btn-primary btn-delete">Xóa</button>
-                    </td>
-                </tr>
+                <td scope="row">
+                    <a asp-action="Edit" asp-route-id="@item.MaQc" class="btn btn-primary">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.MaQc" class="btn btn-primary">Xem chi tiết</a> |
+
+                    <button type="button" class="btn btn-primary btn-delete">Xóa</button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

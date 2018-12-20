@@ -56,7 +56,7 @@ namespace ASPCore_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("MaKh,TaiKhoan,MatKhau,HoTen,GioiTinh,NgaySinh,DiaChi,DienThoai,Email,Hinh")] KhachHang khachHang, IFormFile fHinh)
+        public IActionResult Create([Bind("MaKh,TaiKhoan,MatKhau,HoTen,GioiTinh,DiaChi,DienThoai,Email")] KhachHang khachHang)
         {
             if (ModelState.IsValid)
             {
@@ -79,14 +79,7 @@ namespace ASPCore_Final.Controllers
                         return View("Create");
                     }
                 }
-                if(fHinh != null) {
-                    var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot","UserAvatar", fHinh.FileName);
-                    using (var file = new FileStream(path, FileMode.Create))
-                    {
-                        fHinh.CopyTo(file);
-                    }
-                    khachHang.Hinh = fHinh.FileName;
-                }
+            
                 khachHang.MatKhau = Encryptor.MD5Hash(khachHang.MatKhau);
                 khachHang.TrangThaiHd = false;
                 khachHang.LoaiKH = false;

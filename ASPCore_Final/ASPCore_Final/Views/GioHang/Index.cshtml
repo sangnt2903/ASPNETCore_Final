@@ -213,60 +213,101 @@
                             @if (Context.Session.Get<KhachHang>("user") != null)
                             {
                                 KhachHang kh = Context.Session.Get<KhachHang>("user");
-                            <form asp-action="TaoHoaDon" asp-controller="GioHang" method="post">
-                                @if (Context.Session.Get<string>("mavc") != null)
-                                {
-                                    string mavc = Context.Session.Get<string>("mavc");
-                                    <input type="hidden" name="magiamgia" value="@mavc" class="form-control" />
-                                }
-                                else
-                                {
-                                    <input type="hidden" name="magiamgia" value="" class="form-control" />
-                                }
-                                <input type="hidden" name="makh" value="@kh.MaKh" class="form-control" />
-                                <br />
+                                <form asp-action="TaoHoaDon" asp-controller="GioHang" method="post">
+                                    @if (Context.Session.Get<string>("mavc") != null)
+                                    {
+                                        string mavc = Context.Session.Get<string>("mavc");
+                                        <input type="hidden" name="magiamgia" value="@mavc" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" name="magiamgia" value="" class="form-control" />
+                                    }
+                                    <input type="hidden" name="makh" value="@kh.MaKh" class="form-control" />
+                                    <br />
 
-                                <div style="display:inline">
-                                    <label>Họ và tên khách hàng</label>
-                                    <input type="text" name="hotenkh" value="@kh.HoTen" class="form-control" />
-                                </div>
-                                <br />
-                                <div style="display:inline">
-                                    <label>Địa chỉ</label>
-                                    <input type="text" name="diachi" value="@kh.DiaChi" class="form-control" />
-                                </div>
-                                <br />
-                                <div style="display:inline">
-                                    <label>Họ và tên người nhận</label>
-                                    <input type="text" name="hoten_ngnhan" value="" class="form-control" required />
-                                </div>
-                                <br />
-                                <div style="display:inline">
-                                    <label>Địa chỉ người nhận</label>
-                                    <input type="text" name="dc_nguoinhan" value="" class="form-control" required />
-                                </div>
-                                <br />
-                                <div style="display:inline">
-                                    <label>Số điện thoại người nhận</label>
-                                    <input type="text" name="sdt" value="" class="form-control" required />
-                                </div>
-                                <br />
-                                <div style="display:inline">
-                                    <label>Ghi chú</label>
-                                    <input type="text" name="ghichu" value="" class="form-control" />
-                                </div>
-                                <br />
-                                <div style="text-align:center">
-                                    <button class="btn btn-success" type="submit">Xác nhận và kiểm tra email</button>
-                                </div>
-                            </form>
+                                    <div style="display:inline">
+                                        <label>Họ và tên khách hàng</label>
+                                        <input type="text" name="hotenkh" value="@kh.HoTen" class="form-control" />
+                                    </div>
+                                    <br />
+                                    <div style="display:inline">
+                                        <label>Địa chỉ</label>
+                                        <input type="text" name="diachi" value="@kh.DiaChi" class="form-control" />
+                                    </div>
+                                    <br />
+                                    <div style="display:inline">
+                                        <label>Họ và tên người nhận</label>
+                                        <input type="text" name="hoten_ngnhan" value="" class="form-control" required />
+                                    </div>
+                                    <br />
+                                    <div style="display:inline">
+                                        <label>Địa chỉ người nhận</label>
+                                        <input type="text" name="dc_nguoinhan" value="" class="form-control" required />
+                                    </div>
+                                    <br />
+                                    <div style="display:inline">
+                                        <label>Số điện thoại người nhận</label>
+                                        <input type="text" name="sdt" value="" class="form-control" required />
+                                    </div>
+                                    <br />
+                                    <div style="display:inline">
+                                        <label>Ghi chú</label>
+                                        <input type="text" name="ghichu" value="" class="form-control" />
+                                    </div>
+                                    <br />
+                                    <div style="text-align:center">
+                                        <button class="btn btn-success" type="submit">Xác nhận và kiểm tra email</button>
+                                    </div>
+                                </form>
                                 <br />
                             }
                             else
                             {
+                                <form asp-action="TaoHoaDonBT" asp-controller="GioHang" method="post">
+                                    @if (Context.Session.Get<string>("mavc") != null)
+                                    {
+                                        string mavc = Context.Session.Get<string>("mavc");
+                                        <input type="hidden" name="magiamgia" value="@mavc" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" name="magiamgia" value="" class="form-control" />
+                                    }
+
+                                    <div style="display:inline">
+                                        <label>Email</label>
+                                        <input type="text" name="email" value="" class="form-control" required />
+                                    </div>
+                                    <br />
+
+                                    <div style="display:inline">
+                                        <label>Họ và tên người nhận</label>
+                                        <input type="text" name="hoten_ngnhan" value="" class="form-control" required />
+                                    </div>
+                                    <br />
+                                    <div style="display:inline">
+                                        <label>Địa chỉ người nhận</label>
+                                        <input type="text" name="dc_nguoinhan" value="" class="form-control" required />
+                                    </div>
+                                    <br />
+                                    <div style="display:inline">
+                                        <label>Số điện thoại người nhận</label>
+                                        <input type="text" name="sdt" value="" class="form-control" required />
+                                    </div>
+                                    <br />
+                                    <div style="display:inline">
+                                        <label>Ghi chú</label>
+                                        <input type="text" name="ghichu" value="" class="form-control" />
+                                    </div>
+                                    <br />
+                                    <div style="text-align:center">
+                                        <button class="btn btn-success" type="submit">Xác nhận và kiểm tra email</button>
+                                    </div>
+                                </form>
                                 <br />
-                                <label class="alert alert-danger"> Bạn cần đăng nhập để tiếp tục</label>
                             }
+                            
                         </div>
                     </div>
                 </div>

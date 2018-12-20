@@ -74,7 +74,7 @@ using ASPCore_Final.Models;
             WriteLiteral("        <div class=\"container-fluid\">\r\n            <div class=\"row align-content-center\">\r\n            <div class=\"col-sm-3\">\r\n                ");
             EndContext();
             BeginContext(552, 90, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0e506a3bcd6a40cfba0a05a26f94a656", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "727f4d17c7814561a7b1fe2a313d366b", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

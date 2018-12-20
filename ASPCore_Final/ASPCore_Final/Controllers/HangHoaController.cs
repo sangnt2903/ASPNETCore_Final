@@ -39,6 +39,7 @@ namespace ASPCore_Final.Controllers
             int starIndex = (page - 1) * pageSize;
 
             List<HangHoa> hangHoas = db.HangHoa.ToList();
+            List<HangHoaBanChayModel> hangHoaBanChays = new List<HangHoaBanChayModel>();
             if (gioitinh != null)
             {
                 hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).ToList();
@@ -73,16 +74,50 @@ namespace ASPCore_Final.Controllers
                     hangHoas = hangHoas.OrderByDescending(p => p.MaHh).ToList();
                     break;
                 case "banchay":
-
+                    hangHoaBanChays = hangHoas.Join(db.ChiTietHd,
+                                             hh => hh.MaHh,
+                                             cthd => cthd.MaHh,
+                                             (hh, cthd) => new { HHoa = hh, CTiet = cthd })
+                                       .Join(db.HoaDon.Where(hd => (DateTime.Now - hd.NgayDat).TotalDays <= 30),
+                                             hhcthd => hhcthd.CTiet.MaHd,
+                                             hd => hd.MaHd,
+                                             (hhcthd, hd) => new { HHCTHD = hhcthd, HDon = hd })
+                                       .GroupBy(g => new { g.HHCTHD.HHoa.MaHh, g.HHCTHD.HHoa.TenHh, g.HHCTHD.HHoa.Hinh, g.HHCTHD.HHoa.MoTa, g.HHCTHD.HHoa.DonGia, g.HHCTHD.HHoa.GiamGia })
+                                       .OrderByDescending(g => g.Sum(t => t.HHCTHD.CTiet.SoLuong))
+                                       .Select(group => new HangHoaBanChayModel
+                                       {
+                                            MaHH = group.Key.MaHh,
+                                            TenHH = group.Key.TenHh,
+                                            HAnh = group.Key.Hinh,
+                                            MTa = group.Key.MoTa,
+                                            DGIa = group.Key.DonGia,
+                                            GGia = group.Key.GiamGia,
+                                            TongSoBan = group.Sum(t => t.HHCTHD.CTiet.SoLuong)
+                                        }).ToList();
+                    //var hhbc = from hh in hangHoas
+                    //           join cthd in db.ChiTietHd on hh.MaHh equals cthd.MaHh
+                    //           join hd in db.HoaDon on cthd.MaHd equals hd.MaHd
+                    //           group 
                     break;
                 default:
                     break;
             }
-            hangHoas = hangHoas.Skip(starIndex).ToList();
-            int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
-            List<HangHoa> res = hangHoas.Take(itemsize).ToList();
-            ViewData["TongSoLuong"] = hangHoas.Count;
-            return PartialView(res);
+            if(sapxep == "banchay")
+            {
+                hangHoaBanChays = hangHoaBanChays.Skip(starIndex).ToList();
+                int itemsize = hangHoaBanChays.Count < pageSize ? hangHoaBanChays.Count : pageSize;
+                List<HangHoaBanChayModel> res = hangHoaBanChays.Take(itemsize).ToList();
+                ViewData["TongSoLuong"] = hangHoaBanChays.Count;
+                return PartialView("TaiThemBanChay", res);
+            }
+            else
+            {
+                hangHoas = hangHoas.Skip(starIndex).ToList();
+                int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
+                List<HangHoa> res = hangHoas.Take(itemsize).ToList();
+                ViewData["TongSoLuong"] = hangHoas.Count;
+                return PartialView(res);
+            }
         }
 
         public IActionResult Filter(string loai = "", bool? gioitinh = null, string mucgia = "", string sapxep = "", int page = 1, int pageSize = 6)
@@ -90,12 +125,13 @@ namespace ASPCore_Final.Controllers
             int starIndex = (page - 1) * pageSize;
 
             List<HangHoa> hangHoas = db.HangHoa.ToList();
+            List<HangHoaBanChayModel> hangHoaBanChays = new List<HangHoaBanChayModel>();
             if (gioitinh != null)
             {
                 hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).ToList();
             }
             else if (loai != null && loai != "")
-            {   
+            {
                 hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).ToList();
             }
             switch (mucgia)
@@ -123,14 +159,51 @@ namespace ASPCore_Final.Controllers
                 case "moinhat":
                     hangHoas = hangHoas.OrderByDescending(p => p.MaHh).ToList();
                     break;
+                case "banchay":
+                    hangHoaBanChays = hangHoas.Join(db.ChiTietHd,
+                                             hh => hh.MaHh,
+                                             cthd => cthd.MaHh,
+                                             (hh, cthd) => new { HHoa = hh, CTiet = cthd })
+                                       .Join(db.HoaDon.Where(hd => (DateTime.Now - hd.NgayDat).TotalDays <= 30),
+                                             hhcthd => hhcthd.CTiet.MaHd,
+                                             hd => hd.MaHd,
+                                             (hhcthd, hd) => new { HHCTHD = hhcthd, HDon = hd })
+                                       .GroupBy(g => new { g.HHCTHD.HHoa.MaHh, g.HHCTHD.HHoa.TenHh, g.HHCTHD.HHoa.Hinh, g.HHCTHD.HHoa.MoTa, g.HHCTHD.HHoa.DonGia, g.HHCTHD.HHoa.GiamGia })
+                                       .OrderByDescending(g => g.Sum(t => t.HHCTHD.CTiet.SoLuong))
+                                       .Select(group => new HangHoaBanChayModel
+                                       {
+                                           MaHH = group.Key.MaHh,
+                                           TenHH = group.Key.TenHh,
+                                           HAnh = group.Key.Hinh,
+                                           MTa = group.Key.MoTa,
+                                           DGIa = group.Key.DonGia,
+                                           GGia = group.Key.GiamGia,
+                                           TongSoBan = group.Sum(t => t.HHCTHD.CTiet.SoLuong)
+                                       }).ToList();
+                    //var hhbc = from hh in hangHoas
+                    //           join cthd in db.ChiTietHd on hh.MaHh equals cthd.MaHh
+                    //           join hd in db.HoaDon on cthd.MaHd equals hd.MaHd
+                    //           group 
+                    break;
                 default:
                     break;
             }
-            hangHoas = hangHoas.Skip(starIndex).ToList();
-            int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
-            List<HangHoa> res = hangHoas.Take(itemsize).ToList();
-            ViewData["TongSoLuong"] = hangHoas.Count;
-            return PartialView(res);
+            if (sapxep == "banchay")
+            {
+                hangHoaBanChays = hangHoaBanChays.Skip(starIndex).ToList();
+                int itemsize = hangHoaBanChays.Count < pageSize ? hangHoaBanChays.Count : pageSize;
+                List<HangHoaBanChayModel> res = hangHoaBanChays.Take(itemsize).ToList();
+                ViewData["TongSoLuong"] = hangHoaBanChays.Count;
+                return PartialView("FilterBanChay", res);
+            }
+            else
+            {
+                hangHoas = hangHoas.Skip(starIndex).ToList();
+                int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
+                List<HangHoa> res = hangHoas.Take(itemsize).ToList();
+                ViewData["TongSoLuong"] = hangHoas.Count;
+                return PartialView(res);
+            }
         }
 
         public IActionResult ChiTiet(int mahh)
