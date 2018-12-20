@@ -285,9 +285,7 @@ namespace ASPCore_Final.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.GioiTinh)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.GioiTinh).HasMaxLength(50);
 
                 entity.Property(e => e.Hinh).HasMaxLength(50);
 
@@ -302,7 +300,6 @@ namespace ASPCore_Final.Models
                 entity.Property(e => e.NgaySinh).HasColumnType("datetime");
 
                 entity.Property(e => e.TaiKhoan)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
 

@@ -146,7 +146,7 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n        </dd>\r\n  \r\n      \r\n    </dl>\r\n</div>\r\n<div>\r\n    ");
             EndContext();
             BeginContext(962, 79, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b297cf933c8841f0aac0657c4989cf8b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "414c1f470cd845768e8ba58b1e895083", async() => {
                 BeginContext(1034, 3, true);
                 WriteLiteral("Sửa");
                 EndContext();
@@ -182,7 +182,7 @@ using ASPCore_Final.Models;
             WriteLiteral(" |\r\n    ");
             EndContext();
             BeginContext(1049, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2e3cd81197fc4799a371afdee0b7e24c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fdebfe63c7a443ba9728392d2c25364a", async() => {
                 BeginContext(1095, 7, true);
                 WriteLiteral("Trở lại");
                 EndContext();

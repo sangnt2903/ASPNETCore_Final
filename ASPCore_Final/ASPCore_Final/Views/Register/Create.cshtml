@@ -17,7 +17,7 @@
 <div class="register">
     <div class="container">
         <h3 class="animated wow zoomIn" data-wow-delay=".5s">Đăng kí tại đây</h3>
-        <form asp-action="Create" class="animated wow slideInUp" data-wow-delay=".5s" enctype="multipart/form-data">
+        <form asp-action="Create" class="animated wow slideInUp" data-wow-delay=".5s">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="login-form-grids">
                 <div class="alert alert-info alert-dismissable">
@@ -42,8 +42,7 @@
                     <option>Nữ</option>
                 </select>
                 <br />
-                <input asp-for="NgaySinh" class="form-control" placeholder="Ngày sinh" required />
-                <br />
+            
                 <input asp-for="DiaChi" class="form-control" placeholder="Địa chỉ..." type="text" required />
                 <br />
                 <input asp-for="DienThoai" class="form-control" placeholder="Số điện thoại..." type="tel" required />
@@ -58,7 +57,7 @@
                 <br />
                 <!--<input type="file" name="fHinh" asp-for="Hinh" class="form-control" />-->
                 <label>Chọn avatar</label>
-                <input type="file" name="fHinh" placeholder="Chọn avatar" required class="form-control" />
+                
                 <div class="alert alert-info alert-dismissable">
                     <a class="panel-close close" data-dismiss="alert">×</a>
                     <i class="fa fa-coffee"></i>
