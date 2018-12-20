@@ -69,6 +69,12 @@ namespace ASPCore_Final.Controllers
                 case "giam":
                     hangHoas = hangHoas.OrderByDescending(p => p.DonGia * (1 - p.GiamGia)).ToList();
                     break;
+                case "moinhat":
+                    hangHoas = hangHoas.OrderByDescending(p => p.MaHh).ToList();
+                    break;
+                case "banchay":
+
+                    break;
                 default:
                     break;
             }
@@ -113,6 +119,9 @@ namespace ASPCore_Final.Controllers
                     break;
                 case "giam":
                     hangHoas = hangHoas.OrderByDescending(p => p.DonGia * (1 - p.GiamGia)).ToList();
+                    break;
+                case "moinhat":
+                    hangHoas = hangHoas.OrderByDescending(p => p.MaHh).ToList();
                     break;
                 default:
                     break;
