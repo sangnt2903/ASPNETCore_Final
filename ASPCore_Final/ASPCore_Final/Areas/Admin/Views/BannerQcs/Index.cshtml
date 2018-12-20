@@ -36,9 +36,7 @@
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.NgayKetThucQc)
                 </th>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.LoaiQcNavigation)
-                </th>
+           
                 <th></th>
             </tr>
         </thead>
@@ -58,9 +56,7 @@
                     <td scope="row">
                         @Html.DisplayFor(modelItem => item.NgayKetThucQc)
                     </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.LoaiQcNavigation.LoaiQc1)
-                    </td>
+               
                     <td scope="row">
                         <a asp-action="Edit" asp-route-id="@item.MaQc" class="btn btn-primary">Sửa</a> |
                         <a asp-action="Details" asp-route-id="@item.MaQc" class="btn btn-primary">Xem chi tiết</a> |

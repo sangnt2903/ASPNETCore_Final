@@ -25,10 +25,10 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [HttpGet("/admin/BannerQcs")]
         public async Task<IActionResult> Index(string searchString, int page = 1, string sortExpression = "NgayKetThucQc")
         {
-            var eSHOPContext = _context.BannerQc.AsNoTracking().Include(n => n.LoaiQcNavigation).AsQueryable();
+            var eSHOPContext = _context.BannerQc.AsNoTracking().AsQueryable();
             if (!string.IsNullOrEmpty(searchString))
             {
-                eSHOPContext = eSHOPContext.Where(p => p.LoaiQc.Contains(searchString) || p.NoiDungQc.Contains(searchString));
+                eSHOPContext = eSHOPContext.Where(p => p.NgayKetThucQc.ToString().Contains(searchString) || p.NoiDungQc.Contains(searchString));
             }
             var model = await PagingList.CreateAsync(eSHOPContext, 5, page, sortExpression, "NgayKetThucQc");
             model.RouteValue = new RouteValueDictionary {
@@ -50,7 +50,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             }
 
             var bannerQc = await _context.BannerQc
-                .Include(b => b.LoaiQcNavigation)
+                
                 .FirstOrDefaultAsync(m => m.MaQc == id);
             if (bannerQc == null)
             {
@@ -64,7 +64,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [HttpGet("/admin/BannerQcs/Create")]
         public IActionResult Create()
         {
-            ViewData["LoaiQc"] = new SelectList(_context.LoaiQc, "LoaiQc1", "LoaiQc1");
+           
             return View();
         }
 
@@ -81,7 +81,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LoaiQc"] = new SelectList(_context.LoaiQc, "LoaiQc1", "LoaiQc1", bannerQc.LoaiQc);
+           
             return View(bannerQc);
         }
 
@@ -99,7 +99,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["LoaiQc"] = new SelectList(_context.LoaiQc, "LoaiQc1", "LoaiQc1", bannerQc.LoaiQc);
+           
             return View(bannerQc);
         }
 
@@ -135,7 +135,7 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LoaiQc"] = new SelectList(_context.LoaiQc, "LoaiQc1", "LoaiQc1", bannerQc.LoaiQc);
+           
             return View(bannerQc);
         }
         // DELETE: api/BannerQcs/5
