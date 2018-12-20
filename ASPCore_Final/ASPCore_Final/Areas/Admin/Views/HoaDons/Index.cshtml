@@ -46,9 +46,15 @@
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.MaTrangThai)
                 </th>
-          
+
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.MaTrangThaiNavigation)
+                    Tổng tiền hàng
+                </th>
+                <th scope="col">
+                    Mã giảm giá
+                </th>
+                <th scope="col">
+                    Tổng thực thu
                 </th>
                 <th></th>
             </tr>
@@ -56,42 +62,45 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.MaHd)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.NgayDat)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.HoTen)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.DiaChi)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.SdtNguoinhan)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.GhiChu)
-                    </td>
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.PhiVanChuyen)
-                    </td>
-                    <td scope="row">
-                        <a asp-action="ChangeStatus" asp-route-id="@item.MaHd" class="btn-active"> @Html.Raw(item.MaTrangThai == 0 ? "<strong>Chưa Duyệt</strong>" : "Đã Duyệt")</a>
-                    </td>
-              
-                    <td scope="row">
-                        @Html.DisplayFor(modelItem => item.MaTrangThaiNavigation.TenTrangThai)
-                    </td>
-                    <td>
-                       
-                        <a asp-action="Details" asp-route-id="@item.MaHd" class="btn btn-primary">Xem chi tiết</a> 
+            <tr>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.MaHd)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.SdtNguoinhan)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td scope="row">
+                    @Convert.ToDouble(item.PhiVanChuyen).ToString("#,##0")
+                </td>
+                <td scope="row">
+                    <a asp-action="ChangeStatus" asp-route-id="@item.MaHd" class="btn-active"> @Html.Raw(item.MaTrangThai == 0 ? "<strong>Chưa Duyệt</strong>" : "Đã Duyệt")</a>
+                </td>
 
-                      
-                    </td>
-                </tr>
+                <td scope="row">
+                    @Convert.ToDouble(item.TongTienHang).ToString("#,##0")
+                </td>
+                <td scope="col" class="text text-primary" style="padding:0px;">
+                    #@item.MaVoucher
+                </td>
+                <td scope="col" style="text-align:center;">
+                    @Convert.ToDouble(item.TongThucThu).ToString("#,##0")
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.MaHd" class="btn btn-primary">Xem chi tiết</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

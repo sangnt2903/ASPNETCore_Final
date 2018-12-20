@@ -9,7 +9,7 @@ namespace ASPCore_Final.Models
         public string NoiDungQc { get; set; }
         public DateTime? NgayTao { get; set; }
         public string Hinh { get; set; }
-        public DateTime? NgayKetThucQc { get; set; }
         public DateTime? NgayBatDau { get; set; }
+        public DateTime? NgayKetThucQc { get; set; }
     }
 }

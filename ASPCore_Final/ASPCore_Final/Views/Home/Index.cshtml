@@ -242,3 +242,43 @@
         </div>
     </div>
 </div>
+<br />
+<div class="new-collections">
+    <div class="container">
+        <h3 class="animated wow zoomIn" data-wow-delay=".5s">Thương hiệu</h3>
+        <div class="new-collections-grids">
+                @{
+                    List<NhaCungCap> nccs = db.NhaCungCap.OrderBy(p => p.MaNcc).ToList();
+                    foreach (var item in nccs)
+                    {
+                        <div class="col-md-3">
+                            <img src="~/Banner/@item.Hinh" alt="Alternate Text" style="width:250px;height:250px;border-radius:inherit" />
+                        </div>
+                    }
+                }
+         </div>
+    </div>
+</div>
+
+<br />
+
+<div class="collections-bottom">
+    <div class="container">
+        <div class="newsletter animated wow slideInUp" data-wow-delay=".5s">
+            <h3>Đăng kí</h3>
+            <p>Đăng kí email để nhận các quà tặng đặc biệt từ ESHOP</p>
+            <form asp-action="DangkiVoucher" asp-controller="Home" method="post">
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                <input type="email" name="email" value="Nhập vào email của bạn" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập vào Email của bạn...';}" required="">
+                <input type="submit" value="Đăng kí">
+            </form>
+            <br />
+            @if (Context.Session.Get<string>("voucherInfo") != null)
+            {
+                    var voucherInfo = Context.Session.Get<string>("voucherInfo");
+                    <div class="alert alert-warning">@voucherInfo</div>
+            }
+
+        </div>
+    </div>
+</div>

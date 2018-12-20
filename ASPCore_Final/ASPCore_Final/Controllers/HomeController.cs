@@ -63,5 +63,34 @@ namespace ASPCore_Final.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [HttpPost]
+        public IActionResult DangKiVoucher(string email)
+        {
+            KhachHang khachHang = new KhachHang
+            {
+                TaiKhoan = "anonymouse",
+                MatKhau = "",
+                HoTen = "anonymouse",
+                GioiTinh = "Nam",
+                NgaySinh = DateTime.Now,
+                DiaChi = "Không có",
+                DienThoai = "",
+                Email = email,
+                Hinh = "anonymouse.jpg",
+                TrangThaiHd = false,
+                LoaiKH = false
+            };
+            if (db.KhachHang.SingleOrDefault(p => p.Email == email) == null)
+            {
+                db.KhachHang.Add(khachHang);
+                db.SaveChanges();
+                HttpContext.Session.Set("voucherInfo", "Bây giờ bạn có thể nhận email các thông tin khuyến mãi và mã voucher từ ESHOP.");
+            }
+            else
+            {
+                HttpContext.Session.Set("voucherInfo", "Email đã tồn tại");
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

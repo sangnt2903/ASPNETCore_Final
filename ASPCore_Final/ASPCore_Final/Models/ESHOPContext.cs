@@ -33,6 +33,7 @@ namespace ASPCore_Final.Models
         public virtual DbSet<TbThongKe> TbThongKe { get; set; }
         public virtual DbSet<TinTuc> TinTuc { get; set; }
         public virtual DbSet<TrangThai> TrangThai { get; set; }
+        public virtual DbSet<Voucher> Voucher { get; set; }
         public virtual DbSet<YeuThich> YeuThich { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -212,6 +213,10 @@ namespace ASPCore_Final.Models
                     .HasColumnName("MaNV")
                     .HasMaxLength(50);
 
+                entity.Property(e => e.MaVoucher)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.NgayDat).HasColumnType("datetime");
 
                 entity.Property(e => e.NgayGiao).HasColumnType("datetime");
@@ -350,6 +355,8 @@ namespace ASPCore_Final.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
+                entity.Property(e => e.Hinh).HasMaxLength(50);
+
                 entity.Property(e => e.TenCongTy)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -436,6 +443,10 @@ namespace ASPCore_Final.Models
 
                 entity.Property(e => e.MaTt).HasColumnName("MaTT");
 
+                entity.Property(e => e.Hinh)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.LoaiTt)
                     .HasColumnName("LoaiTT")
                     .HasMaxLength(6)
@@ -446,6 +457,8 @@ namespace ASPCore_Final.Models
                 entity.Property(e => e.NgayTao).HasColumnType("datetime");
 
                 entity.Property(e => e.NoiDung).HasColumnType("text");
+
+                entity.Property(e => e.TieuDe).HasMaxLength(100);
 
                 entity.HasOne(d => d.LoaiTtNavigation)
                     .WithMany(p => p.TinTuc)
@@ -467,6 +480,26 @@ namespace ASPCore_Final.Models
                 entity.Property(e => e.TenTrangThai)
                     .IsRequired()
                     .HasMaxLength(30);
+            });
+
+            modelBuilder.Entity<Voucher>(entity =>
+            {
+                entity.HasKey(e => e.MaVc);
+
+                entity.Property(e => e.MaVc)
+                    .HasColumnName("MaVC")
+                    .HasMaxLength(10)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.NgayBatDau).HasColumnType("datetime");
+
+                entity.Property(e => e.NgayHetHan).HasColumnType("datetime");
+
+                entity.Property(e => e.NgayTao).HasColumnType("datetime");
+
+                entity.Property(e => e.TongTienDk).HasColumnName("TongTienDK");
+
+                entity.Property(e => e.TrangThai).HasDefaultValueSql("((0))");
             });
 
             modelBuilder.Entity<YeuThich>(entity =>
