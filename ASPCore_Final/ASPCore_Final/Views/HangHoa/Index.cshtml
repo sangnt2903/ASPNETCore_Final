@@ -55,7 +55,7 @@
             <input type="hidden" name="gioitinh" value="@Context.Request.Query["gioitinh"]" />
             <div class="form-group">
                 <label>Mức giá</label>
-                <select class="form-control" name="mucgia">
+                <select class="form-control" name="mucgia" style="width:300px;">
                     <option value="macdinh">Mặc định</option>
                     <option value="100000">Dưới 100.000 đồng</option>
                     <option value="200000">Từ 100.000 đồng đến 200.000 đồng</option>
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group">
                 <label>Sắp xếp</label>
-                <select class="form-control" name="sapxep">
+                <select class="form-control" name="sapxep" style="width:300px;">
                     <option value="macdinh">Mặc định</option>
                     <option value="tang">Giá tăng dần</option>
                     <option value="giam">Giá giảm dần</option>
@@ -223,9 +223,10 @@
                     $('#results').hide();
                 });
                 var ajaxHH = ajaxHangHoa();
-                //if (parseInt(ajaxHH.getPage()) >= parseInt(tongSoTrang)) {
-                //    $('.sec-load-more').html('<p>Đã hiển thị tất cả sản phẩm</p>')
-                //}
+                //var tongSoTrang = $("input[name='tongsotrang']").val();
+                if (parseInt(ajaxHH.getPage()) >= parseInt($("input[name='tongsotrang']").val())) {
+                    $('.sec-load-more').html('<p>Đã hiển thị tất cả sản phẩm</p>')
+                }
                 $("#searchsp").keyup(function () {
                     $.ajax({
                         url: "/HangHoa/TimKiem",
