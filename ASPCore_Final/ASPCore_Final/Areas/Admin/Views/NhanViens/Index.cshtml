@@ -18,6 +18,7 @@
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
         </button>
     </form>
+    <hr />
     <p>
         <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
     </p>
@@ -36,7 +37,7 @@
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
-               
+
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.TrangThaiHd)
                 </th>
@@ -59,9 +60,9 @@
                     <td scope="row">
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
-                   
+
                     <td scope="row">
-                        <a asp-action="ChangeStatus" asp-route-id="@item.MaNv" class="btn-active"> @Html.Raw(item.TrangThaiHd == true ? "<strong>True</strong>" : "False")</a> 
+                        <a asp-action="ChangeStatus" asp-route-id="@item.MaNv" class="btn-active"> @Html.Raw(item.TrangThaiHd == true ? "<strong>True</strong>" : "False")</a>
                     </td>
                     <td scope="row">
                         @Html.DisplayFor(modelItem => item.MaPqNavigation.MaPq)
@@ -102,12 +103,12 @@
             }
         }
     </script>
-    <nav class="navbar-default justify-content-center"  >
-   
+    <nav class="navbar-default justify-content-center">
 
-           @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model, @searchString = @ViewBag.SearchString, @class = "page-item" })
-                   
-      
+
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model, @searchString = @ViewBag.SearchString, @class = "page-item" })
+
+
     </nav>
 
 </div>

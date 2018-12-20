@@ -26,17 +26,17 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [HttpGet("/admin/NhanViens")]
         public async Task<IActionResult> Index(string searchString, int page = 1, string sortExpression = "Email")
         {
-                    var eSHOPContext = _context.NhanVien.AsNoTracking().Include(n => n.MaPqNavigation).AsQueryable();
-                    if (!string.IsNullOrEmpty(searchString))
-                    {
-                        eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.HoTen.Contains(searchString));
-                    }
-                    var model = await PagingList.CreateAsync(eSHOPContext, 5, page, sortExpression, "Email");
-                    model.RouteValue = new RouteValueDictionary {
+            var eSHOPContext = _context.NhanVien.AsNoTracking().Include(n => n.MaPqNavigation).AsQueryable();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                eSHOPContext = eSHOPContext.Where(p => p.Email.Contains(searchString) || p.HoTen.Contains(searchString));
+            }
+            var model = await PagingList.CreateAsync(eSHOPContext, 5, page, sortExpression, "Email");
+            model.RouteValue = new RouteValueDictionary {
                 { "searchString", searchString}
             };
-           // var qry = _context.NhanVien.AsNoTracking().OrderBy(p => p.Email);
-           // var model = await PagingList.CreateAsync(qry, 1, page);
+            // var qry = _context.NhanVien.AsNoTracking().OrderBy(p => p.Email);
+            // var model = await PagingList.CreateAsync(qry, 1, page);
             return View(model);
         }
 

@@ -16,10 +16,11 @@
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
         </button>
     </form>
+    <hr />
     <p>
         <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
     </p>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">
@@ -34,10 +35,10 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr onclick="_delete('@item.MaLoai', event)" >
+                <tr onclick="_delete('@item.MaLoai', event)">
                     <td scope="row">
-                        
-                        <a> @Html.Raw(item.GioiTinh == true ? "Nam" : "Nữ")</a> 
+
+                        <a> @Html.Raw(item.GioiTinh == true ? "Nam" : "Nữ")</a>
                     </td>
                     <td scope="row">
                         @Html.DisplayFor(modelItem => item.TenLoai)
@@ -46,7 +47,7 @@
                         <a asp-action="Edit" asp-route-id="@item.MaLoai">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.MaLoai">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.MaLoai">Delete</a> |
-                        <button type="button" class="btn btn-primary btn-delete" >Xóa</button>
+                        <button type="button" class="btn btn-primary btn-delete">Xóa</button>
                     </td>
                 </tr>
             }

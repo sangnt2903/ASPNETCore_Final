@@ -6,7 +6,9 @@ namespace ASPCore_Final.Models
     public partial class TinTuc
     {
         public int MaTt { get; set; }
+        public string TieuDe { get; set; }
         public string NoiDung { get; set; }
+        public string Hinh { get; set; }
         public DateTime? NgayTao { get; set; }
         public int? MaNv { get; set; }
         public string LoaiTt { get; set; }

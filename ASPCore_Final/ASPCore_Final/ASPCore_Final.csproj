@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\Data\**" />
     <Compile Remove="wwwroot\User_Avatar\**" />
+    <Content Remove="Areas\Admin\Data\**" />
     <Content Remove="wwwroot\User_Avatar\**" />
+    <EmbeddedResource Remove="Areas\Admin\Data\**" />
     <EmbeddedResource Remove="wwwroot\User_Avatar\**" />
+    <None Remove="Areas\Admin\Data\**" />
     <None Remove="wwwroot\User_Avatar\**" />
   </ItemGroup>
 
@@ -288,7 +292,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="wwwroot\UserAvatar\" />
   </ItemGroup>
 

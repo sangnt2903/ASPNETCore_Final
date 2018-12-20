@@ -21,6 +21,9 @@ namespace ASPCore_Final.Models
         public double PhiVanChuyen { get; set; }
         public int MaTrangThai { get; set; }
         public string MaNv { get; set; }
+        public double? TongTienHang { get; set; }
+        public string MaVoucher { get; set; }
+        public double? TongThucThu { get; set; }
 
         public KhachHang MaKhNavigation { get; set; }
         public TrangThai MaTrangThaiNavigation { get; set; }
