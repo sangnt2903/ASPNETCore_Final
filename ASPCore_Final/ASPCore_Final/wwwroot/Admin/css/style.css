@@ -48,6 +48,10 @@ h6 {
 	font-weight: 700;
 }
 
+#content {
+    background-color: lightblue;
+}
+
 p {
 	margin: 0;
 }
