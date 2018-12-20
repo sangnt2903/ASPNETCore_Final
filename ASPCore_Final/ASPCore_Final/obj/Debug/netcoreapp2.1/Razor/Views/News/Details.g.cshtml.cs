@@ -87,7 +87,7 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n   \r\n    </div>\r\n</div>\r\n<div>\r\n  \r\n    ");
             EndContext();
             BeginContext(425, 32, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "706031f027004cc598af6083f1e520ac", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6694132522c24c6daf008f043e6e378c", async() => {
                 BeginContext(447, 6, true);
                 WriteLiteral("Trở về");
                 EndContext();
@@ -138,7 +138,7 @@ using ASPCore_Final.Models;
             WriteLiteral("                <div class=\"container-fluid\">\r\n                    <div class=\"row align-content-center\">\r\n                        <div class=\"col-sm-3\">\r\n                            ");
             EndContext();
             BeginContext(1200, 89, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "7573a7eed8f7486b8c6f87b05ee50536", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "da68e109541b492aadb7121c4e48ea78", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
