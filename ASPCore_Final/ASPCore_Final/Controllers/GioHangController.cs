@@ -260,7 +260,7 @@ namespace ASPCore_Final.Controllers
         [HttpPost]
         public IActionResult CheckVoucher(string magiamgia,double tongtien)
         {
-            Voucher v = db.Voucher.SingleOrDefault(p=>p.TrangThai == true && p.NgayHetHan >= DateTime.Now);
+            Voucher v = db.Voucher.SingleOrDefault(p=>p.TrangThai == true && p.NgayHetHan >= DateTime.Now && p.MaVc == magiamgia);
             if(v != null)
             {
                 if(v.NgayHetHan >= DateTime.Now)
