@@ -22,9 +22,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.MaHd)
-                </th>
+                
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.NgayDat)
                 </th>
@@ -37,9 +35,7 @@
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.SdtNguoinhan)
                 </th>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.GhiChu)
-                </th>
+              
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.PhiVanChuyen)
                 </th>
@@ -63,9 +59,7 @@
             @foreach (var item in Model)
             {
             <tr>
-                <td scope="row">
-                    @Html.DisplayFor(modelItem => item.MaHd)
-                </td>
+                
                 <td scope="row">
                     @Html.DisplayFor(modelItem => item.NgayDat)
                 </td>
@@ -78,9 +72,7 @@
                 <td scope="row">
                     @Html.DisplayFor(modelItem => item.SdtNguoinhan)
                 </td>
-                <td scope="row">
-                    @Html.DisplayFor(modelItem => item.GhiChu)
-                </td>
+             
                 <td scope="row">
                     @Convert.ToDouble(item.PhiVanChuyen).ToString("#,##0")
                 </td>

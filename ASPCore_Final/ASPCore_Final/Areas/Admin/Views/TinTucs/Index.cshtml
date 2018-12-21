@@ -26,9 +26,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.NoiDung)
-                </th>
+               
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.NgayTao)
                 </th>
@@ -51,9 +49,7 @@
             @foreach (var item in Model)
             {
             <tr onclick="_delete(@item.MaTt, event)">
-                <td scope="row">
-                    @Html.DisplayFor(modelItem => item.NoiDung)
-                </td>
+               
                 <td scope="row">
                     @Html.DisplayFor(modelItem => item.NgayTao)
                 </td>
