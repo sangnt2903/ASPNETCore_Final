@@ -20,7 +20,9 @@ namespace ASPCore_Final.Models
         public virtual DbSet<ChiTietHd> ChiTietHd { get; set; }
         public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhap { get; set; }
         public virtual DbSet<HangHoa> HangHoa { get; set; }
+        public virtual DbSet<HinhThucTt> HinhThucTt { get; set; }
         public virtual DbSet<HoaDon> HoaDon { get; set; }
+        public virtual DbSet<HoaDonThanhToan> HoaDonThanhToan { get; set; }
         public virtual DbSet<HoiDap> HoiDap { get; set; }
         public virtual DbSet<KhachHang> KhachHang { get; set; }
         public virtual DbSet<Loai> Loai { get; set; }
@@ -41,7 +43,7 @@ namespace ASPCore_Final.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=ESHOP;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Server=MSI\\SQL_EXPRESS;Database=ESHOP;Integrated Security=True;");
             }
         }
 
@@ -193,6 +195,23 @@ namespace ASPCore_Final.Models
                     .HasConstraintName("FK__HangHoa__MaNCC__15502E78");
             });
 
+            modelBuilder.Entity<HinhThucTt>(entity =>
+            {
+                entity.HasKey(e => e.MaLoaiTt);
+
+                entity.ToTable("HinhThucTT");
+
+                entity.Property(e => e.MaLoaiTt)
+                    .HasColumnName("MaLoaiTT")
+                    .HasMaxLength(6)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.TenLoaiTt)
+                    .HasColumnName("TenLoaiTT")
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<HoaDon>(entity =>
             {
                 entity.HasKey(e => e.MaHd);
@@ -237,6 +256,38 @@ namespace ASPCore_Final.Models
                     .HasForeignKey(d => d.MaTrangThai)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__HoaDon__MaTrangT__1ED998B2");
+            });
+
+            modelBuilder.Entity<HoaDonThanhToan>(entity =>
+            {
+                entity.HasKey(e => e.MaHtttHd);
+
+                entity.ToTable("HoaDon_ThanhToan");
+
+                entity.Property(e => e.MaHtttHd).HasColumnName("MaHTTT_HD");
+
+                entity.Property(e => e.MaHd).HasColumnName("MaHD");
+
+                entity.Property(e => e.MaHttt)
+                    .HasColumnName("MaHTTT")
+                    .HasMaxLength(6)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NoiDungTt)
+                    .HasColumnName("NoiDungTT")
+                    .HasColumnType("text");
+
+                entity.Property(e => e.TrangThaiTt).HasColumnName("TrangThaiTT");
+
+                entity.HasOne(d => d.MaHdNavigation)
+                    .WithMany(p => p.HoaDonThanhToan)
+                    .HasForeignKey(d => d.MaHd)
+                    .HasConstraintName("FK_HoaDon_ThanhToan_HoaDon");
+
+                entity.HasOne(d => d.MaHtttNavigation)
+                    .WithMany(p => p.HoaDonThanhToan)
+                    .HasForeignKey(d => d.MaHttt)
+                    .HasConstraintName("FK_HoaDon_ThanhToan_HinhThucTT");
             });
 
             modelBuilder.Entity<HoiDap>(entity =>
@@ -285,7 +336,9 @@ namespace ASPCore_Final.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.GioiTinh).HasMaxLength(50);
+                entity.Property(e => e.GioiTinh)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Hinh).HasMaxLength(50);
 
@@ -300,6 +353,7 @@ namespace ASPCore_Final.Models
                 entity.Property(e => e.NgaySinh).HasColumnType("datetime");
 
                 entity.Property(e => e.TaiKhoan)
+                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
