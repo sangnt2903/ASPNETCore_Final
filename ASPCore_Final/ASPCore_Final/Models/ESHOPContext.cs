@@ -203,7 +203,7 @@ namespace ASPCore_Final.Models
 
                 entity.Property(e => e.MaLoaiTt)
                     .HasColumnName("MaLoaiTT")
-                    .HasMaxLength(6)
+                    .HasMaxLength(12)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
@@ -270,7 +270,7 @@ namespace ASPCore_Final.Models
 
                 entity.Property(e => e.MaHttt)
                     .HasColumnName("MaHTTT")
-                    .HasMaxLength(6)
+                    .HasMaxLength(12)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NoiDungTt)

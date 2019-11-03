@@ -1,0 +1,44 @@
+﻿@model ASPCore_Final.Models.HoaDon
+@{
+    ViewData["Title"] = "Paypal";
+    Layout = "~/Views/Shared/_frontEnd.cshtml";
+}
+
+    <div class="row">
+        <div class="pay_info row">
+            <div class="col-md-6 tab-grid">
+                <img class="pp-img" src="images/paypal.jpg" alt="Image Alternative text" title="Image Title">
+                <p>Important: You will be redirected to PayPal's website to securely complete your payment.</p>
+                <a class="btn btn-primary">Checkout via Paypal</a>
+            </div>
+            <div class="col-md-6">
+                <form asp-action="Checkout" asp-controller="PayPal" method="post">
+                    <div style="display:inline">
+                        <label>Họ và tên người nhận</label>
+                        <input type="text" name="hoten_ngnhan" value="" class="form-control" required />
+                    </div>
+                    <br />
+                    <div style="display:inline">
+                        <label>Địa chỉ người nhận</label>
+                        <input type="text" name="dc_nguoinhan" value="" class="form-control" required />
+                    </div>
+                    <br />
+                    <div style="display:inline">
+                        <label>Số điện thoại người nhận</label>
+                        <input type="text" name="sdt" value="" class="form-control" required />
+                    </div>
+                    <br />
+                    <div style="display:inline">
+                        <label>Ghi chú</label>
+                        <input type="text" name="ghichu" value="" class="form-control" />
+                    </div>
+                    <br />
+                    <div style="text-align:center">
+                        <input class="btn btn-primary submit mt-4" type="submit" value="Xử lý thanh toán">
+                    </div>
+                   
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+

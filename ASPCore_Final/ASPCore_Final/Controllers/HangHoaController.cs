@@ -205,7 +205,7 @@ namespace ASPCore_Final.Controllers
                 return PartialView(res);
             }
         }
-
+        [Route("{loai}/{url}")]
         public IActionResult ChiTiet(int mahh)
         {
             HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaHh == mahh);

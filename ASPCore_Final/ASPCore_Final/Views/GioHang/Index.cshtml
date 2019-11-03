@@ -264,54 +264,13 @@
                             }
                             else
                             {
-                                <form asp-action="TaoHoaDonBT" asp-controller="GioHang" method="post">
-                                    @if (Context.Session.Get<string>("mavc") != null)
-                                    {
-                                        string mavc = Context.Session.Get<string>("mavc");
-                                        <input type="hidden" name="magiamgia" value="@mavc" class="form-control" />
-                                    }
-                                    else
-                                    {
-                                        <input type="hidden" name="magiamgia" value="" class="form-control" />
-                                    }
-
-                                    <div style="display:inline">
-                                        <label>Email</label>
-                                        <input type="text" name="email" value="" class="form-control" required />
-                                    </div>
-                                    <br />
-
-                                    <div style="display:inline">
-                                        <label>Họ và tên người nhận</label>
-                                        <input type="text" name="hoten_ngnhan" value="" class="form-control" required />
-                                    </div>
-                                    <br />
-                                    <div style="display:inline">
-                                        <label>Địa chỉ người nhận</label>
-                                        <input type="text" name="dc_nguoinhan" value="" class="form-control" required />
-                                    </div>
-                                    <br />
-                                    <div style="display:inline">
-                                        <label>Số điện thoại người nhận</label>
-                                        <input type="text" name="sdt" value="" class="form-control" required />
-                                    </div>
-                                    <br />
-                                    <div style="display:inline">
-                                        <label>Ghi chú</label>
-                                        <input type="text" name="ghichu" value="" class="form-control" />
-                                    </div>
-                                    <br />
-                                    <div style="text-align:center">
-                                        <button class="btn btn-success" type="submit">Xác nhận và kiểm tra email</button>
-                                    </div>
-                                </form>
-                                <br />
+                                <div class="alert alert-danger">Vui lòng đăng nhập để thanh toán </div>
                             }
                             
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h3 class="btn btn-info" style="display:block">Thanh toán bằng Paypal</h3>
+                        <a asp-action="Index" asp-controller="PayPal" class="btn btn-info" style="display:block">Thanh toán bằng Paypal</a>
                     </div>
                 </div>
                 <br />

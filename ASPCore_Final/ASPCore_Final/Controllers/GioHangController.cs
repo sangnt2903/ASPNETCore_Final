@@ -4,10 +4,14 @@ using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using ASPCore_Final.Models;
+using BraintreeHttp;
 using Microsoft.AspNetCore.Mvc;
+using PayPal.Core;
+using PayPal.v1.Payments;
 
 namespace ASPCore_Final.Controllers
 {
+    [Route("gio-hang")]
     public class GioHangController : Controller
     {
         private readonly ESHOPContext db;
@@ -33,6 +37,7 @@ namespace ASPCore_Final.Controllers
                 return myCart;
             }
         }
+
         [HttpPost]
         public IActionResult AddToCart(int mahh,string size, int soluongsp)
         {
@@ -74,7 +79,6 @@ namespace ASPCore_Final.Controllers
             return RedirectToAction("Index");
         }
 
-      
         public List<CartItem> CapNhatSL(string mahh, string kichco, string soluongmoi)
         {
             List<CartItem> giohang = Carts;
@@ -83,6 +87,7 @@ namespace ASPCore_Final.Controllers
             HttpContext.Session.Set("GioHang", giohang);
             return giohang;
         }
+
         public IActionResult TaoHoaDonBT(string email,string hoten_ngnhan, string dc_nguoinhan, string ghichu, string sdt, string magiamgia)
         {
 
@@ -107,7 +112,7 @@ namespace ASPCore_Final.Controllers
                     GhiChu = ghichu,
                     SdtNguoinhan = sdt,
                     MaTrangThai = 0,
-                    PhiVanChuyen = 35000,
+                    PhiVanChuyen = 2,
                     MaVoucher = magiamgia
                 };
                 db.HoaDon.Add(hd);
@@ -157,11 +162,11 @@ namespace ASPCore_Final.Controllers
                 Voucher v = db.Voucher.Find(magiamgia);
                 if (v != null)
                 {
-                    tongthucthu = tongtienhang + 35000 - Convert.ToDouble(tongtienhang * v.GiamGia);
+                    tongthucthu = tongtienhang + 2 - Convert.ToDouble(tongtienhang * v.GiamGia);
                 }
                 else
                 {
-                    tongthucthu = tongtienhang + 35000;
+                    tongthucthu = tongtienhang + 2;
                 }
                 hd.TongTienHang = tongtienhang;
                 hd.TongThucThu = tongthucthu;
@@ -188,7 +193,7 @@ namespace ASPCore_Final.Controllers
                 GhiChu = ghichu,
                 SdtNguoinhan = sdt,
                 MaTrangThai = 0,
-                PhiVanChuyen = 35000,
+                PhiVanChuyen = 2,
                 MaVoucher = magiamgia
             };
             
@@ -239,11 +244,11 @@ namespace ASPCore_Final.Controllers
             Voucher v = db.Voucher.Find(magiamgia);
             if(v != null)
             {
-                tongthucthu = tongtienhang + 35000 - Convert.ToDouble(tongtienhang * v.GiamGia);
+                tongthucthu = tongtienhang + 2 - Convert.ToDouble(tongtienhang * v.GiamGia);
             }
             else
             {
-                tongthucthu = tongtienhang + 35000;
+                tongthucthu = tongtienhang + 2;
             }
             hd.TongTienHang = tongtienhang;
             hd.TongThucThu = tongthucthu;
@@ -253,10 +258,12 @@ namespace ASPCore_Final.Controllers
             return RedirectToAction("Index");
         }
 
+
         public IActionResult HoaDon()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult CheckVoucher(string magiamgia,double tongtien)
         {
@@ -292,6 +299,109 @@ namespace ASPCore_Final.Controllers
                 HttpContext.Session.Set("mavc", magiamgia);
             }
             return RedirectToAction("Index");
+        }
+
+        public List<CartItem> Cart
+        {
+            get
+            {
+                var data = HttpContext.Session.Get<List<CartItem>>("GioHang");
+                if (data == null)
+                {
+                    data = new List<CartItem>();
+                }
+
+                return data;
+            }
+        }
+
+        public async Task<IActionResult> Checkout(string email, string hoten_ngnhan, string dc_nguoinhan, string ghichu, string sdt, string magiamgia)
+        {
+            KhachHang kh = new KhachHang();
+            kh.HoTen = hoten_ngnhan;
+            kh.DiaChi = dc_nguoinhan;
+            kh.DienThoai = sdt;
+
+            kh.Email = email;
+            db.KhachHang.Add(kh);
+            db.SaveChanges();
+            // tạo hóa đơn
+            var getKH = db.KhachHang.Where(p => p.Email == email).OrderByDescending(p => p.MaKh).Take(1);
+            foreach (var titem in getKH)
+            {
+                HoaDon hd = new HoaDon
+                {
+                    MaKh = titem.MaKh,
+                    HoTen = hoten_ngnhan,
+                    DiaChi = dc_nguoinhan,
+                    NgayDat = DateTime.Now,
+                    GhiChu = ghichu,
+                    SdtNguoinhan = sdt,
+                    MaTrangThai = 0,
+                    PhiVanChuyen = 2,
+                    MaVoucher = magiamgia
+                };
+                db.HoaDon.Add(hd);
+                // tạo chi tiết hóa đơn
+                //  double tt = 0;
+                double tongtienhang = 0;
+                double tongthucthu = 0;
+
+                foreach (var item in Cart)
+                {
+                    tongtienhang += item.ThanhTien;
+                    HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaHh == item.MaHh);
+                    //   tt = item.SoLuong * hh.DonGia * (1 - hh.GiamGia);
+                    ChiTietHd cthd = new ChiTietHd
+                    {
+                        MaHd = hd.MaHd,
+                        MaHh = item.MaHh,
+                        DonGia = hh.DonGia,
+                        GiamGia = hh.GiamGia,
+                        SoLuong = item.SoLuong,
+                        KichCo = item.KichCo
+                    };
+
+                    db.ChiTietHd.Add(cthd);
+                    db.SaveChanges();
+                    // trừ sản phẩm từ kho
+                    SanPhamKho spk = db.SanPhamKho.SingleOrDefault(p => p.MaHh == cthd.MaHh && p.KichCo == cthd.KichCo);
+                    if (spk.SoLuong >= cthd.SoLuong)
+                    {
+                        if (HttpContext.Session.Get<string>("ErrorGH") != null)
+                        {
+                            HttpContext.Session.Remove("ErrorGH");
+                        }
+                        spk.SoLuong = spk.SoLuong - cthd.SoLuong;
+                    }
+                    else
+                    {
+                        HangHoa hangHoa = db.HangHoa.SingleOrDefault(p => p.MaHh == cthd.MaHh);
+                        string loi = "Hàng hóa có mã " + hangHoa.TenHh + " chỉ còn : " + spk.SoLuong + " sản phẩm";
+                        HttpContext.Session.Set("ErrorGH", loi);
+                        db.ChiTietHd.Remove(cthd);
+                        db.HoaDon.Remove(hd);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+                Voucher v = db.Voucher.Find(magiamgia);
+                if (v != null)
+                {
+                    tongthucthu = tongtienhang + 2 - Convert.ToDouble(tongtienhang * v.GiamGia);
+                }
+                else
+                {
+                    tongthucthu = tongtienhang + 2;
+                }
+                hd.TongTienHang = tongtienhang;
+                hd.TongThucThu = tongthucthu;
+                db.SaveChanges();
+                HttpContext.Session.Set<string>("mess", "Hóa đơn của bạn đã được gửi tới cửa hàng vui lòng chờ kiểm tra mail để biết trạng thái đơn hàng của bạn . ESHOP");
+                HttpContext.Session.Remove("GioHang");
+
+            }
+            return View();
         }
     }
 }
