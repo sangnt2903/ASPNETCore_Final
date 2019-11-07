@@ -10,8 +10,7 @@ using PayPal.Core;
 using PayPal.v1.Payments;
 
 namespace ASPCore_Final.Controllers
-{
-    [Route("gio-hang")]
+{   
     public class GioHangController : Controller
     {
         private readonly ESHOPContext db;
