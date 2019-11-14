@@ -9,11 +9,12 @@
 
     <!--Share this page-->
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5da3c3835de3e70013e3bcee&product=inline-share-buttons" async="async"></script>
-    <meta name="description" content="Trang bán hàng" />
-    <meta name="keywords" content="dienthoai, nhatnghe mobile" />
-    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="eshopee.com">
+    <meta name="keywords" content="Quan ao thoi trang, Eshopee" />
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="vi_VN">
     <meta property="og:title" content="ESHOP" />
-    <meta property="og:description" content="" />
+    <meta property="og:description" content="Thiên đường mua sắm thời trang" />
     <meta property="og:image" content="https://hcmue.edu.vn/images/Logo_Banner_SP/SPLG_9.png" />
 
     @RenderSection("metasocials", required: false)
@@ -256,7 +257,7 @@
                                                     }
                                                     @foreach (var item in listNam)
                                                     {
-                                                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a></li>
+                                                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-slugLoai="@item.SlugLoai">@item.TenLoai</a></li>
                                                     }
                                                 </ul>
                                             </div>
@@ -268,7 +269,7 @@
                                                     }
                                                     @foreach (var item in listNu)
                                                     {
-                                                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a></li>
+                                                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-slugLoai="@item.SlugLoai">@item.TenLoai</a></li>
                                                     }
                                                 </ul>
                                             </div>

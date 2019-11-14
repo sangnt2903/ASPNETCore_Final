@@ -10,3 +10,6 @@ Add the following code to the Configure method in your Application's Startup cla
             template : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
           );
         });
+
+
+		Scaffold-DbContext "Server=MSI\SQL_EXPRESS;Database=ESHOP;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force

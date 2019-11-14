@@ -177,6 +177,8 @@ namespace ASPCore_Final.Models
                     .HasColumnName("MaNCC")
                     .HasMaxLength(50);
 
+                entity.Property(e => e.Slug).IsUnicode(false);
+
                 entity.Property(e => e.TenHh)
                     .IsRequired()
                     .HasColumnName("TenHH")
@@ -368,6 +370,8 @@ namespace ASPCore_Final.Models
                     .HasMaxLength(8)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
+
+                entity.Property(e => e.SlugLoai).IsUnicode(false);
 
                 entity.Property(e => e.TenLoai)
                     .IsRequired()

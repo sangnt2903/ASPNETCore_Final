@@ -94,7 +94,8 @@
                     @foreach (var item in listNam)
                     {
                         int soluong = db.HangHoa.Where(p => p.MaLoai == item.MaLoai).ToList().Count();
-                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
+                        
+                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-slugLoai="@item.SlugLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
                     }
                 </ul>
                 <li><a asp-controller="HangHoa" asp-action="Index" asp-route-gioitinh="true">Thời trang nữ<span>(@soluongSPNu)</span></a></li>
@@ -102,7 +103,7 @@
                     @foreach (var item in listNu)
                     {
                         int soluong = db.HangHoa.Where(p => p.MaLoai == item.MaLoai).ToList().Count();
-                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-loai="@item.MaLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
+                        <li><a asp-action="Index" asp-controller="HangHoa" asp-route-slugLoai="@item.SlugLoai">@item.TenLoai</a> <span>(@soluong)</span></li>
                     }
                 </ul>
             </ul>
@@ -112,12 +113,13 @@
         <div class="products-right-grids-bottom">
             @foreach (var item in Model)        
             {
+                string slugLoai = db.Loai.SingleOrDefault(p => p.MaLoai == item.MaLoai).SlugLoai;
                 <div class="col-md-4 products-right-grids-bottom-grid" style="margin-bottom:15px;">
                     <div class="new-collections-grid1 products-right-grid1 animated wow" data-wow-delay=".5s" style="padding:10px;">
                         <div class="new-collections-grid1-image">
-                            <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-id="@item.MaHh" class="product-image" style="padding:10px;"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive"></a>
+                            <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-slugLoai="@slugLoai" asp-route-slug="@item.Slug" class="product-image" style="padding:10px;"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive"></a>
                             <div class="new-collections-grid1-image-pos products-right-grids-pos" style="text-align:center">
-                                <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh">Xem chi tiết</a>
+                                <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-slugLoai="@slugLoai" asp-route-slug="@item.Slug">Xem chi tiết</a>
                             </div>
                             @{
                                 List<SanPhamKho> sanPhamKhos = db.SanPhamKho.Where(p => p.MaHh == item.MaHh).ToList();
@@ -184,7 +186,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h4><a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-mahh="@item.MaHh">@item.TenHh</a></h4>
+                        <h4><a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-slugLoai="@slugLoai" asp-route-slug="@item.Slug">@item.TenHh</a></h4>
                         <p>@item.MoTa</p>
                         <div class="simpleCart_shelfItem products-right-grid1-add-cart">
                             @{

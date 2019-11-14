@@ -23,6 +23,7 @@ namespace ASPCore_Final.Models
         public string MoTa { get; set; }
         public string MaNcc { get; set; }
         public int? SanPhamKho { get; set; }
+        public string Slug { get; set; }
 
         public Loai MaLoaiNavigation { get; set; }
         public NhaCungCap MaNccNavigation { get; set; }

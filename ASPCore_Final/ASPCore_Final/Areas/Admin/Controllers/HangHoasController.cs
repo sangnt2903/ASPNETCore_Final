@@ -10,7 +10,7 @@ using ReflectionIT.Mvc.Paging;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-
+using ASPCore_Final.Services;
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -88,6 +88,9 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                     }
                     hangHoa.Hinh = fHinh.FileName;
                 }
+                //generate  Slug 
+                hangHoa.Slug = SlugHelper.GenerateSlug(hangHoa.TenHh);
+
                 _context.Add(hangHoa);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

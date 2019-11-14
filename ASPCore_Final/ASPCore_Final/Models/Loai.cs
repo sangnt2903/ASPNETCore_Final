@@ -13,6 +13,7 @@ namespace ASPCore_Final.Models
         public string MaLoai { get; set; }
         public bool GioiTinh { get; set; }
         public string TenLoai { get; set; }
+        public string SlugLoai { get; set; }
 
         public ICollection<HangHoa> HangHoa { get; set; }
     }

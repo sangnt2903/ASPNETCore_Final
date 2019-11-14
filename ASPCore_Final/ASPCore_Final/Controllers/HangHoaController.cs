@@ -15,18 +15,19 @@ namespace ASPCore_Final.Controllers
             db = ctx;
         }
 
-        
-        public IActionResult Index(string loai="", bool? gioitinh = null, int page = 1, int pageSize = 6)
+        [Route("HangHoa/{slugLoai}")]
+        public IActionResult Index(string slugLoai="", bool? gioitinh = null, int page = 1, int pageSize = 6)
         {
             int starIndex = (page - 1) * pageSize;
             List<HangHoa> hangHoas =  db.HangHoa.Skip(starIndex).ToList();
+            string maloai = db.Loai.SingleOrDefault(p => p.SlugLoai == slugLoai).MaLoai;
             if (gioitinh != null)
             {
                 hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).Skip(starIndex).ToList();
             }
-            else if(loai != null && loai != "")
+            else if(slugLoai != null && slugLoai != "")
             {
-                hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).Skip(starIndex).ToList();
+                hangHoas = db.HangHoa.Where(p => p.MaLoai == maloai).Skip(starIndex).ToList();
             }
             int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
             List<HangHoa> res = hangHoas.Take(itemsize).ToList();
@@ -205,10 +206,11 @@ namespace ASPCore_Final.Controllers
                 return PartialView(res);
             }
         }
-        
-        public IActionResult ChiTiet(int mahh)
+
+        [Route("HangHoa/{slugLoai}/{slug}")]
+        public IActionResult ChiTiet(string slugLoai, string slug)
         {
-            HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaHh == mahh);
+            HangHoa hh = db.HangHoa.SingleOrDefault(p => p.Slug == slug);
             return View(hh);
         }
 
