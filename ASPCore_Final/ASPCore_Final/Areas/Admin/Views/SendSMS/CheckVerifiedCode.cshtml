@@ -1,0 +1,42 @@
+﻿@model ASPCore_Final.Models.ConfirmPhoneModel
+@{
+    ViewData["Title"] = "CheckVerifiedCode";
+    Layout = "~/Views/Shared/_frontEnd.cshtml";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<div>@if (ViewBag.errorCodeVerify != null) { <span>@ViewBag.errorCodeVerify</span> }</div>
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" asp-action="CheckVerifiedCode" asp-controller="SendSMS">
+            <p>
+                We have sent a confirmation code to (@Model.DialingCode) @Model.PhoneNumber
+                Enter the code you receive to confirm your phone number.
+            </p>
+            <input asp-for="DialingCode" value="@Model.DialingCode" type="hidden" />
+            <input asp-for="PhoneNumber" value="@Model.PhoneNumber" type="hidden" />
+
+            <div class="form-group">
+                <input asp-for="VerificationCode" class="form-control" type="number" />
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div><a class="btn btn-danger" asp-action="RegisterNumberphoneToVerify" asp-route-countryCode="@Model.DialingCode" asp-route-phoneNumber="@Model.PhoneNumber" asp-controller="SendSMS">Resend</a></div>
+
+@if (Context.Session.Get<string>("statusVerify") != null)
+{
+    var verification = Context.Session.Get<string>("statusVerify");
+    <h3>Thông tin trạng thái của Verify Code</h3>
+    <ul>
+        <li>@verification</li>
+    </ul>
+}
+
+
+

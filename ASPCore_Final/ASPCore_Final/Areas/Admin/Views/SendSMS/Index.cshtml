@@ -1,0 +1,139 @@
+﻿@model List<ASPCore_Final.Models.KhachHang>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+            text-align:center;
+        }
+    </style>
+    <div id="body-data">
+        <script src="~/Admin/js/jquery-2.2.3.min.js"></script>
+        @if (ViewBag.ListSent != null)
+        {
+            if (ViewBag.ListSent.Count > 0)
+            {
+                <span id="infoSent" class="alert alert-primary">Thông báo: Gửi tin nhắn thành công đến các số thuê bao</span>
+                <script>
+                    $(function () {
+                        setTimeout(
+                            function () {
+                                $.ajax({
+                                    url: "/Admin/SendSMS",
+                                    type: "GET",
+                                    contentType: "application/json; charset=utf-8",
+                                    async: true,
+                                    success: function (data) {
+                                        $("#infoSent").remove();
+                                    }
+                                });
+                            }, 3000
+                        );
+                    });
+                </script>
+            }
+            else
+            {
+                <div class="alert alert-danger">Danh sách vừa gửi trống</div>
+            }
+        }
+
+
+
+        <div class="container-fluid">
+            <div></div>
+            <h2>Gửi tin nhắn khuyến mãi, thông báo</h2>
+            <br />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form class="form-group-lg m-1" asp-action="Send" asp-controller="Admin/SendSMS" method="post">
+                <div class="form-group-lg">
+                    <textarea class="form-control" type="text" name="mess" placeholder="Điền vào tin nhắn"></textarea>
+                    <input class=" form-control btn-primary" type="submit" name="name" value="Gửi tin nhắn" />
+                </div>
+                <br />
+
+                <span class="text-danger">Lựa chọn khách hàng muốn gửi</span>
+                <div class="form-group-lg mb-lg-2">
+                    <div class="row m-1 form-check-inline"><input type="radio" class="checkbox" name="checkMessToSend" value="friendly" checked /> Khách hàng thân thiết</div>
+                    <div class="row m-1 form-check-inline"><input type="radio" class="checkbox" name="checkMessToSend" value="normal" /> Khách hàng thường</div>
+                    <div class="row m-1 form-check-inline"><input type="radio" class="checkbox" name="checkMessToSend" value="all" /> Tất cả khách hàng</div>
+                </div>
+            </form>
+
+            <div class="container-fluid">
+                <h2>Danh sách khách hàng sẽ được gửi</h2>
+                @if (Model.Count > 0)
+                {
+                    var stt = 0;
+                    <table id="listShow" style="border: 1px solid black;">
+                        <tr>
+                            <th>Số thứ tự</th>
+                            <th>Họ tên</th>
+                            <th>Điện thoại</th>
+                        </tr>
+                        @foreach (var kh in Model)
+                        {
+                            stt++;
+                            <tr>
+                                <td>@stt</td>
+                                <td>@kh.HoTen</td>
+                                <td>@kh.DienThoai</td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <span>Danh sách trống</span>
+                }
+            </div>
+        </div>
+
+        <script src="~/Admin/js/jquery-2.2.3.min.js"></script>
+        <script>
+            $(function () {
+                $('input[type=radio][name=checkMessToSend]').change(function () {
+
+                    console.log(this.value);
+
+                    $.ajax({
+                        url: "/Admin/SendSMS/UpdateListToSend",
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        data: { "typeListToChosen": this.value },
+                        async: true,
+                        success: function (data) {
+                            console.log(data);
+                            $("table#listShow").html('');
+                            $("table#listShow").append("<tr><td>Số thứ tự</td><td>Họ tên</td><td>Điện thoại</td></tr>");
+                            for (var i = 1; i <= data.length; i++) {
+                                var currentItem = data[i-1];
+                                $("table#listShow").append("<tr><td>" + i + "</td><td>" + currentItem['taiKhoan'] + "</td><td>" + currentItem['dienThoai'] + "</td></tr>");
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    </div>
+
+
+
+
+
+
