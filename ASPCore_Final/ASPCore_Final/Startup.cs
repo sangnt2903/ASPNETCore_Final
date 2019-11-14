@@ -33,12 +33,13 @@ namespace ASPCore_Final
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddHttpClient();
             services.AddDbContext<ESHOPContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ESHOP")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromHours(48);
             });
+
             services.AddPaging();
             services.AddRouting();
 

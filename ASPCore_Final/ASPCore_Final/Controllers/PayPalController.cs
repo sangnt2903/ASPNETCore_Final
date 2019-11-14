@@ -8,13 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using PayPal.Core;
 using PayPal.v1.Payments;
 using BraintreeHttp;
+
 namespace ASPCore_Final.Controllers
 {
     public class PayPalController : Controller
     {
         private readonly ESHOPContext db;
+        private SandboxEnvironment environment;
+        private PayPalHttpClient _client;
         public PayPalController(ESHOPContext ctx)
         {
+            environment = new SandboxEnvironment("AXQGDKCc8Q4HNj3CmqQzipkha8qZy_RdJXKihaZ8Pp5sPChWW8RyCQ544XJCrGXgc42VDD4DcD7KIKcR", "EGL1Sorwr0fxp7cRXxVL12VaI9rAH9RysBslu9KiDnuxEESkf8DVC-DjqAXrqOn9Ufi1dcYzC34rLFye");
+            _client = new PayPalHttpClient(environment);
             db = ctx;
         }
 
@@ -48,9 +53,8 @@ namespace ASPCore_Final.Controllers
             };
             HttpContext.Session.Set<Thongtinhoadon>("thongtin-thanhtoan",tt_thanhtoan);
             //SandboxEnvironment(clientId, clientSerect)
-            var environment = new SandboxEnvironment("AXQGDKCc8Q4HNj3CmqQzipkha8qZy_RdJXKihaZ8Pp5sPChWW8RyCQ544XJCrGXgc42VDD4DcD7KIKcR", "EGL1Sorwr0fxp7cRXxVL12VaI9rAH9RysBslu9KiDnuxEESkf8DVC-DjqAXrqOn9Ufi1dcYzC34rLFye");
-            var client = new PayPalHttpClient(environment);
-
+            
+            
             //Đọc thông tin đơn hàng từ Session
             var itemList = new ItemList()
             {
@@ -110,10 +114,9 @@ namespace ASPCore_Final.Controllers
 
             try
             {
-                BraintreeHttp.HttpResponse response = await client.Execute(request);
+                BraintreeHttp.HttpResponse response = await _client.Execute(request);
                 var statusCode = response.StatusCode;
                 Payment result = response.Result<Payment>();
-
                 var links = result.Links.GetEnumerator();
                 string paypalRedirectUrl = null;
                 while (links.MoveNext())
@@ -138,7 +141,7 @@ namespace ASPCore_Final.Controllers
             return View();
         }
 
-        public IActionResult Success()
+        public IActionResult Success(string paymentID, string token, string PayerID)
         {
             var getKH = HttpContext.Session.Get<KhachHang>("user") != null ? HttpContext.Session.Get<KhachHang>("user") : db.KhachHang.SingleOrDefault(p => p.TaiKhoan == "anonymouse");
             Thongtinhoadon thongtinhoadon = HttpContext.Session.Get<Thongtinhoadon>("thongtin-thanhtoan");

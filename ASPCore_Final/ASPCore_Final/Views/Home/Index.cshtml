@@ -619,7 +619,7 @@
         <div class="newsletter animated wow slideInUp" data-wow-delay=".5s">
             <h3>Đăng kí</h3>
             <p>Đăng kí email để nhận các quà tặng đặc biệt từ ESHOP</p>
-            <form asp-action="DangkiVoucher" asp-controller="Home" method="post">
+            @*<form asp-action="DangkiVoucher" asp-controller="Home" method="post">
                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                 <input type="email" name="email" value="Nhập vào email của bạn" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nhập vào Email của bạn...';}" required="">
                 <input type="submit" value="Đăng kí">
@@ -629,7 +629,8 @@
             {
                 var voucherInfo = Context.Session.Get<string>("voucherInfo");
                 <div class="alert alert-warning">@voucherInfo</div>
-            }
+            }*@
+            <div><a class="btn btn-danger" asp-action="subcrise" asp-controller="Home">Đăng kí</a></div>
         </div>
     </div>
 </div>

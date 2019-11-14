@@ -92,5 +92,10 @@ namespace ASPCore_Final.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public IActionResult subcrise()
+        {
+            return View();
+        }
     }
 }
