@@ -43,7 +43,7 @@ namespace ASPCore_Final.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=MSI\\SQL_EXPRESS;Database=ESHOP;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Server=.\\;Database=ESHOP;Trusted_Connection=True;");
             }
         }
 
