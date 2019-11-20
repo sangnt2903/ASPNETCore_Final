@@ -56,7 +56,7 @@ namespace ASPCore_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("MaKh,TaiKhoan,MatKhau,HoTen,GioiTinh,DiaChi,DienThoai,Email")] KhachHang khachHang)
+        public IActionResult Create([Bind("MaKh,TaiKhoan,MatKhau,HoTen,GioiTinh,NgaySinh,DiaChi,DienThoai,Email")] KhachHang khachHang)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace ASPCore_Final.Controllers
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
-                smtp.Credentials = new System.Net.NetworkCredential("eshoppingmanager@gmail.com", "eshop147258369");
+                smtp.Credentials = new System.Net.NetworkCredential("duansupper@gmail.com", "nguyenduan111111");
                 smtp.Send(mm);
                 HttpContext.Session.Set("kh", khachHang);
                 return RedirectToAction("Index", "Login");

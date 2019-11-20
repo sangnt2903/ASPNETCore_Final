@@ -20,9 +20,5 @@ namespace ASPCore_Final.Models
         [Required]
         [Display(Name = "Code")]
         public string VerificationCode { get; set; }
-
-        [Required]
-        [Display(Name = "VerificationSid")]
-        public string VerificationSid { get; set; }
     }
 }

@@ -88,16 +88,10 @@ namespace ASPCore_Final.Areas.Admin.Controllers
                     }
                     hangHoa.Hinh = fHinh.FileName;
                 }
+                //generate  Slug 
+                hangHoa.Slug = SlugHelper.GenerateSlug(hangHoa.TenHh);
 
                 _context.Add(hangHoa);
-                await _context.SaveChangesAsync();
-
-                HangHoa current = _context.HangHoa.Last();
-                current.TenHh += current.MaHh;
-
-                //generate  Slug 
-                hangHoa.Slug = SlugHelper.GetFriendlyTitle(current.TenHh);
-
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
