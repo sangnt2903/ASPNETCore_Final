@@ -6,12 +6,14 @@ using Twilio;
 using System.Collections.Generic;
 using Twilio.Rest.Verify.V2;
 using Twilio.Rest.Verify.V2.Service;
-using ASPCore_Final.Areas.Admin.Models;
+using System;
+using Twilio.Types;
+using Microsoft.AspNetCore.Http;
 
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class SendSMSController : CheckLoginController
+    public class SendSMSController : Controller
     {
         private readonly ESHOPContext db;
         public static VerifyPhoneModel verifyPhone;
@@ -23,12 +25,10 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             db = _db;
         }
 
-        public ServiceResource InitService()
-        {
-            TwilioClient.Init(accountSid, authToken);
-            var _service = ServiceResource.Create(friendlyName: "My send message");
-            return _service;
-        }
+        //public ServiceResource InitService()
+        //{
+            
+        //}
 
         public List<KhachHang> ListToSend
         {
@@ -123,7 +123,8 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         public IActionResult RegisterNumberphoneToVerify(int countryCode, string phoneNumber)
         {
 
-            var _service = InitService();
+            TwilioClient.Init(accountSid, authToken);
+            var _service = ServiceResource.Create(friendlyName: "Code Eshop của bạn là:");
 
             //custom phone number
             string friendlyPhoneNumber = "+" + countryCode.ToString();
@@ -134,17 +135,13 @@ namespace ASPCore_Final.Areas.Admin.Controllers
             var verification = VerificationResource.Create(options);
 
             //Save phone number
-            verifyPhone = new VerifyPhoneModel { 
+            verifyPhone = new VerifyPhoneModel
+            {
                 CountryCode = countryCode,
                 PhoneNumber = phoneNumber
             };
 
-            ConfirmPhoneModel confirm = new ConfirmPhoneModel
-            {
-                DialingCode = verifyPhone.CountryCode,
-                PhoneNumber = verifyPhone.PhoneNumber,
-            };
-
+            HttpContext.Session.Set("verSid_serSid", verification.Sid+","+_service.Sid);
             HttpContext.Session.Set<string>("statusVerify",verification.Status.ToString());
 
             return RedirectToAction("CheckVerifiedCode");
@@ -164,30 +161,81 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult CheckVerifiedCode(ConfirmPhoneModel confirm)
         {
-
-            var _service = InitService();
+            TwilioClient.Init(accountSid, authToken);
+            //var _service = ServiceResource.Create(friendlyName: "My send message");
             //custom number phone
 
             string friendlyPhoneNumber = "+" + confirm.DialingCode.ToString();
             friendlyPhoneNumber += confirm.PhoneNumber.First() == '0' ? confirm.PhoneNumber.Remove(0, 1) : confirm.PhoneNumber;
 
-            //check verify
-            var verificationCheck = VerificationCheckResource.Create(
-                to: friendlyPhoneNumber,
-                code: confirm.VerificationCode,
-                pathServiceSid: _service.Sid
-                
-            );
 
-            if (verificationCheck.Valid == true && verificationCheck.Status == "approved")
+            //xác minh số điện thoại thành verified caller id
+
+            //var phoneNumber = new PhoneNumber(friendlyPhoneNumber);
+            //var validationRequest = ValidationRequestResource.Create(
+            //    phoneNumber,
+            //    friendlyName: friendlyPhoneNumber
+            //);
+
+            string Sid = HttpContext.Session.Get<string>("verSid_serSid");
+            if (Sid != null)
             {
-                return View("Success");
+                var verSid = Sid.Split(",")[0];
+                var serSid = Sid.Split(",")[1];
+                //check verify
+                var verificationCheck = VerificationCheckResource.Create(
+                    to: friendlyPhoneNumber,
+                    verificationSid: verSid,
+                    pathServiceSid: serSid,
+                    code: confirm.VerificationCode
+                );
+
+                if (verificationCheck.Valid == true && verificationCheck.Status == "approved")
+                {
+                    //update sdt db if it has
+                    List<KhachHang> khachHangs = db.KhachHang.Where(p => p.DienThoai == confirm.PhoneNumber).ToList();
+                    if(khachHangs.Count > 0)
+                    {
+                        foreach (var kh in khachHangs)
+                        {
+                            kh.PhoneNumberComfirmed = true;
+                        }
+
+                        db.SaveChanges();
+                    } else
+                    {
+                        KhachHang kh = new KhachHang {
+                            TaiKhoan = "anonymouse",
+                            HoTen = "anonymouse",
+                            NgaySinh = DateTime.Now,
+                            DienThoai = confirm.PhoneNumber,
+                            GioiTinh = "Nam",
+                            Email = "anonymous@gmail.com",
+                            TrangThaiHd = false,
+                            LoaiKH = false,
+                            PhoneNumberComfirmed = true
+                        };
+
+                        db.KhachHang.Add(kh);
+                        db.SaveChanges();
+                    }
+                    
+
+                    HttpContext.Session.Remove("verSid_serSid");
+                    return View("Success");
+                }
+                else
+                {
+                    ViewBag.errorCodeVerify = "Code is invalid. Please enter your valid code or resend";
+                    return RedirectToAction();
+                }
             }
             else
             {
-                ViewBag.errorCodeVerify = "Code is invalid. Please enter your valid code or resend";
-                return View();
+                ViewBag.ErrorVerSid = "Có vẻ như bạn chưa được gửi mã verify Code. Vui lòng nhấn resend để gửi lại";
+                return View("CheckVerifiedCode",confirm);
             }
+            
         }
 
         public IActionResult Success()

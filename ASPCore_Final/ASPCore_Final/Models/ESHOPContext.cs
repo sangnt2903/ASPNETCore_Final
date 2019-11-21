@@ -43,7 +43,11 @@ namespace ASPCore_Final.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+<<<<<<< HEAD
                 optionsBuilder.UseSqlServer("Server=.\\;Database=ESHOP;Trusted_Connection=True;");
+=======
+                optionsBuilder.UseSqlServer("Server=tcp:eshophcmue.database.windows.net,1433;Initial Catalog=ESHOP;Persist Security Info=False;User ID=EShop;Password=Hihi1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+>>>>>>> 316cb8a30c9d924241e15dfd1dd1a3954fb71042
             }
         }
 

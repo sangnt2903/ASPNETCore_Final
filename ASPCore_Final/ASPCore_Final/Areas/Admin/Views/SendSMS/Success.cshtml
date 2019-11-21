@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_frontEnd.cshtml";
 }
 
-    <div>
-        <p>
-            Thank you for confirming your phone number.
-        </p>
-        <a asp-page="/Index">Back to home</a>
+    <div class="container-fluid">
+        <div class="PopupTab">
+            <div class="alert alert-info"><h3>Cảm ơn đã đăng kí nhận thông tin từ Eshop</h3></div>
+            <div style="text-align:center; padding: 5px;"><a asp-action="Index" asp-controller="Home"><span class="glyphicon glyphicon-check"></span>Xong rồi đó</a></div>
+        </div>
     </div>
