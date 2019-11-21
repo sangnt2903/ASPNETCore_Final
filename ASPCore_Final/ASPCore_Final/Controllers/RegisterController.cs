@@ -93,7 +93,7 @@ namespace ASPCore_Final.Controllers
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
-                smtp.Credentials = new System.Net.NetworkCredential("duansupper@gmail.com", "nguyenduan111111");
+                smtp.Credentials = new System.Net.NetworkCredential("", "");
                 smtp.Send(mm);
                 HttpContext.Session.Set("kh", khachHang);
                 return RedirectToAction("Index", "Login");
