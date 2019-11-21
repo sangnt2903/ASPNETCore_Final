@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\TMDT\\Final\\ASPNETCore_Final\\ASPCore_Final\\ASPCore_Final\\ASPCore_Final.csproj": {}
+    "D:\\project\\asp\\ASPCore_Final\\ASPCore_Final\\ASPCore_Final.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\TMDT\\Final\\ASPNETCore_Final\\ASPCore_Final\\ASPCore_Final\\ASPCore_Final.csproj": {
+    "D:\\project\\asp\\ASPCore_Final\\ASPCore_Final\\ASPCore_Final.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\TMDT\\Final\\ASPNETCore_Final\\ASPCore_Final\\ASPCore_Final\\ASPCore_Final.csproj",
+        "projectUniqueName": "D:\\project\\asp\\ASPCore_Final\\ASPCore_Final\\ASPCore_Final.csproj",
         "projectName": "ASPCore_Final",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\TMDT\\Final\\ASPNETCore_Final\\ASPCore_Final\\ASPCore_Final\\ASPCore_Final.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\TMDT\\Final\\ASPNETCore_Final\\ASPCore_Final\\ASPCore_Final\\obj\\",
+        "projectPath": "D:\\project\\asp\\ASPCore_Final\\ASPCore_Final\\ASPCore_Final.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "D:\\project\\asp\\ASPCore_Final\\ASPCore_Final\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,19 +87,11 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.1.10, )"
-            },
-            "Ngrok.AspNetCore": {
-              "target": "Package",
-              "version": "[1.0.6, )"
+              "version": "[2.1.9, )"
             },
             "PayPal": {
               "target": "Package",
               "version": "[2.0.0-rc2, )"
-            },
-            "PayPalCheckoutSdk": {
-              "target": "Package",
-              "version": "[1.0.2, )"
             },
             "ReflectionIT.Mvc.Paging": {
               "target": "Package",
@@ -112,20 +101,22 @@
               "target": "Package",
               "version": "[2018.3.5, )"
             },
-            "Twilio.AspNet.Core": {
-              "target": "Package",
-              "version": "[5.33.1, )"
-            },
             "bootstrap": {
               "target": "Package",
               "version": "[4.1.3, )"
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-rc1-014190\\RuntimeIdentifierGraph.json"
         }
       }
     }

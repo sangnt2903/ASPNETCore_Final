@@ -110,9 +110,6 @@
                             data: { "mahh": mahh, "kichco": kichco, "soluongmoi": soluongmoi },
                             async: true,
                             success: function (data) {
-                                orderItems = [];
-                                totalValue = 0.0;
-                                Update();
                                 //console.log('success');
                                 console.log(data);
                                 $("ul.dschitiet").html('');
@@ -211,18 +208,7 @@
                 </script>
                 <div class="hieuung col-md-12" style="font-weight:300px">
                     <div class="motkhoi col-md-6">
-                        @if (Context.Session.Get<KhachHang>("user") != null && Context.Session.Get<List<CartItem>>("GioHang") != null)
-                        {
-                            <h3 class="btn btn-success" style="margin:auto;display:block;margin:auto;height:50px;line-height: 38px;border-radius: 5px">THANH TOÁN GIỎ HÀNG</h3>
-                            <br />
-
-                            <a asp-controller="NganLuong" asp-action="Index">
-                                <button style="margin:auto;display:block;margin:auto;height:55px;width:100%;background-color: #7ea1e6;
-    color: #fff;border-radius: 5px">
-                                    Create
-                                </button>
-                            </a>
-                        }
+                        <h3 class="btn btn-success" style="margin:auto;display:block;margin:auto">THANH TOÁN GIỎ HÀNG</h3>
                         <div class="ndmotkhoi">
                             @if (Context.Session.Get<KhachHang>("user") != null)
                             {
@@ -280,109 +266,12 @@
                             {
                                 <div class="alert alert-danger">Vui lòng đăng nhập để thanh toán </div>
                             }
-
+                            
                         </div>
                     </div>
-
-
-                    <script src="https://www.paypal.com/sdk/js?client-id=ASwEi_Epa3m8n3CWA3FwX8SZGOkGGrQGecHV0V9TwjoEDFyEjVkAAXmsxiZnacTFyPCs3OaAgKNyP7V4">
-                        // Required. Replace SB_CLIENT_ID with your sandbox client ID.
-                    </script>
-
-
-                    @if (Context.Session.Get<KhachHang>("user") != null && Context.Session.Get<List<CartItem>>("GioHang")!=null)
-                    {
-                        ESHOPContext db = new ESHOPContext();
-
-                        DateTime currentDate = DateTime.Now;
-                        double giamGia = 0;
-                        Voucher voucher = db.Voucher.SingleOrDefault(s => s.NgayBatDau <= currentDate && s.NgayHetHan >= currentDate);
-                        if (voucher != null)
-                        {
-                            giamGia = (double)voucher.GiamGia;
-                        }
-                        @*code javascript paypal*@
-                       
-                        <div class="col-md-6" id="paypal-button-container"></div>
-
-                        <script>
-                            var orderItems = [];
-                            var totalValue = 0.0;
-                            var tyGia = 23000.0;
-                            function Update() {
-                                $.ajax({
-                                    type: "get",
-                                    url: "/GioHang/getCart",
-                                    dataType: "json",
-                                    success: function (response) {
-                                        response.forEach(item => {
-                                            totalValue += Math.round((item.giaBan * item.soLuong * (1 -@giamGia)/tyGia)* 1) / 1;
-                                            var orderItem = {
-                                                name: item.tenHh,
-                                                unit_amount: {
-                                                    value: Math.round((item.giaBan(1 -@giamGia) / tyGia)*1)/1,
-                                                    currency_code: 'USD'
-                                                },
-                                                quantity: item.soLuong,
-                                                sku: item.mahh
-                                            };
-                                            orderItems.push(orderItem);
-
-                                        });
-                                        totalValue = totalValue / tyGia;
-                                        console.log(total)
-                                    }
-                                });
-                            }
-                            Update();
-                            paypal.Buttons({
-                                createOrder: function (data, actions) {
-                                    // This function sets up the details of the transaction, including the amount and line item details.
-                                    return actions.order.create({
-
-                                        purchase_units: [{
-                                            amount: {
-                                                value: totalValue,
-                                                currency_code: 'USD',
-                                                breakdown: {
-                                                    item_total: { value: totalValue, currency_code: 'USD' }
-                                                }
-                                            },
-                                            items: orderItems
-                                        }]
-                                    });
-                                },
-                                onApprove: function (data, actions) {
-                                    // This function captures the funds from the transaction.
-                                    return actions.order.capture().then(function (details) {
-                                        var shipping = details.purchase_units[0].shipping;
-
-                                        $.ajax({
-                                            type: "get",
-
-                                            url: "/GioHang/SaveOrder",
-                                            dataType: "json",
-                                            data: {
-                                                totalCount: totalValue,
-                                                type: "paypal"
-                                            },
-                                            success: function (respone) {
-                                                
-                                                if (respone == true) {
-                                                    alert('ThanhToán Thành Công Bởi ' + shipping.name.full_name);
-                                                }
-                                                window.location.reload();
-                                            }
-                                        });
-
-
-                                    });
-                                }
-                            }).render('#paypal-button-container');
-                                                                      //This function displays Smart Payment Buttons on your web page.
-                        </script>
-
-                    }
+                    <div class="col-md-6">
+                        <a asp-action="Index" asp-controller="PayPal" class="btn btn-info" style="display:block">Thanh toán bằng Paypal</a>
+                    </div>
                 </div>
                 <br />
                 @if (Context.Session.Get<string>("mess") != null)
