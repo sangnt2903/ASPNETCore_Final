@@ -317,7 +317,7 @@
                                     dataType: "json",
                                     success: function (response) {
                                         response.forEach(item => {
-											var item_GiaBan = Math.round((item.giaBan(1 -@giamGia) / tyGia)*1)/1;
+											var item_GiaBan = Math.round((item.giaBan*(1 -@giamGia) / tyGia)*1)/1;
                                             totalValue += Math.round((item_GiaBan * item.soLuong) * 1) / 1;
                                             var orderItem = {
                                                 name: item.tenHh,
