@@ -66,7 +66,7 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n<h2>Thanh toán thất bại</h2>\r\n<div>");
             EndContext();
             BeginContext(128, 90, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a7d3bef51db4eee94991dbf0ca9feac", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "17b98055c373474fb0c5b7ba9665358e", async() => {
                 BeginContext(199, 15, true);
                 WriteLiteral("Trở về giỏ hàng");
                 EndContext();

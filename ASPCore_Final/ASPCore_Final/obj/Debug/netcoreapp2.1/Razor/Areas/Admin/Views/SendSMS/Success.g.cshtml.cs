@@ -65,7 +65,7 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n    <div class=\"container-fluid\">\r\n        <div class=\"PopupTab\">\r\n            <div class=\"alert alert-info\"><h3>Cảm ơn đã đăng kí nhận thông tin từ Eshop</h3></div>\r\n            <div style=\"text-align:center; padding: 5px;\">");
             EndContext();
             BeginContext(321, 106, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5c1fe57b5a62429dbe5e2e920b6a4459", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2865399e7da14b3b98e2b69460589c01", async() => {
                 BeginContext(365, 58, true);
                 WriteLiteral("<span class=\"glyphicon glyphicon-check\"></span>Xong rồi đó");
                 EndContext();

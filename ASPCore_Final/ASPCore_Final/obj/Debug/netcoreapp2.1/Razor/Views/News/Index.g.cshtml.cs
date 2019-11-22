@@ -68,7 +68,7 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n<!-- breadcrumbs -->\r\n<div class=\"breadcrumbs\">\r\n    <div class=\"container\">\r\n        <ol class=\"breadcrumb breadcrumb1 animated wow slideInLeft\" data-wow-delay=\".5s\">\r\n            <li>");
             EndContext();
             BeginContext(328, 123, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ca1c1ba362e41ea868c2d1d77442368", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2c70de94b7c245b18d15f9e3f1565d2e", async() => {
                 BeginContext(372, 75, true);
                 WriteLiteral("<span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></span>Trang chủ");
                 EndContext();
@@ -101,7 +101,7 @@ using ASPCore_Final.Models;
             WriteLiteral("        <div class=\"container-fluid\">\r\n            <div class=\"row align-content-center\">\r\n                <div class=\"col-sm-3\">\r\n                    ");
             EndContext();
             BeginContext(786, 89, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f6059c2aa1bb4fd9ad0d5ab7ef18cf57", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b9e391e3bf7a4d8b986e183f71d325b9", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
