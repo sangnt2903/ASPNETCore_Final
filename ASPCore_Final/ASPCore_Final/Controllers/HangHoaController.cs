@@ -16,31 +16,43 @@ namespace ASPCore_Final.Controllers
         }
 
         [Route("HangHoa/{slugLoai}")]
-        public IActionResult Index(string slugLoai="", bool? gioitinh = null, int page = 1, int pageSize = 6)
+        public IActionResult Index(string slugLoai="", bool? gioitinh = null, int page = 1, int pageSize = 24, string type="")
         {
+            
             int starIndex = (page - 1) * pageSize;
             List<HangHoa> hangHoas =  db.HangHoa.Skip(starIndex).ToList();
             string maloai = db.Loai.SingleOrDefault(p => p.SlugLoai == slugLoai).MaLoai;
-            if (gioitinh != null)
+
+            if (type == "all")
             {
-                hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).Skip(starIndex).ToList();
-            }
-            else if(slugLoai != null && slugLoai != "")
+                hangHoas = db.HangHoa.ToList();
+                
+            } else
             {
-                hangHoas = db.HangHoa.Where(p => p.MaLoai == maloai).Skip(starIndex).ToList();
+                if (gioitinh != null)
+                {
+                    hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).Skip(starIndex).ToList();
+                }
+                else if (slugLoai != null && slugLoai != "")
+                {
+                    hangHoas = db.HangHoa.Where(p => p.MaLoai == maloai).Skip(starIndex).ToList();
+                }
+                int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
+                hangHoas = hangHoas.Take(itemsize).ToList();
             }
-            int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
-            List<HangHoa> res = hangHoas.Take(itemsize).ToList();
+            
             ViewData["TongSoLuong"] = hangHoas.Count;
-            return View("Index",res);
+            return View("Index", hangHoas);
         }
 
-        public IActionResult TaiThem(string loai = "", bool? gioitinh = null, string mucgia = "", string sapxep = "", int page = 2, int pageSize = 6)
+        public List<HangHoa> TaiThem(string slugloai = "", bool? gioitinh = null, string mucgia = "", string sapxep = "", int page = 2, int pageSize = 24)
         {
             int starIndex = (page - 1) * pageSize;
-
+            string loai = db.Loai.SingleOrDefault(p => p.SlugLoai == slugloai).MaLoai;
             List<HangHoa> hangHoas = db.HangHoa.ToList();
-            List<HangHoaBanChayModel> hangHoaBanChays = new List<HangHoaBanChayModel>();
+            List<HangHoa> resHangHoas = new List<HangHoa>();
+
+
             if (gioitinh != null)
             {
                 hangHoas = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == gioitinh).ToList();
@@ -49,76 +61,76 @@ namespace ASPCore_Final.Controllers
             {
                 hangHoas = db.HangHoa.Where(p => p.MaLoai == loai).ToList();
             }
-            switch (mucgia)
-            {
-                case "100000":
-                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) < 100000).ToList();
-                    break;
-                case "200000":
-                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) >= 100000 && p.DonGia * (1 - p.GiamGia) < 200000).ToList();
-                    break;
-                case "300000":
-                    hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) >= 200000 && p.DonGia * (1 - p.GiamGia) < 300000).ToList();
-                    break;
-                default:
-                    break;
-            }
-            switch (sapxep)
-            {
-                case "tang":
-                    hangHoas = hangHoas.OrderBy(p => p.DonGia * (1 - p.GiamGia)).ToList();
-                    break;
-                case "giam":
-                    hangHoas = hangHoas.OrderByDescending(p => p.DonGia * (1 - p.GiamGia)).ToList();
-                    break;
-                case "moinhat":
-                    hangHoas = hangHoas.OrderByDescending(p => p.MaHh).ToList();
-                    break;
-                case "banchay":
-                    hangHoaBanChays = hangHoas.Join(db.ChiTietHd,
-                                             hh => hh.MaHh,
-                                             cthd => cthd.MaHh,
-                                             (hh, cthd) => new { HHoa = hh, CTiet = cthd })
-                                       .Join(db.HoaDon.Where(hd => (DateTime.Now - hd.NgayDat).TotalDays <= 30),
-                                             hhcthd => hhcthd.CTiet.MaHd,
-                                             hd => hd.MaHd,
-                                             (hhcthd, hd) => new { HHCTHD = hhcthd, HDon = hd })
-                                       .GroupBy(g => new { g.HHCTHD.HHoa.MaHh, g.HHCTHD.HHoa.TenHh, g.HHCTHD.HHoa.Hinh, g.HHCTHD.HHoa.MoTa, g.HHCTHD.HHoa.DonGia, g.HHCTHD.HHoa.GiamGia })
-                                       .OrderByDescending(g => g.Sum(t => t.HHCTHD.CTiet.SoLuong))
-                                       .Select(group => new HangHoaBanChayModel
-                                       {
-                                            MaHH = group.Key.MaHh,
-                                            TenHH = group.Key.TenHh,
-                                            HAnh = group.Key.Hinh,
-                                            MTa = group.Key.MoTa,
-                                            DGIa = group.Key.DonGia,
-                                            GGia = group.Key.GiamGia,
-                                            TongSoBan = group.Sum(t => t.HHCTHD.CTiet.SoLuong)
-                                        }).ToList();
-                    //var hhbc = from hh in hangHoas
-                    //           join cthd in db.ChiTietHd on hh.MaHh equals cthd.MaHh
-                    //           join hd in db.HoaDon on cthd.MaHd equals hd.MaHd
-                    //           group 
-                    break;
-                default:
-                    break;
-            }
-            if(sapxep == "banchay")
-            {
-                hangHoaBanChays = hangHoaBanChays.Skip(starIndex).ToList();
-                int itemsize = hangHoaBanChays.Count < pageSize ? hangHoaBanChays.Count : pageSize;
-                List<HangHoaBanChayModel> res = hangHoaBanChays.Take(itemsize).ToList();
-                ViewData["TongSoLuong"] = hangHoaBanChays.Count;
-                return PartialView("TaiThemBanChay", res);
-            }
-            else
-            {
-                hangHoas = hangHoas.Skip(starIndex).ToList();
+            //switch (mucgia)
+            //{
+            //    case "100000":
+            //        hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) < 100000).ToList();
+            //        break;
+            //    case "200000":
+            //        hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) >= 100000 && p.DonGia * (1 - p.GiamGia) < 200000).ToList();
+            //        break;
+            //    case "300000":
+            //        hangHoas = hangHoas.Where(p => p.DonGia * (1 - p.GiamGia) >= 200000 && p.DonGia * (1 - p.GiamGia) < 300000).ToList();
+            //        break;
+            //    default:
+            //        break;
+            //}
+            //switch (sapxep)
+            //{
+            //    case "tang":
+            //        hangHoas = hangHoas.OrderBy(p => p.DonGia * (1 - p.GiamGia)).ToList();
+            //        break;
+            //    case "giam":
+            //        hangHoas = hangHoas.OrderByDescending(p => p.DonGia * (1 - p.GiamGia)).ToList();
+            //        break;
+            //    case "moinhat":
+            //        hangHoas = hangHoas.OrderByDescending(p => p.MaHh).ToList();
+            //        break;
+            //    case "banchay":
+            //        hangHoaBanChays = hangHoas.Join(db.ChiTietHd,
+            //                                 hh => hh.MaHh,
+            //                                 cthd => cthd.MaHh,
+            //                                 (hh, cthd) => new { HHoa = hh, CTiet = cthd })
+            //                           .Join(db.HoaDon.Where(hd => (DateTime.Now - hd.NgayDat).TotalDays <= 30),
+            //                                 hhcthd => hhcthd.CTiet.MaHd,
+            //                                 hd => hd.MaHd,
+            //                                 (hhcthd, hd) => new { HHCTHD = hhcthd, HDon = hd })
+            //                           .GroupBy(g => new { g.HHCTHD.HHoa.MaHh, g.HHCTHD.HHoa.TenHh, g.HHCTHD.HHoa.Hinh, g.HHCTHD.HHoa.MoTa, g.HHCTHD.HHoa.DonGia, g.HHCTHD.HHoa.GiamGia })
+            //                           .OrderByDescending(g => g.Sum(t => t.HHCTHD.CTiet.SoLuong))
+            //                           .Select(group => new HangHoaBanChayModel
+            //                           {
+            //                                MaHH = group.Key.MaHh,
+            //                                TenHH = group.Key.TenHh,
+            //                                HAnh = group.Key.Hinh,
+            //                                MTa = group.Key.MoTa,
+            //                                DGIa = group.Key.DonGia,
+            //                                GGia = group.Key.GiamGia,
+            //                                TongSoBan = group.Sum(t => t.HHCTHD.CTiet.SoLuong)
+            //                            }).ToList();
+            //        //var hhbc = from hh in hangHoas
+            //        //           join cthd in db.ChiTietHd on hh.MaHh equals cthd.MaHh
+            //        //           join hd in db.HoaDon on cthd.MaHd equals hd.MaHd
+            //        //           group 
+            //        break;
+            //    default:
+            //        break;
+            //}
+            //if(sapxep == "banchay")
+            //{
+            //    hangHoaBanChays = hangHoaBanChays.Skip(starIndex).ToList();
+            //    int itemsize = hangHoaBanChays.Count < pageSize ? hangHoaBanChays.Count : pageSize;
+            //    List<HangHoaBanChayModel> res = hangHoaBanChays.Take(itemsize).ToList();
+            //    ViewData["TongSoLuong"] = hangHoaBanChays.Count;
+            //    return res;
+            //}
+            //else
+            //{
+                resHangHoas = hangHoas.Skip(starIndex).ToList();
                 int itemsize = hangHoas.Count < pageSize ? hangHoas.Count : pageSize;
-                List<HangHoa> res = hangHoas.Take(itemsize).ToList();
+                List<HangHoa> res = resHangHoas.Take(itemsize).ToList();
                 ViewData["TongSoLuong"] = hangHoas.Count;
-                return PartialView(res);
-            }
+                return res;
+
         }
 
         public IActionResult Filter(string loai = "", bool? gioitinh = null, string mucgia = "", string sapxep = "", int page = 1, int pageSize = 6)
@@ -210,7 +222,12 @@ namespace ASPCore_Final.Controllers
         [Route("HangHoa/{slugLoai}/{slug}")]
         public IActionResult ChiTiet(string slugLoai, string slug)
         {
-            HangHoa hh = db.HangHoa.SingleOrDefault(p => p.Slug == slug);
+            string maloai = db.Loai.SingleOrDefault(p => p.SlugLoai == slugLoai).MaLoai;
+            HangHoa hh = db.HangHoa.SingleOrDefault(p => p.MaLoai == maloai && p.Slug == slug.Trim());
+            if(hh == null)
+            {
+                hh = db.HangHoa.Where(p=>p.MaLoai == maloai).First();
+            }
             return View(hh);
         }
 

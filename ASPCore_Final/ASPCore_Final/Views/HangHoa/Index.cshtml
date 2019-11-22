@@ -51,7 +51,10 @@
         </div>
         
         <div class="filter">
-            <input type="hidden" name="loai" value="@Context.Request.Query["loai"]" />
+            @{
+                string SlugLoai = Context.Session.Get<string>("SlugLoai");
+            }
+            <input type="hidden" id="loaihidden" value="@SlugLoai" />
             <input type="hidden" name="gioitinh" value="@Context.Request.Query["gioitinh"]" />
             <div class="form-group">
                 <label>Mức giá</label>
@@ -88,7 +91,7 @@
                     int soluongSPNu = db.HangHoa.Where(p => p.MaLoaiNavigation.GioiTinh == true).ToList().Count();
                     int tongSoLuong = (int)ViewData["TongSoLuong"];
                 }
-                <li><a asp-controller="HangHoa" asp-action="Index">Tất cả sản phẩm<span>(@soLuongSP)</span></a></li>
+                <li><a asp-controller="HangHoa" asp-action="Index" asp-route-type="all">Tất cả sản phẩm<span>(@soLuongSP)</span></a></li>
                 <li><a asp-controller="HangHoa" asp-action="Index" asp-route-gioitinh="false">Thời trang nam<span>(@soluongSPNam)</span></a></li>
                 <ul>
                     @foreach (var item in listNam)
@@ -111,15 +114,15 @@
     </div>
     <div class="col-md-8 products-right">
         <div class="products-right-grids-bottom">
-            @foreach (var item in Model)        
+            @foreach (var item in Model)
             {
                 string slugLoai = db.Loai.SingleOrDefault(p => p.MaLoai == item.MaLoai).SlugLoai;
                 <div class="col-md-4 products-right-grids-bottom-grid" style="margin-bottom:15px;">
                     <div class="new-collections-grid1 products-right-grid1 animated wow" data-wow-delay=".5s" style="padding:10px;">
                         <div class="new-collections-grid1-image">
-                            <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-slugLoai="@slugLoai" asp-route-slug="@item.Slug" class="product-image" style="padding:10px;"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive"></a>
+                            <a asp-action="ChiTiet" asp-controller="HangHoa"  asp-route-slugLoai="@slugLoai" asp-route-slug="@item.Slug.Trim()" class="product-image" style="padding:10px;"><img src="~/HangHoa/@item.Hinh" alt=" " class="img-responsive"></a>
                             <div class="new-collections-grid1-image-pos products-right-grids-pos" style="text-align:center">
-                                <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-slugLoai="@slugLoai" asp-route-slug="@item.Slug">Xem chi tiết</a>
+                                <a asp-action="ChiTiet" asp-controller="HangHoa" asp-route-slugLoai="@slugLoai.Trim()" asp-route-slug="@item.Slug.Trim()">Xem chi tiết</a>
                             </div>
                             @{
                                 List<SanPhamKho> sanPhamKhos = db.SanPhamKho.Where(p => p.MaHh == item.MaHh).ToList();
@@ -214,9 +217,9 @@
             }
             <input type="hidden" name="tongsotrang" value="@totalPage" />
         </div>
-        <div class="sec-load-more">
+        @*<div class="sec-load-more">
             <a class="load-more" id="load-more">Tải thêm sản phẩm</a>
-        </div>
+        </div>*@
     </div>
         <script language="javascript">
             $(function () {
@@ -243,7 +246,7 @@
                     });
                 });
                 $('#submit-filter').click(function () {
-                    var loai = $("input[name='loai']").val();
+                    var slugloai = $("input#loaihidden").val();
                     var gioitinh = $("input[name='gioitinh']").val();
                     var mucgia = $("select[name='mucgia']").val();
                     var sapxep = $("select[name='sapxep']").val();
@@ -251,10 +254,10 @@
                         gioitinh = null;
                     }
                     ajaxHH.resetPage();
-                    ajaxHH.filter(loai, gioitinh, mucgia, sapxep);
+                    ajaxHH.filter(slugloai, gioitinh, mucgia, sapxep);
                 });
                 $("#load-more").click(function () {
-                    var loai = $("input[name='loai']").val();
+                    var slugloais = $("input#loaihidden").val();
                     var gioitinh = $("input[name='gioitinh']").val();
                     var mucgia = $("select[name='mucgia']").val();
                     var sapxep = $("select[name='sapxep']").val();
@@ -262,7 +265,7 @@
                         gioitinh = null;
                     }
                     ajaxHH.tangPage();
-                    ajaxHH.taiThem(loai, gioitinh, mucgia, sapxep);
+                    ajaxHH.taiThem(slugloai, gioitinh, mucgia, sapxep);
                 });
             });
             function ajaxHangHoa(){
@@ -276,9 +279,9 @@
                 var getPage = function () {
                     return page;
                 };
-                var filter = function (loai, gioitinh, mucgia, sapxep) {
+                var filter = function (slugloai, gioitinh, mucgia, sapxep) {
                     console.log(page);
-                    console.log(loai);
+                    console.log(slugloai);
                     console.log(gioitinh);
                     console.log(mucgia);
                     console.log(sapxep);
@@ -286,7 +289,7 @@
                         url: "/HangHoa/Filter",
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        data: { "loai": loai, "gioitinh": gioitinh, "page": page, 'mucgia': mucgia, 'sapxep': sapxep },
+                        data: { "slugloai": slugloai, "gioitinh": gioitinh, "page": page, 'mucgia': mucgia, 'sapxep': sapxep },
                         async: true,
                         success: function (response) {
                             console.log('success');
@@ -301,7 +304,7 @@
                                     $('.sec-load-more').html('<a class="load-more" id="load-more">Tải thêm sản phẩm</a>');
                                 }
                                 $("#load-more").click(function () {
-                                    var loai = $("input[name='loai']").val();
+                                    var slugloai = $("input[name='loai']").val();
                                     var gioitinh = $("input[name='gioitinh']").val();
                                     var mucgia = $("select[name='mucgia']").val();
                                     var sapxep = $("select[name='sapxep']").val();
@@ -309,24 +312,24 @@
                                         gioitinh = null;
                                     }
                                     tangPage();
-                                    taiThem(loai, gioitinh, mucgia, sapxep);
+                                    taiThem(slugloai, gioitinh, mucgia, sapxep);
                                 });
                             });
                             
                         }
                     });
                 };
-                var taiThem = function (loai, gioitinh, mucgia, sapxep) {
+                var taiThem = function (slugloai, gioitinh, mucgia, sapxep) {
                     console.log(page);
-                    console.log(loai);
                     console.log(gioitinh);
                     $.ajax({
                         url: "/HangHoa/TaiThem",
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
-                        data: {"loai": loai, "gioitinh": gioitinh, "page": page, 'mucgia': mucgia, 'sapxep': sapxep},
+                        data: {"slugloai": slugloai, "gioitinh": gioitinh, "page": page, 'mucgia': mucgia, 'sapxep': sapxep},
                         async: true,
                         success: function (response) {
+                            console.log(response);
                             console.log('success');
                             $('div.products-right-grids-bottom').append(response);
                             var tongSoTrang = $("input[name='tongsotrang']").val();
