@@ -127,7 +127,7 @@
                             @{
                                 List<SanPhamKho> sanPhamKhos = db.SanPhamKho.Where(p => p.MaHh == item.MaHh).ToList();
                                 var soluong = sanPhamKhos.Sum(x => x.SoLuong);
-                                if (soluong > 10)
+                                    if (soluong > 10)
                                 {
                                     double gg = item.GiamGia * 100;
                                     <div class="new-one">
