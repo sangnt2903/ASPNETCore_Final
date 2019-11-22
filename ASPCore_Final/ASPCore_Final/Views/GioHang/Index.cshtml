@@ -204,7 +204,8 @@
                     $(function () {
                         $('.ndmotkhoi').slideUp();
                         $('.motkhoi h3').click(function (event) {
-                            $(this).next('.ndmotkhoi').slideToggle();
+
+                            $('.ndmotkhoi').slideToggle(200);
                             $(this).toggleClass("xanh");
                          });
                          });
@@ -219,11 +220,11 @@
                             <a asp-controller="NganLuong" asp-action="Index">
                                 <button style="margin:auto;display:block;margin:auto;height:55px;width:100%;background-color: #7ea1e6;
     color: #fff;border-radius: 5px">
-                                    Create
+                                    THANH TOÁN VỚI NGÂN LƯỢNG
                                 </button>
                             </a>
                         }
-                        <div class="ndmotkhoi">
+                        <div class="ndmotkhoi" style="display:block">
                             @if (Context.Session.Get<KhachHang>("user") != null)
                             {
                                 KhachHang kh = Context.Session.Get<KhachHang>("user");
@@ -329,7 +330,7 @@
                                             orderItems.push(orderItem);
 
                                         });
-                                        totalValue = totalValue / tyGia;
+                                        totalValue = Math.round((totalValue / tyGia)*1)/1;
                                         console.log(total)
                                     }
                                 });
