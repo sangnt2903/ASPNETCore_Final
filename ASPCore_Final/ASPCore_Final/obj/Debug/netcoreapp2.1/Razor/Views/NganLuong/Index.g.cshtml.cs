@@ -60,7 +60,7 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n");
             EndContext();
             BeginContext(174, 121, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ea62fd4bab4645c7bf5d6a674121d814", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b729de0fa2c64854903d75cef42884e2", async() => {
                 BeginContext(195, 93, true);
                 WriteLiteral("\r\n    <title></title>\r\n    <link rel=\"stylesheet\" href=\"Styles/Site.css\" type=\"text/css\" />\r\n");
                 EndContext();
@@ -81,12 +81,12 @@ using ASPCore_Final.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(297, 12295, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "76ea2fde92914737a177618962e23edf", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e1e58482ac4146f4bfc6ba44b912b89f", async() => {
                 BeginContext(303, 119, true);
                 WriteLiteral("\r\n\r\n    <h3>Chọn phương thức thanh toán</h3>\r\n    <div ID=\"txtserverkt\" runat=\"server\" name=\"txtserverkt\"> </div>\r\n    ");
                 EndContext();
                 BeginContext(422, 11449, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "591668147a224d0a9ffe0f9e1761f232", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "873c10ee50b24f18aebbfda5cab40ac0", async() => {
                     BeginContext(515, 11126, true);
                     WriteLiteral(@"
         <ul class=""list-content"">
