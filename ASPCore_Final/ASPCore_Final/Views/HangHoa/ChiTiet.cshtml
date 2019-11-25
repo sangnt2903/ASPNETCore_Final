@@ -17,15 +17,20 @@
 }
 <!-- //breadcrumbs -->
 
+@{
+    ESHOPContext db = new ESHOPContext();
+    string SlugLoai = db.Loai.SingleOrDefault(p => p.MaLoai == Model.MaLoai).SlugLoai;
+}
+
 @section metasocials{
-    <meta property="og:url" content="http://eshophcmue.azurewebsites.net/HangHoa/@Model.Slug"/>
-    <meta property="og:type" content="article" />
+    <script src="~/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5da3c3835de3e70013e3bcee&product=inline-share-buttons" async="async"></script>
+    <meta property="og:url" content="http://eshophcmue.azurewebsites.net/HangHoa/@SlugLoai/@Model.Slug" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="@Model.TenHh" />
     <meta property="og:description" content="@Model.MoTa" />
-    <meta itemprop="image" content="https://eshophcmue.azurewebsites.net/HangHoa/@Model.Hinh">
-    <meta property="og:url" itemprop="url" content="https://eshophcmue.azurewebsites.net/HangHoa/@Model.Slug">
+    <meta property="og:image" content="https://eshophcmue.azurewebsites.net/HangHoa/@Model.Hinh">
 
-    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d4e35523387b20012d7748c&product=' inline-share-buttons' async='async'></script>
 }
 
 <!-- single -->
@@ -69,7 +74,6 @@
                 <h4><span class="item_price"></span>@giagiam.ToString("#,##0") đ</h4>
                 <div>
                     @{
-                        ESHOPContext db = new ESHOPContext();
                         List<YeuThich> yts = db.YeuThich.Where(p => p.MaHh == Model.MaHh).ToList();
                         double diemyt = 0;
                         if (yts.Count > 0)
@@ -101,7 +105,7 @@
                         {
                             @for (int i = 1; i <= 5; i++)
                             {
-                                <img src="~/images/2.png" style="opacity:1" alt="Not found"> 
+                                <img src="~/images/2.png" style="opacity:1" alt="Not found">
                             }
                         }
                     }
@@ -157,12 +161,7 @@
                     <div class="social-left">
                         <p>Chia sẻ :</p>
                     </div>
-                    <div class="social-right">
-                        <div class="sharethis-inline-share-buttons"
-                             data-href="http://www.eshoppe.com/HangHoa/@Model.TenHh"
-                             data-layout="button_count">
-                        </div>
-                    </div>
+                    <div class="sharethis-inline-share-buttons"></div>
                     <div class="clearfix"> </div>
                 </div>
             </div>
