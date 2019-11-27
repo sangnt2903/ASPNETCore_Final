@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using ASPCore_Final.Models;
 using ReflectionIT.Mvc.Paging;
 using Microsoft.AspNetCore.Routing;
+using System.IO;
+using OfficeOpenXml;
 
 namespace ASPCore_Final.Areas.Admin.Controllers
 {
@@ -164,6 +166,33 @@ namespace ASPCore_Final.Areas.Admin.Controllers
         private bool KhachHangExists(int id)
         {
             return _context.KhachHang.Any(e => e.MaKh == id);
+        }
+
+
+        [HttpGet("/admin/KhachHangs/ExportToExcel")]
+        public IActionResult ExportToExcel()
+        {
+            //Chuẩn bị dữ liệu
+            var data = _context.KhachHang.Select(kh => new
+            {
+                Email = kh.Email,
+                FirstName = kh.HoTen
+            });
+
+            //Xuất ra Excel dùng EPLus
+            var stream = new MemoryStream();
+            using (var package = new ExcelPackage(stream))
+            {
+                var sheet = package.Workbook.Worksheets.Add("Customer");
+
+                //sheet.Cells[1, 1].Value = "A";
+                sheet.Cells.LoadFromCollection(data, true);
+
+                package.Save();
+            }
+            stream.Position = 0;
+
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "KhachHang.xlsx");
         }
     }
 }
