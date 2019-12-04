@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://eshophcmue.azurewebsites.net/sitemap.xml
