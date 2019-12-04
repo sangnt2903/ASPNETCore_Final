@@ -6,4 +6,297 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
+
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/Login</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/Register/Create</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-ngan-0</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-tay-dai-0</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ngan-tay-0</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ba-lo-0</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-1</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-ngan-1</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-tay-dai-1</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ngan-tay-1</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ba-lo-1</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/News</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/MyHoaDons</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/Home/Contact</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/Home/About</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/GioHang</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0/ao-so-mi-nam-dai-tay-trang-smt16</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0/ao-so-mi-nam-dai-tay-trang-smt12</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0/ao-so-mi-nam-dai-tay-trang-smt0001</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0/ao-so-mi-nam-dai-tay-soc-den-trang-smt0004</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0/ao-so-mi-nam-dai-tay-xanh-soc-den-smt0026</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0/ao-so-mi-nam-dai-tay-do-soc-smt0006</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0/ao-so-mi-nam-dai-tay-xam-soc-den-smt0018</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/Home/subcrise</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/Home</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/ForgetPassword</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-0?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-ngan-0?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-ngan-0?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-ngan-0?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-tay-dai-0?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-tay-dai-0?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-tay-dai-0?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ngan-tay-0?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ngan-tay-0?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ngan-tay-0?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ba-lo-0?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ba-lo-0?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ba-lo-0?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-1?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-1?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-dai-1?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-ngan-1?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-ngan-1?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-so-mi-tay-ngan-1?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-tay-dai-1?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-tay-dai-1?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-tay-dai-1?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ngan-tay-1?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ngan-tay-1?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ngan-tay-1?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ba-lo-1?type=all</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ba-lo-1?gioitinh=false</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://eshophcmue.azurewebsites.net/HangHoa/ao-thun-ba-lo-1?gioitinh=true</loc>
+  <lastmod>2019-12-04T05:18:06+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
 </urlset>
